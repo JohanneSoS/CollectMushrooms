@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         {
             charRenderer.FlipSprite("right");
         }
-        
     }
+    
+    
 }
