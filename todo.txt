@@ -12,3 +12,7 @@ NPCs mit Quests
 
 Map/ Pilze
 Pilzespawner *
+neue Map
+
+
+Kamera auf Bereich begrenzen
