@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemPrefab: {fileID: 4070009018722465998, guid: bb657c55a0358e242b1d62e730f91486, type: 3}
-  spawnAmount: 2
+  spawnAmount: 20
   Radius: 5
   minXAxis: -9.62
   maxXAxis: -1.4
@@ -12112,6 +12112,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e6ed7027613b538469306cf67d496495, type: 2}
   - {fileID: 11400000, guid: d19018a211e8f2746810977228c96954, type: 2}
   - {fileID: 11400000, guid: a96b516846a64a0469b62349333d3359, type: 2}
+  maxStacks: 16
 --- !u!4 &1778376313
 Transform:
   m_ObjectHideFlags: 0
