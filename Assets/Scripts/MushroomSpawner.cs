@@ -1,0 +1,50 @@
+using UnityEngine;
+
+public class MushroomSpawner : MonoBehaviour
+{
+    public GameObject ItemPrefab;
+
+    public int spawnAmount;
+    public float Radius;
+
+    public float minXAxis;
+    public float maxXAxis;
+    public float minYAxis;
+    public float maxYAxis;
+    
+
+    //private Vector3 lastSpawnLocation;
+    
+    void Start()
+    {
+        for (int i = 0; i < spawnAmount; i++)
+        {
+            RespawnMushrooms();
+        }
+    }
+
+    void RespawnMushrooms()
+    {
+        //Vector2 randomPos = Random.insideUnitCircle * Radius;
+        //Vector3 spawnPos = new Vector3(randomPos.x, randomPos.y, 7);
+        
+        float randomPosX = Random.Range(minXAxis, maxXAxis);
+        float randomPosY = Random.Range(minYAxis, maxYAxis);
+        Vector3 spawnPos = new Vector3(randomPosX, randomPosY, 7);
+        Instantiate(ItemPrefab, spawnPos, Quaternion.identity);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        //Gizmos.DrawWireSphere(transform.position, Radius);
+        Vector2 pointA = new Vector2(minXAxis, minYAxis);
+        Vector2 pointB = new Vector2(maxXAxis, maxYAxis);
+        Vector2 pointC = new Vector2(minXAxis, maxYAxis);
+        Vector2 pointD = new Vector2(maxXAxis, minYAxis);
+        Gizmos.DrawLine(pointA, pointC);
+        Gizmos.DrawLine(pointB,pointD);
+        Gizmos.DrawLine(pointA, pointD);
+        Gizmos.DrawLine(pointB, pointC);
+    }
+}

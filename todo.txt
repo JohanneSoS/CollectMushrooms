@@ -1,0 +1,12 @@
+ToDo
+
+Itemsystem
+- Items ueber TileMap aufsammelbar machen statt über einzelne GameObjects
+- Items stacken			--> https://www.youtube.com/watch?v=oJAE6CbsQQA
+- Items selecten 		--> https://www.youtube.com/watch?v=oJAE6CbsQQA
+
+NPCs mit Quests
+- Behaelter-GameObjekt, wo bestimmte Items reingetan werden können 
+- Item-Logik zum Abgeben von Items
+- NPCs Interagiersystem/ Dialogsystem
+
