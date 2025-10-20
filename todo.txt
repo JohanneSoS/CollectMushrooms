@@ -12,7 +12,7 @@ NPCs mit Quests
 
 Map/ Pilze
 Pilzespawner *
-neue Map
-
+neue Map *
+Wenn Baum berührt Transparenz * 
 
 Kamera auf Bereich begrenzen
