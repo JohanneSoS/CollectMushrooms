@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7924528, g: 0.72300977, b: 0.6915272, a: 1}
+  m_Color: {r: 0.79215693, g: 0.72156864, b: 0.6901961, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -89,6 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cdef269a8a04bc4899cd9e28bb675ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 8069066931906165803}
+  selectedColor: {r: 0.5660378, g: 0.49394804, b: 0.4619082, a: 1}
+  unselectedColor: {r: 0.7921569, g: 0.72156864, b: 0.6901961, a: 1}
 --- !u!1001 &4413981223436866109
 PrefabInstance:
   m_ObjectHideFlags: 0

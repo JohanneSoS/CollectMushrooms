@@ -1,16 +1,26 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Image image;
+    public Color selectedColor;
+    public Color unselectedColor;
+
+    private void Awake()
     {
-        
+        Unselect();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Select()
     {
-        
+        image.color = selectedColor;    
     }
+
+    public void Unselect()
+    {
+        image.color = unselectedColor;
+    }
+    
 }
