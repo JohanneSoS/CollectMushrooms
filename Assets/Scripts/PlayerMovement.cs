@@ -1,13 +1,25 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using Cache = UnityEngine.Cache;
 
 public class PlayerMovement : MonoBehaviour
 {
     
-    [SerializeField] private float movementSpeed;
     [SerializeField] private CharacterRenderer charRenderer;
     [SerializeField] private Rigidbody2D rbody;
+    [SerializeField] private HideLayer hideLayerTree;
+    [SerializeField] private HideLayer hideLayerBushes;
+    [SerializeField] private CameraMovement cameraMovement;
+    
+    [Header("Parameters")]
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float sniffDuration;
+    [SerializeField] private float sniffCooldown;
+
+    private bool sniffActive;
+    private bool canSniff = true;
 
     private void Awake()
     {
@@ -46,7 +58,33 @@ public class PlayerMovement : MonoBehaviour
         {
             charRenderer.FlipSprite("right");
         }
+        
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Sniff();
+        }
     }
-    
+
+    private void Sniff()
+    {
+        if (sniffActive != true)
+        {
+            hideLayerTree.Hide();
+            hideLayerBushes.Hide();
+            StartCoroutine(SniffDuration());
+        }
+    }
+
+    IEnumerator SniffDuration()
+    {
+        canSniff = false;
+        sniffActive = true;
+        cameraMovement.StartShake();
+        yield return new WaitForSeconds(sniffDuration);
+        sniffActive = false;
+        hideLayerTree.Show();
+        hideLayerBushes.Show();
+        yield return new WaitForSeconds(sniffCooldown);
+    }
     
 }
