@@ -3,6 +3,8 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using Cache = UnityEngine.Cache;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,13 +14,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private HideLayer hideLayerTree;
     [SerializeField] private HideLayer hideLayerBushes;
     [SerializeField] private CameraMovement cameraMovement;
+    [SerializeField] private Light2D charLight;
     
     [Header("Parameters")]
     [SerializeField] private float movementSpeed;
-    [SerializeField] private float sniffDuration;
+    [SerializeField] public float sniffDuration;
     [SerializeField] private float sniffCooldown;
+    [SerializeField] private float sniffLightIntensity;
 
-    private bool sniffActive;
+    public bool sniffActive;
     private bool canSniff = true;
 
     private void Awake()
@@ -69,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (sniffActive != true)
         {
+            EventManager.OnSniffing.Invoke(sniffDuration);
             hideLayerTree.Hide();
             hideLayerBushes.Hide();
             StartCoroutine(SniffDuration());
@@ -80,10 +85,13 @@ public class PlayerMovement : MonoBehaviour
         canSniff = false;
         sniffActive = true;
         cameraMovement.StartShake();
+        float defaultLightIntensity = charLight.intensity;
+        charLight.intensity = sniffLightIntensity;
         yield return new WaitForSeconds(sniffDuration);
         sniffActive = false;
         hideLayerTree.Show();
         hideLayerBushes.Show();
+        charLight.intensity = defaultLightIntensity;
         yield return new WaitForSeconds(sniffCooldown);
     }
     
