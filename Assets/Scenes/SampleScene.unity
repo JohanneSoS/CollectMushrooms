@@ -84880,7 +84880,7 @@ GameObject:
   - component: {fileID: 1874124191}
   - component: {fileID: 1874124190}
   m_Layer: 0
-  m_Name: FirstNPC
+  m_Name: FirstBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84903,6 +84903,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 75c7b1a1e620ffd46a716c84b0362438, type: 2}
   - {fileID: 11400000, guid: c0c0730446602834f89437180a69462a, type: 2}
   - {fileID: 11400000, guid: e6ed7027613b538469306cf67d496495, type: 2}
+  boxStates:
+  - {fileID: -5729525518634200842, guid: 0efba21b058cf7e41a93800101628165, type: 3}
+  - {fileID: -4492696441391693459, guid: 8e7e8719fcc5b2f4cb98b882188b506f, type: 3}
+  - {fileID: 373020634816873602, guid: a50b986b061f440498a108bc8f75a196, type: 3}
+  - {fileID: 8996565110697334530, guid: 29cd48c1e4ba5254f95ce2b27398fcb4, type: 3}
 --- !u!61 &1874124191
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84941,8 +84946,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.96875}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 0.9375}
+    newSize: {x: 0.16, y: 0.15}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -84993,12 +84998,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6650949062556648146, guid: 357d5f2c808d6ff4188d644a7a4a08e8, type: 3}
+  m_Sprite: {fileID: -5729525518634200842, guid: 0efba21b058cf7e41a93800101628165, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16, y: 0.15}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -85013,7 +85018,7 @@ Transform:
   m_GameObject: {fileID: 1874124189}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.312, y: -0.148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []

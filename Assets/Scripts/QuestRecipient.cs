@@ -6,8 +6,14 @@ using System.Collections.Generic;
 public class QuestRecipient : MonoBehaviour
 {
     [SerializeField] private Item[] requestedItems;
+    [SerializeField] private Sprite[] boxStates;
     //public static List<Item> requestedItem;
     private static List <Item> currentRequestedItems;
+    private int totalRequestedItemCount;
+    private float amountForSingleSection;
+    private int roundedAmountForSingleSection;
+
+    private int boxStateIndex = 0;
     //private Item[] currentItems;
 
     private bool playerHovering = false;
@@ -24,6 +30,9 @@ public class QuestRecipient : MonoBehaviour
     private void Start()
     {
         currentRequestedItems = requestedItems.ToList();
+        totalRequestedItemCount = currentRequestedItems.Count;
+        amountForSingleSection = (1.0f * totalRequestedItemCount / 3);
+        roundedAmountForSingleSection = Mathf.RoundToInt(amountForSingleSection);
     }
 
     void Update()
@@ -48,10 +57,24 @@ public class QuestRecipient : MonoBehaviour
         {
             UseSelectedItem();
             currentRequestedItems.Remove(InventoryManager.instance.GetSelectedItem(false));
+            
+            //Logic to check quest state
 
             if (currentRequestedItems.Count == 0)
             {
+                boxStateIndex = 3;
+                CheckBoxState();
                 QuestFinished();
+            }
+            else if (currentRequestedItems.Count == roundedAmountForSingleSection)
+            {
+                boxStateIndex = 2;
+                CheckBoxState();
+            }
+            else if (currentRequestedItems.Count == (roundedAmountForSingleSection*2))
+            {
+                boxStateIndex = 1;
+                CheckBoxState();
             }
         }
     }
@@ -64,6 +87,18 @@ public class QuestRecipient : MonoBehaviour
     private void QuestFinished()
     {
         print("Quest finished");
-        Destroy(gameObject);
+        //Destroy(gameObject);
+    }
+
+    // von 0-25;25-50;50-75;75-100
+    private void CheckBoxState()
+    {
+        switch (boxStateIndex)
+        {
+            case 0: GetComponent<SpriteRenderer>().sprite = boxStates[0]; break;
+            case 1: GetComponent<SpriteRenderer>().sprite = boxStates[1]; break;
+            case 2: GetComponent<SpriteRenderer>().sprite = boxStates[2]; break;
+            case 3: GetComponent<SpriteRenderer>().sprite = boxStates[3]; break;
+        }
     }
 }
