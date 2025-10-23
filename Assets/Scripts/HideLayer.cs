@@ -6,12 +6,19 @@ public class HideLayer : MonoBehaviour
 {
     [SerializeField] private float fullVisibility;
     [SerializeField] private float transparency;
+    [SerializeField] private bool hideBySneeze;
 
     private bool playerHovering = false;
 
     private void Start()
     {
         Show();
+    }
+    
+    void Awake()
+    {
+        EventManager.OnSniffing.AddListener(Hide);
+        EventManager.OnSniffingEnd.AddListener(Show);
     }
     
     private void OnTriggerEnter2D(Collider2D other)

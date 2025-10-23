@@ -8,6 +8,11 @@ public class CameraMovement : MonoBehaviour
     public float duration;
     [SerializeField] private CinemachineBasicMultiChannelPerlin noiseAttribute;
     [SerializeField] private float shakeIntensity;
+
+    void Awake()
+    {
+        EventManager.OnSniffing.AddListener(StartShake);
+    }
     
     public void StartShake()
     {

@@ -217,4 +217,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightIntensity: 5
-  player: {fileID: 0}

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MushroomSpawner : MonoBehaviour
@@ -11,23 +12,51 @@ public class MushroomSpawner : MonoBehaviour
     public float maxXAxis;
     public float minYAxis;
     public float maxYAxis;
+
+    [SerializeField] private bool spawnOnDay;
+    [SerializeField] private bool spawnOnNight;
     
 
     //private Vector3 lastSpawnLocation;
+
+    void Awake()
+    {
+        EventManager.OnDayStart.AddListener(SpawnDayMushrooms);
+        EventManager.OnNightStart.AddListener(SpawnNightMushrooms);
+    }
     
     void Start()
     {
         for (int i = 0; i < spawnAmount; i++)
         {
-            RespawnMushrooms();
+            StartCoroutine(RespawnMushrooms());
         }
     }
 
-    void RespawnMushrooms()
+    void SpawnDayMushrooms()
+    {
+        if (spawnOnDay)
+        {
+            for (int i = 0; i < spawnAmount; i++)
+            {
+                StartCoroutine(RespawnMushrooms());
+            }
+        }
+    }
+
+    void SpawnNightMushrooms()
+    {
+        for (int i = 0; i < spawnAmount; i++)
+        {
+            StartCoroutine(RespawnMushrooms());
+        }
+    }
+
+    IEnumerator RespawnMushrooms()
     {
         //Vector2 randomPos = Random.insideUnitCircle * Radius;
         //Vector3 spawnPos = new Vector3(randomPos.x, randomPos.y, 7);
-        
+        yield return new WaitForSeconds(1);
         float randomPosX = Random.Range(minXAxis, maxXAxis);
         float randomPosY = Random.Range(minYAxis, maxYAxis);
         Vector3 spawnPos = new Vector3(randomPosX, randomPosY, 7);

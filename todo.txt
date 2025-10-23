@@ -7,6 +7,7 @@ Itemsystem
 NPCs mit Quests
 - Behaelter-GameObjekt, wo bestimmte Items reingetan werden können *
 - Item-Logik zum Abgeben von Items *
+- Visualisierung der Abzugebenden Items
 - NPCs Interagiersystem/ Dialogsystem
 
 
@@ -15,9 +16,10 @@ Pilzespawner *
 neue Map *
 Wenn Baum berührt Transparenz * 
 Kamera auf Bereich begrenzen *
+Day/ Night Cycle *
 
 
 Manager:
-Eventmanager
+Eventmanager (*)
 Questmanager
 Dialogmanager

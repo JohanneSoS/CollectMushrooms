@@ -20,22 +20,16 @@ public class MushroomLighter : MonoBehaviour
     void Awake()
     {
         EventManager.OnSniffing.AddListener(ActivateLight);
+        EventManager.OnSniffingEnd.AddListener(DeactivateLight);
     }
     
-    void ActivateLight(float sniffingDuration)
+    void ActivateLight()
     {
         mushroomLight.intensity = lightIntensity;
-        StartCoroutine(LightingCoroutine(sniffingDuration));
-        
     }
     
-    IEnumerator LightingCoroutine(float sniffingDuration)
-    {
-        yield return new WaitForSeconds(sniffingDuration);
-        DeactivateLight();
-    }
 
-    public void DeactivateLight()
+    void DeactivateLight()
     {
         mushroomLight.intensity = 0f;
     }

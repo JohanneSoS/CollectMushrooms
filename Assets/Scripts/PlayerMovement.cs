@@ -11,9 +11,6 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private CharacterRenderer charRenderer;
     [SerializeField] private Rigidbody2D rbody;
-    [SerializeField] private HideLayer hideLayerTree;
-    [SerializeField] private HideLayer hideLayerBushes;
-    [SerializeField] private CameraMovement cameraMovement;
     [SerializeField] private Light2D charLight;
     
     [Header("Parameters")]
@@ -29,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
         charRenderer = GetComponentInChildren<CharacterRenderer>();
+
+        EventManager.OnDayStart.AddListener(DayStart);
+        EventManager.OnNightStart.AddListener(NightStart);
     }
 
     void Update()
@@ -71,11 +71,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Sniff()
     {
-        if (sniffActive != true)
+        if (sniffActive != true && canSniff)
         {
-            EventManager.OnSniffing.Invoke(sniffDuration);
-            hideLayerTree.Hide();
-            hideLayerBushes.Hide();
+            EventManager.OnSniffing.Invoke();
             StartCoroutine(SniffDuration());
         }
     }
@@ -84,15 +82,26 @@ public class PlayerMovement : MonoBehaviour
     {
         canSniff = false;
         sniffActive = true;
-        cameraMovement.StartShake();
         float defaultLightIntensity = charLight.intensity;
         charLight.intensity = sniffLightIntensity;
         yield return new WaitForSeconds(sniffDuration);
         sniffActive = false;
-        hideLayerTree.Show();
-        hideLayerBushes.Show();
+        EventManager.OnSniffingEnd.Invoke();
         charLight.intensity = defaultLightIntensity;
         yield return new WaitForSeconds(sniffCooldown);
+        canSniff = true;
+    }
+
+    private void DayStart()
+    {
+        charLight.enabled = false;
+        print("Player realises Day started");
+    }
+
+    private void NightStart()
+    {
+        charLight.enabled = true;
+        print("Player realises Night started");
     }
     
 }
