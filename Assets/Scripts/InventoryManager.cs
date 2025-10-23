@@ -11,6 +11,7 @@ public class InventoryManager : MonoBehaviour
     public int maxStacks;
 
     private int selectedSlot = -1;
+   
     public void Awake()
     {
         instance = this;
@@ -19,7 +20,6 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         ChangeSelectedSlot(0);
-        
     }
 
     private void Update()
@@ -64,9 +64,9 @@ public class InventoryManager : MonoBehaviour
             }
             return item;
         }
-
         return null;
     }
+    
     public void PickupItem(int id)
     {
         AddItem(itemsToPickup[id]);
@@ -74,7 +74,6 @@ public class InventoryManager : MonoBehaviour
     
     public bool AddItem(Item item)
     {
-        
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             InventorySlot slot = inventorySlots[i];

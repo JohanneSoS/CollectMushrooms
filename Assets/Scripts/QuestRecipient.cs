@@ -64,7 +64,8 @@ public class QuestRecipient : MonoBehaviour
             {
                 boxStateIndex = 3;
                 CheckBoxState();
-                QuestFinished();
+                EventManager.OnQuestFinished.Invoke();
+                print("Quest finished");
             }
             else if (currentRequestedItems.Count == roundedAmountForSingleSection)
             {
@@ -82,12 +83,6 @@ public class QuestRecipient : MonoBehaviour
     public void UseSelectedItem()
     {
         Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
-    }
-
-    private void QuestFinished()
-    {
-        print("Quest finished");
-        //Destroy(gameObject);
     }
 
     // von 0-25;25-50;50-75;75-100

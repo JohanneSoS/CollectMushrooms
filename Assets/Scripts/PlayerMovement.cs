@@ -45,12 +45,14 @@ public class PlayerMovement : MonoBehaviour
         if (inputVector != Vector2.zero && !charRenderer.isRunning)
         {
             charRenderer.isRunning = true;
+            EventManager.OnWalkingStart.Invoke();
             charRenderer.CheckRunningState();
         }
 
         if (inputVector == Vector2.zero && charRenderer.isRunning)
         {
             charRenderer.isRunning = false;
+            EventManager.OnWalkingStop.Invoke();
             charRenderer.CheckRunningState();
         }
 
