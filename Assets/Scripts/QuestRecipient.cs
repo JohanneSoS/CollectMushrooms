@@ -19,6 +19,10 @@ public class QuestRecipient : MonoBehaviour
     private bool playerHovering = false;
     private float interactionTimer = 2f; //Add Cooldown
     
+    [Header("UI Logic")]
+    public InventorySlot [] requiredItemSlots;
+    public GameObject requiredItemPrefab;
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -33,6 +37,8 @@ public class QuestRecipient : MonoBehaviour
         totalRequestedItemCount = currentRequestedItems.Count;
         amountForSingleSection = (1.0f * totalRequestedItemCount / 3);
         roundedAmountForSingleSection = Mathf.RoundToInt(amountForSingleSection);
+        
+        ShowRequiredItems();
     }
 
     void Update()
@@ -95,5 +101,37 @@ public class QuestRecipient : MonoBehaviour
             case 2: GetComponent<SpriteRenderer>().sprite = boxStates[2]; break;
             case 3: GetComponent<SpriteRenderer>().sprite = boxStates[3]; break;
         }
+    }
+
+    void ShowRequiredItems()
+    {
+        //int id = requiredItemSlots.Length;
+        //AddItem(requestedItems[id]);
+
+        foreach (Item item in requestedItems)
+        {
+            AddItem(item);
+        }
+    }
+
+    private void AddItem(Item item)
+    {
+        for (int i = 0; i < requiredItemSlots.Length; i++)
+        {
+            InventorySlot slot = requiredItemSlots[i];
+            RequiredItem itemInSlot = slot.GetComponentInChildren<RequiredItem>();
+            if (itemInSlot == null)
+            {
+                SpawnNewItem(item, slot);
+                return;
+            }
+        }
+    }
+
+    void SpawnNewItem(Item item, InventorySlot slot)
+    {
+        GameObject newItemGo = Instantiate(requiredItemPrefab, slot.transform);
+        RequiredItem requiredItem = newItemGo.GetComponent<RequiredItem>();
+        requiredItem.InitialiseItem(item);
     }
 }
