@@ -21,6 +21,13 @@ Wenn Baum berührt Transparenz *
 Kamera auf Bereich begrenzen *
 Day/ Night Cycle *
 
+Base designen
+Base umsetzen
+
+Fluss
+Abgrenzung
+
+
 
 Manager:
 Eventmanager (*)
@@ -29,3 +36,5 @@ Dialogmanager
 
 
 //Stand: Silhuette Replacement mit normalen Items funktioniert nicht.
+
+
