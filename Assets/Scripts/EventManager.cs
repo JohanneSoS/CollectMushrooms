@@ -15,5 +15,5 @@ public static class EventManager
 
     public static UnityEvent OnQuestFinished = new UnityEvent();
 }
-    public class FloatEvent : UnityEvent<float> { }
+public class FloatEvent : UnityEvent<float> { }
 
