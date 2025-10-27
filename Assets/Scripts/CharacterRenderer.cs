@@ -11,6 +11,7 @@ public class CharacterRenderer : MonoBehaviour
     //private int lastDirection;
     public bool isRunning;
     public bool isFlipped;
+    public bool isSwimming;
 
     private void Awake()
     {
@@ -26,6 +27,15 @@ public class CharacterRenderer : MonoBehaviour
         else
         {
             anim.SetBool("isRunning", false);
+        }
+
+        if (isSwimming)
+        {
+            anim.SetFloat("runningSpeed", 0.4f);
+        }
+        else
+        {
+            anim.SetFloat("runningSpeed", 1f);
         }
     }
 

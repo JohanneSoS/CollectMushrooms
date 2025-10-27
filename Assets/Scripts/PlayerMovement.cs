@@ -12,15 +12,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterRenderer charRenderer;
     [SerializeField] private Rigidbody2D rbody;
     [SerializeField] private Light2D charLight;
+    [SerializeField] private Collider2D riverCol;
     
     [Header("Parameters")]
     [SerializeField] private float movementSpeed;
     [SerializeField] public float sniffDuration;
     [SerializeField] private float sniffCooldown;
     [SerializeField] private float sniffLightIntensity;
+    private float swimmingSlowFactor = 1f;
 
     public bool sniffActive;
     private bool canSniff = true;
+    private bool riverHovering = false;
+    private bool isSwimming = false;
 
     private void Awake()
     {
@@ -38,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
-        Vector2 movement = inputVector * movementSpeed;
+        Vector2 movement = inputVector * movementSpeed * swimmingSlowFactor;
         Vector2 newPos = currentPos + movement * Time.deltaTime;
         rbody.MovePosition(newPos);
         
@@ -68,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             Sniff();
+            EnableSwimming();
         }
     }
     
@@ -105,5 +110,29 @@ public class PlayerMovement : MonoBehaviour
         charLight.enabled = true;
         print("Player realises Night started");
     }
+
+    private void EnableSwimming()
+    {
+        riverCol.isTrigger = true;
+    }
     
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("River"))
+        {
+            riverHovering = true;
+            isSwimming = true;
+            swimmingSlowFactor = 0.5f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("River"))
+        {
+            riverHovering = false;
+            isSwimming = false;
+            swimmingSlowFactor = 1f;
+        }
+    }
 }

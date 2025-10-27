@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 273594720}
   m_Layer: 7
   m_Name: River
-  m_TagString: Untagged
+  m_TagString: River
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10160,6 +10160,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1442897002}
   isRunning: 0
   isFlipped: 0
+  isSwimming: 0
 --- !u!212 &1442897002
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10560,6 +10561,7 @@ MonoBehaviour:
   charRenderer: {fileID: 1442896999}
   rbody: {fileID: 1586517288}
   charLight: {fileID: 851826918}
+  riverCol: {fileID: 273594720}
   movementSpeed: 5
   sniffDuration: 2
   sniffCooldown: 5
@@ -22191,7 +22193,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -55, y: -35, z: 0}
   m_Size: {x: 79, y: 90, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0.5, y: 0.5, z: -0.3}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1

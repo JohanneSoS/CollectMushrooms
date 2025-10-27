@@ -62,7 +62,7 @@ public class MushroomSpawner : MonoBehaviour
         float randomPosX = Random.Range(minXAxis, maxXAxis);
         float randomPosY = Random.Range(minYAxis, maxYAxis);
         Vector3 spawnPos = new Vector3(randomPosX, randomPosY, 7);
-        if (CanGrowOn())
+        if (CanGrowOn(spawnPos))
         {
             Instantiate(ItemPrefab, spawnPos, Quaternion.identity);
         }
@@ -82,9 +82,9 @@ public class MushroomSpawner : MonoBehaviour
         Gizmos.DrawLine(pointB, pointC);
     }
 
-    private bool CanGrowOn()
+    private bool CanGrowOn(Vector2 checkPos)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, riverLayer);
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.zero, Mathf.Infinity, riverLayer);
         return hit.collider == null;
     }
 }
