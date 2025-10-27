@@ -6,7 +6,7 @@ public class MushroomSpawner : MonoBehaviour
     public GameObject ItemPrefab;
 
     public int spawnAmount;
-    public float Radius;
+    public float radius;
 
     public float minXAxis;
     public float maxXAxis;
@@ -15,6 +15,8 @@ public class MushroomSpawner : MonoBehaviour
 
     [SerializeField] private bool spawnOnDay;
     [SerializeField] private bool spawnOnNight;
+
+    [SerializeField] private LayerMask riverLayer;
     
 
     //private Vector3 lastSpawnLocation;
@@ -60,7 +62,10 @@ public class MushroomSpawner : MonoBehaviour
         float randomPosX = Random.Range(minXAxis, maxXAxis);
         float randomPosY = Random.Range(minYAxis, maxYAxis);
         Vector3 spawnPos = new Vector3(randomPosX, randomPosY, 7);
-        Instantiate(ItemPrefab, spawnPos, Quaternion.identity);
+        if (CanGrowOn())
+        {
+            Instantiate(ItemPrefab, spawnPos, Quaternion.identity);
+        }
     }
 
     private void OnDrawGizmos()
@@ -75,5 +80,11 @@ public class MushroomSpawner : MonoBehaviour
         Gizmos.DrawLine(pointB,pointD);
         Gizmos.DrawLine(pointA, pointD);
         Gizmos.DrawLine(pointB, pointC);
+    }
+
+    private bool CanGrowOn()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, riverLayer);
+        return hit.collider == null;
     }
 }

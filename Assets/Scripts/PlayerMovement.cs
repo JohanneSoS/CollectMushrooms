@@ -64,13 +64,13 @@ public class PlayerMovement : MonoBehaviour
         {
             charRenderer.FlipSprite("right");
         }
-        
+      
         if (Input.GetKeyDown(KeyCode.F))
         {
             Sniff();
         }
     }
-
+    
     private void Sniff()
     {
         if (sniffActive != true && canSniff)

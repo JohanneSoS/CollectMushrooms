@@ -14,6 +14,7 @@ public static class EventManager
     public static UnityEvent OnNightStart = new UnityEvent();
 
     public static UnityEvent OnQuestFinished = new UnityEvent();
+    public static UnityEvent OnBaseUpgrade = new UnityEvent();
 }
-public class FloatEvent : UnityEvent<float> { }
+public class IntEvent : UnityEvent<int> { }
 
