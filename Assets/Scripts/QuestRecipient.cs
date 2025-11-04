@@ -104,7 +104,7 @@ public class QuestRecipient : MonoBehaviour
             {
                 EventManager.OnQuestFinished.Invoke();
                 CloseUI();
-                Destroy(gameObject, 2);
+                //Destroy(gameObject, 2);
             }
         }
     }

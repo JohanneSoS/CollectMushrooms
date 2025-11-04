@@ -15,6 +15,10 @@ public static class EventManager
 
     public static UnityEvent OnQuestFinished = new UnityEvent();
     public static UnityEvent OnBaseUpgrade = new UnityEvent();
+
+    public static UnityEvent OnFirstQuestComplete = new UnityEvent();
+    public static UnityEvent OnSecondQuestComplete = new UnityEvent();
+    public static UnityEvent OnThirdQuestComplete = new UnityEvent();
 }
 public class IntEvent : UnityEvent<int> { }
 
