@@ -27,7 +27,7 @@ public class QuestManager : MonoBehaviour
             case 2: EventManager.OnSecondQuestComplete.Invoke(); break;
             case 3: EventManager.OnThirdQuestComplete.Invoke(); break;
         }
-        questBoxes[questCount].SetActive(true);
         questBoxes[questCount-1].SetActive(false);
+        questBoxes[questCount].SetActive(true);
     }
 }
