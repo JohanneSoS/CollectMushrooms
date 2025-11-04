@@ -18,7 +18,6 @@ public class QuestRecipient : MonoBehaviour
     private int roundedAmountForSingleSection;
 
     private int boxStateIndex = 0;
-    //private Item[] currentItems;
 
     private bool playerHovering = false;
     private float interactionTimer = 2f; //Add Cooldown
@@ -46,12 +45,6 @@ public class QuestRecipient : MonoBehaviour
             var newRequestedUIItem = SpawnNewItem(requestedItems[i], slot, true);
             requestedUIItems.Add(newRequestedUIItem);
         }
-        
-        // totalRequestedItemCount = currentRequestedItems.Count;
-        // amountForSingleSection = (1.0f * totalRequestedItemCount / 3);
-        // roundedAmountForSingleSection = Mathf.RoundToInt(amountForSingleSection);
-        //ClearBox();
-        //ShowRequiredItems();
     }
 
     void Update()
@@ -110,37 +103,10 @@ public class QuestRecipient : MonoBehaviour
             if (deliveredCount == requestedUIItems.Count)
             {
                 EventManager.OnQuestFinished.Invoke();
+                CloseUI();
+                Destroy(gameObject, 2);
             }
         }
-        
-        // if (currentRequestedItems.Contains(InventoryManager.instance.GetSelectedItem(false)))
-        // {
-        //     Item itemSelectedinInventory = InventoryManager.instance.GetSelectedItem(false);
-        //     UseSelectedItem();
-        //     //currentRequestedItems.Remove(itemSelectedinInventory);
-        //     currentItemsInBox.Add(itemSelectedinInventory);
-        //     //ClearBox();
-        //     ShowRequiredItems();
-        //     //Logic to check quest state
-        //
-        //     if (currentRequestedItems.Count == 0)
-        //     {
-        //         boxStateIndex = 3;
-        //         CheckBoxState();
-        //         EventManager.OnQuestFinished.Invoke();
-        //         print("Quest finished");
-        //     }
-        //     else if (currentRequestedItems.Count == roundedAmountForSingleSection)
-        //     {
-        //         boxStateIndex = 2;
-        //         CheckBoxState();
-        //     }
-        //     else if (currentRequestedItems.Count == (roundedAmountForSingleSection*2))
-        //     {
-        //         boxStateIndex = 1;
-        //         CheckBoxState();
-        //     }
-        // }
     }
     
     public void UseSelectedItem()
@@ -206,28 +172,4 @@ public class QuestRecipient : MonoBehaviour
         newItem.InitialiseItem(item);
         return newItem;
     }
-    
-    /*public Item RemoveItemFromBox()
-    {
-        InventorySlot slot = requiredItemSlots[selectedSlot];
-        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-        if (itemInSlot != null)
-        {
-            Item item = itemInSlot.item;
-            if (use == true)
-            {
-                itemInSlot.count--;
-                if (itemInSlot.count <= 0)
-                {
-                    Destroy(itemInSlot.gameObject);
-                }
-                else
-                {
-                    itemInSlot.RefreshCount();
-                }
-            }
-            return item;
-        }
-        return null;
-    }*/
 }
