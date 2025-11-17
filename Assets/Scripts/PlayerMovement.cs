@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] public float sniffDuration;
     [SerializeField] private float sniffCooldown;
-    [SerializeField] private float sniffLightIntensity;
+    [SerializeField] private float sniffLightRadius;
     private float swimmingSlowFactor = 1f;
 
     public bool sniffActive;
@@ -89,12 +89,19 @@ public class PlayerMovement : MonoBehaviour
     {
         canSniff = false;
         sniffActive = true;
-        float defaultLightIntensity = charLight.intensity;
-        charLight.intensity = sniffLightIntensity;
+        float defaultLightRadius = charLight.pointLightOuterRadius;
+        if (charLight.enabled == true)
+        {
+            charLight.pointLightOuterRadius = sniffLightRadius;
+        }
+        
         yield return new WaitForSeconds(sniffDuration);
         sniffActive = false;
         EventManager.OnSniffingEnd.Invoke();
-        charLight.intensity = defaultLightIntensity;
+        if (charLight.enabled == true)
+        {
+            charLight.pointLightOuterRadius = defaultLightRadius;
+        }
         yield return new WaitForSeconds(sniffCooldown);
         canSniff = true;
     }

@@ -2,10 +2,12 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class ClockManager : MonoBehaviour
 {
     [SerializeField] public Volume postProcessVolume;
+    [SerializeField] public Light2D globalLight;
     [SerializeField] public TextMeshProUGUI timeDisplay;
     
     public float tick;
@@ -20,6 +22,8 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private float nightStartHour;
     
     public GameObject PlayerLight;
+    [SerializeField] private float dayLightIntensity;
+    [SerializeField] private float nightLightIntensity;
 
     private bool isNight;
     
@@ -82,12 +86,14 @@ public class ClockManager : MonoBehaviour
         if(hours >= nightStartHour && hours < (nightStartHour+1))
         {
             postProcessVolume.weight = 0.6f + ((float)minutes / 60);
+            globalLight.intensity = dayLightIntensity - (float)minutes / 60;
         }
         
         //Day Start
         if (hours >= dayStartHour && hours < (dayStartHour + 1))
         {
             postProcessVolume.weight = 1 - (float)minutes / 60;
+            globalLight.intensity = nightLightIntensity + ((float)minutes / 60);
             
             if (isNight)
             {
@@ -104,5 +110,15 @@ public class ClockManager : MonoBehaviour
     void DisplayTime()
     {
         timeDisplay.text = string.Format("{0:00}:{1:00}", hours, minutes);
-    } 
+    }
+
+    void TurnOnPlayerLight()
+    {
+        PlayerLight.SetActive(true);
+    }
+
+    void TurnOffPlayerLight()
+    {
+        PlayerLight.SetActive(false);
+    }
 }
