@@ -19,12 +19,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float sniffDuration;
     [SerializeField] private float sniffCooldown;
     [SerializeField] private float sniffLightRadius;
-    private float swimmingSlowFactor = 1f;
+    [SerializeField] private float swimmingSlowFactor;
+    [SerializeField] private float lightIntensityEvening;
+    [SerializeField] private float lightIntensityNight;
 
     public bool sniffActive;
     private bool canSniff = true;
     private bool riverHovering = false;
     private bool isSwimming = false;
+    private bool changeLightIntensity = false;
+    private bool isNight = false;
+    private bool isEvening = false;
 
     private void Awake()
     {
@@ -32,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         charRenderer = GetComponentInChildren<CharacterRenderer>();
 
         EventManager.OnDayStart.AddListener(DayStart);
+        EventManager.OnEveningStart.AddListener(EveningStart);
         EventManager.OnNightStart.AddListener(NightStart);
     }
 
@@ -74,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
             Sniff();
             EnableSwimming();
         }
+
+        UpdateLightCircle();
     }
     
     private void Sniff()
@@ -109,13 +117,53 @@ public class PlayerMovement : MonoBehaviour
     private void DayStart()
     {
         charLight.enabled = false;
+        charLight.intensity = 0f;
         print("Player realises Day started");
+    }
+
+    private void EveningStart()
+    {
+        changeLightIntensity = true;
+        charLight.enabled = true;
+        isNight = false;
     }
 
     private void NightStart()
     {
+        changeLightIntensity = true;
         charLight.enabled = true;
+        isNight = true;
         print("Player realises Night started");
+    }
+
+    private void UpdateLightCircle()
+    {
+        var t = Time.deltaTime * 1f;
+        if (changeLightIntensity)
+        {
+            if (isNight)
+            {
+                if (charLight.intensity != lightIntensityNight)
+                {
+                    charLight.intensity = Mathf.Lerp(charLight.intensity, lightIntensityNight, t);
+                }
+                else
+                {
+                    changeLightIntensity = false;
+                }
+            }
+            else if (!isNight)
+            {
+                if (charLight.intensity != lightIntensityEvening)
+                {
+                    charLight.intensity = Mathf.Lerp(charLight.intensity, lightIntensityEvening, t);
+                }
+                else
+                {
+                    changeLightIntensity = false;
+                }
+            }
+        }
     }
 
     private void EnableSwimming()

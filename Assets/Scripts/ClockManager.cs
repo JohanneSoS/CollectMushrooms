@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -24,12 +25,16 @@ public class ClockManager : MonoBehaviour
     public GameObject PlayerLight;
     [SerializeField] private float dayLightIntensity;
     [SerializeField] private float nightLightIntensity;
+    [SerializeField] private float eveningLightIntensity;
+    [SerializeField] private float dayTimeShiftDuration;
 
     [SerializeField] private bool isNight;
+    private bool isEvening;
+    private bool dayTimeShifting;
     
     void Start()
     {
-        postProcessVolume.weight = 1;
+        //postProcessVolume.weight = 1;
     }
     
     private void FixedUpdate()
@@ -65,18 +70,32 @@ public class ClockManager : MonoBehaviour
 
     void ControlPostProcessing()
     {
+        var t = Time.deltaTime * dayTimeShiftDuration;
         //EveningStart
         if(hours >= eveningStartHour && hours < (eveningStartHour+1))
         {
-            postProcessVolume.weight = 0.6f * ((float)minutes / 60);
-            
-            if (isNight == false)
+            if (dayTimeShifting)
             {
-                if (minutes > 45)
+                if (globalLight.intensity != eveningLightIntensity) 
                 {
-                    EventManager.OnNightStart.Invoke();
-                    print("Signal of Starting Night reached");
-                    isNight = true;
+                    globalLight.intensity = Mathf.Lerp(globalLight.intensity, eveningLightIntensity, t);
+                }
+                else
+                {
+                    dayTimeShifting = false;
+                }
+            }
+            //postProcessVolume.weight = 0.6f * ((float)minutes / 60);
+            //globalLight.intensity = eveningLightIntensity - (float)minutes / 60;
+            
+            if (isEvening == false && isNight == false)
+            {
+                if (minutes > 1)
+                {
+                    dayTimeShifting = true;
+                    EventManager.OnEveningStart.Invoke();
+                    print("Signal of Starting Evening reached");
+                    isEvening = true;
                 }
             }
         }
@@ -84,22 +103,58 @@ public class ClockManager : MonoBehaviour
         //NightStart
         if(hours >= nightStartHour && hours < (nightStartHour+1))
         {
-            postProcessVolume.weight = 0.6f + ((float)minutes / 60);
-            globalLight.intensity = dayLightIntensity - (float)minutes / 60;
+            if (dayTimeShifting)
+            {
+                if (globalLight.intensity != nightLightIntensity) 
+                {
+                    globalLight.intensity = Mathf.Lerp(globalLight.intensity, nightLightIntensity, t);
+                }
+                else
+                {
+                    dayTimeShifting = false;
+                }
+            }
+            //postProcessVolume.weight = 0.6f + ((float)minutes / 60);
+            //globalLight.intensity = dayLightIntensity - (float)minutes / 60;
+            
+            if (isNight == false && isEvening)
+            {
+                if (minutes > 1)
+                {
+                    dayTimeShifting = true;
+                    EventManager.OnNightStart.Invoke();
+                    print("Signal of Starting Night reached");
+                    isNight = true;
+                    isEvening = false;
+                }
+            }
         }
         
         //Day Start
         if (hours >= dayStartHour && hours < (dayStartHour + 1))
         {
-            postProcessVolume.weight = 1 - (float)minutes / 60;
-            globalLight.intensity = nightLightIntensity + ((float)minutes / 60);
+            if (dayTimeShifting)
+            {
+                if (globalLight.intensity != dayLightIntensity) 
+                {
+                    globalLight.intensity = Mathf.Lerp(globalLight.intensity, dayLightIntensity, t);
+                }
+                else
+                {
+                    dayTimeShifting = false;
+                }
+            }
+            //postProcessVolume.weight = 1 - (float)minutes / 60;
+            //globalLight.intensity = nightLightIntensity + ((float)minutes / 60);
             
             if (isNight)
             {
-                if (minutes > 45)
+                if (minutes > 1)
                 {
+                    dayTimeShifting = true;
                     EventManager.OnDayStart.Invoke();
                     isNight = false;
+                    isEvening = false;
                     print("Signal of Starting Day reached");
                 }
             }

@@ -11,6 +11,7 @@ public static class EventManager
     public static UnityEvent OnGiveItem = new UnityEvent();
 
     public static UnityEvent OnDayStart = new UnityEvent();
+    public static UnityEvent OnEveningStart = new UnityEvent();
     public static UnityEvent OnNightStart = new UnityEvent();
 
     public static UnityEvent OnQuestFinished = new UnityEvent();
