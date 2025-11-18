@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         EventManager.OnNightStart.AddListener(NightStart);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector2 currentPos = rbody.position;
         float horizontalInput = Input.GetAxis("Horizontal");
