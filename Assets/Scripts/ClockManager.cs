@@ -25,12 +25,11 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private float dayLightIntensity;
     [SerializeField] private float nightLightIntensity;
 
-    private bool isNight;
+    [SerializeField] private bool isNight;
     
     void Start()
     {
         postProcessVolume.weight = 1;
-        isNight = true;
     }
     
     private void FixedUpdate()
