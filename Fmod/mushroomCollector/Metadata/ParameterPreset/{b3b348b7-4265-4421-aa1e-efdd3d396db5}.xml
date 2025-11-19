@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{b3b348b7-4265-4421-aa1e-efdd3d396db5}">
+		<property name="name">
+			<value>isSwimming</value>
+		</property>
+		<relationship name="folder">
+			<destination>{ccc34205-9cac-480a-b1e0-4ea1ba35a87d}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6774ec8e-f21e-4056-926b-d129366ed9c6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6774ec8e-f21e-4056-926b-d129366ed9c6}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
