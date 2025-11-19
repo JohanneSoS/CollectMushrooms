@@ -23,7 +23,9 @@ public static class EventManager
 
     public static FloatEvent OnChangeZoomForArea = new FloatEvent();
     public static UnityEvent OnResetZoom = new UnityEvent();
-    
+
+    public static UnityEvent OnChasing = new UnityEvent();
+
 }
 public class FloatEvent : UnityEvent<float> { }
 
