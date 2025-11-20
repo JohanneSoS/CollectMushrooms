@@ -16,10 +16,15 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Parameters")]
     [SerializeField] private float movementSpeed;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int currentHealth;
+    
     [SerializeField] public float sniffDuration;
     [SerializeField] private float sniffCooldown;
     [SerializeField] private float sniffLightRadius;
+    
     [SerializeField] private float swimmingSlowFactor;
+    
     [SerializeField] private float lightIntensityEvening;
     [SerializeField] private float lightIntensityNight;
 
@@ -39,6 +44,13 @@ public class PlayerMovement : MonoBehaviour
         EventManager.OnDayStart.AddListener(DayStart);
         EventManager.OnEveningStart.AddListener(EveningStart);
         EventManager.OnNightStart.AddListener(NightStart);
+        EventManager.ApplyDamage.AddListener(RecieveDmg);
+    }
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+        EventManager.UpdateHealthBar.Invoke(currentHealth);
     }
 
     void FixedUpdate()
@@ -189,5 +201,11 @@ public class PlayerMovement : MonoBehaviour
             isSwimming = false;
             swimmingSlowFactor = 1f;
         }
+    }
+
+    private void RecieveDmg(int damage)
+    {
+        currentHealth = currentHealth - damage;
+        EventManager.UpdateHealthBar.Invoke(currentHealth);
     }
 }

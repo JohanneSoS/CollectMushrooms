@@ -15,7 +15,7 @@ public class WolfMovement : MonoBehaviour
     [SerializeField] private bool isChasing;
     [SerializeField] private float chasingDuration;
     [SerializeField] private float chasingCooldown;
-    [SerializeField] private float dmgMultiplier;
+    [SerializeField] private int damage;
     [SerializeField] private float radius;
     private bool playerHovering = false;
     private bool canChase = true;
@@ -42,6 +42,7 @@ public class WolfMovement : MonoBehaviour
             if (playerHovering)
             {
                 StartCoroutine(BounceBack(direction));
+                InflictDamage();
             }
         }
 
@@ -130,5 +131,10 @@ public class WolfMovement : MonoBehaviour
     private void Despawn()
     {
         Destroy(gameObject);
+    }
+
+    private void InflictDamage()
+    {
+        EventManager.ApplyDamage.Invoke(damage);
     }
 }

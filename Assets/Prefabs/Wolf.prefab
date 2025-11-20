@@ -220,7 +220,7 @@ MonoBehaviour:
   isChasing: 0
   chasingDuration: 6
   chasingCooldown: 2
-  dmgMultiplier: 3
+  damage: 25
   radius: 3
   chasingTargetLayer:
     serializedVersion: 2

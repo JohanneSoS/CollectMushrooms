@@ -25,7 +25,13 @@ public static class EventManager
     public static UnityEvent OnResetZoom = new UnityEvent();
 
     public static UnityEvent OnChasing = new UnityEvent();
+    
+    [Header("Combat")]
+    public static IntEvent ApplyDamage = new IntEvent();
+    public static IntEvent UpdateHealthBar = new IntEvent();
+    
 
 }
 public class FloatEvent : UnityEvent<float> { }
+public class IntEvent : UnityEvent<int> { }
 
