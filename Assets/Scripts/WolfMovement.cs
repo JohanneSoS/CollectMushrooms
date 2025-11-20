@@ -25,6 +25,7 @@ public class WolfMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         wolfAnim = GetComponent<Animator>();
+        EventManager.OnDayStart.AddListener(Despawn);
     }
 
     void Start()
@@ -124,5 +125,10 @@ public class WolfMovement : MonoBehaviour
         {
             wolfAnim.SetBool("isRunning", false);
         }
+    }
+
+    private void Despawn()
+    {
+        Destroy(gameObject);
     }
 }
