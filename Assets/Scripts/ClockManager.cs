@@ -31,7 +31,11 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private bool isNight;
     private bool isEvening;
     private bool dayTimeShifting;
-    
+
+    void Awake()
+    {
+        EventManager.OnSkipToDay.AddListener(SkipToDay);
+    }
     void Start()
     {
         //postProcessVolume.weight = 1;
@@ -174,5 +178,20 @@ public class ClockManager : MonoBehaviour
     void TurnOffPlayerLight()
     {
         PlayerLight.SetActive(false);
+    }
+
+    void SkipToDay()
+    {
+        if (isNight == false)
+        {
+            isNight = true;
+        }
+        if (hours >= 18)
+        {
+            days = days + 1;
+        }
+        hours = 5;
+        minutes = 59;
+        seconds = 59;
     }
 }

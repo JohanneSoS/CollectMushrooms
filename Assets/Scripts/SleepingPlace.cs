@@ -13,7 +13,16 @@ public class SleepingPlace : MonoBehaviour
     [SerializeField] private int upgradeStage;
     private bool playerHovering = false;
     private bool isUpgradable = false;
+    private bool canSleep = false;
 
+    [SerializeField] private int sleepHealAmount;
+
+    void Awake()
+    {
+        EventManager.OnDayStart.AddListener(DenySleeping);
+        EventManager.OnEveningStart.AddListener(AllowSleeping);
+    }
+    
     void Start()
     {
         upgradeStage = 0;
@@ -23,9 +32,9 @@ public class SleepingPlace : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerHovering && isUpgradable)
+        if (Input.GetKeyDown(KeyCode.E) && playerHovering)
         {
-            UpgradeBase();
+            Interact();
         }
     }
     
@@ -47,12 +56,33 @@ public class SleepingPlace : MonoBehaviour
         }
     }
 
+    private void Interact()
+    {
+        if (isUpgradable){ UpgradeBase(); }
+        else if (canSleep) { Sleep(); }
+    }
     private void UpgradeBase()
     {
         upgradeStage++;
         ChangeSprites(upgradeStage);
         EventManager.OnBaseUpgrade.Invoke();
         isUpgradable = false;
+    }
+
+    private void AllowSleeping()
+    {
+        canSleep = true;
+    }
+
+    private void DenySleeping()
+    {
+        canSleep = false;
+    }
+    
+    private void Sleep()
+    {
+        EventManager.OnSkipToDay.Invoke();
+        EventManager.ApplyHeal.Invoke(sleepHealAmount);
     }
 
     private void ChangeSprites(int id)

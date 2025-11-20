@@ -45,12 +45,12 @@ public class PlayerMovement : MonoBehaviour
         EventManager.OnEveningStart.AddListener(EveningStart);
         EventManager.OnNightStart.AddListener(NightStart);
         EventManager.ApplyDamage.AddListener(RecieveDmg);
+        EventManager.ApplyHeal.AddListener(HealHealth);
     }
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        EventManager.UpdateHealthBar.Invoke(currentHealth);
+        HealFully();
     }
 
     void FixedUpdate()
@@ -206,6 +206,18 @@ public class PlayerMovement : MonoBehaviour
     private void RecieveDmg(int damage)
     {
         currentHealth = currentHealth - damage;
+        EventManager.UpdateHealthBar.Invoke(currentHealth);
+    }
+
+    private void HealHealth(int healAmount)
+    {
+        currentHealth = currentHealth + healAmount;
+        EventManager.UpdateHealthBar.Invoke(currentHealth);
+    }
+
+    private void HealFully()
+    {
+        currentHealth = maxHealth;
         EventManager.UpdateHealthBar.Invoke(currentHealth);
     }
 }

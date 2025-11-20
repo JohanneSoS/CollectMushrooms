@@ -13,6 +13,7 @@ public static class EventManager
     public static UnityEvent OnDayStart = new UnityEvent();
     public static UnityEvent OnEveningStart = new UnityEvent();
     public static UnityEvent OnNightStart = new UnityEvent();
+    public static UnityEvent OnSkipToDay = new UnityEvent();
 
     public static UnityEvent OnQuestFinished = new UnityEvent();
     public static UnityEvent OnBaseUpgrade = new UnityEvent();
@@ -28,6 +29,7 @@ public static class EventManager
     
     [Header("Combat")]
     public static IntEvent ApplyDamage = new IntEvent();
+    public static IntEvent ApplyHeal = new IntEvent();
     public static IntEvent UpdateHealthBar = new IntEvent();
     
 
