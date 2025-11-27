@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using Cache = UnityEngine.Cache;
@@ -60,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
+        List<Sprite> directionSprite = charRenderer.GetSpriteDirection(inputVector);
+        charRenderer.UpdateSprite(directionSprite);
         Vector2 movement = inputVector * movementSpeed * swimmingSlowFactor;
         Vector2 newPos = currentPos + movement * Time.deltaTime;
         rbody.MovePosition(newPos);
@@ -78,13 +81,13 @@ public class PlayerMovement : MonoBehaviour
             charRenderer.CheckRunningState();
         }
 
-        if (inputVector.x < 0 && charRenderer.isFlipped)
-        {
-            charRenderer.FlipSprite("left");
-        }
-        else if (inputVector.x > 0 && !charRenderer.isFlipped)
+        if (inputVector.x < 0)
         {
             charRenderer.FlipSprite("right");
+        }
+        else if (inputVector.x > 0)
+        {
+            charRenderer.FlipSprite("left");
         }
       
         if (Input.GetKeyDown(KeyCode.F))
