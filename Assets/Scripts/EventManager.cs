@@ -31,9 +31,15 @@ public static class EventManager
     public static IntEvent ApplyDamage = new IntEvent();
     public static IntEvent ApplyHeal = new IntEvent();
     public static IntEvent UpdateHealthBar = new IntEvent();
-    
+
+    [Header ("Dialogue")]
+    public static StringEvent OnInteractWithNPC = new StringEvent();
+    public static UnityEvent OnDialogueStart = new UnityEvent();
+    public static IntEvent OnJumpToDialogueLine = new IntEvent();
+    public static UnityEvent OnDialogueEnd = new UnityEvent();
 
 }
 public class FloatEvent : UnityEvent<float> { }
 public class IntEvent : UnityEvent<int> { }
+public class StringEvent : UnityEvent<string> { }
 
