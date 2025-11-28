@@ -54,22 +54,11 @@ public class DialogueManager : MonoBehaviour
         dialogueIsShowing = true;
     }
 
-    void HideDialogue()
+    public void HideDialogue()
     {
         dialogBox.SetActive(false);
         dialogueIsShowing = false;
     }
-
-    void ShowNextLine()
-    {
-        
-    }
-
-    /*void JumpToDialogueLine(int lineID)
-    {
-        dialogTextField.text = lines[lineID].lineText;
-        nameTextField.text = lines[lineID].charType.name;
-    }*/
 
     public void StartQuest(int questID)
     {
@@ -102,8 +91,6 @@ public class DialogueManager : MonoBehaviour
         ShowDialogue();
         dialogTextField.text = dialogueID[questID][(dialogueID[questID].Length)-1].lineText;
         nameTextField.text = dialogueID[questID][0].charType.name;
-        EventManager.OnDialogueEnd.Invoke();
-        HideDialogue();
     }
 
 
