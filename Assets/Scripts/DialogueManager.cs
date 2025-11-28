@@ -2,31 +2,32 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogTextField;
+    public TextMeshProUGUI nameTextField;
     public GameObject dialogBox;
-    [SerializeField] private bool dialogueIsShowing = false;
+    public bool dialogueIsShowing = false;
     
     [Header("Dialogue Lines")]
-    public DialogueLine[] lines;
-    //public DialogueCharacter[] characters;
-    private DialogueCharacter[] characters;
+    public DialogueLine[] introLines;
+    public DialogueLine[] quest1Lines;
+    public DialogueLine[] quest2Lines;
+    public DialogueLine[] quest3Lines;
+    
+    private Dictionary<int, DialogueLine[]> dialogueID = new Dictionary<int, DialogueLine[]>();
     
     [SerializeField] private int currentLine = 0;
+    public bool currentDialogueRead = false;
     
     void Awake()
     {
-        characters = new DialogueCharacter[lines.Length];
-        for (int i = 0; i < lines.Length; i++)
-        {
-            characters[i] = lines[i].charType;
-        }
-        EventManager.OnDialogueStart.AddListener(ShowDialogue);
-        EventManager.OnDialogueEnd.AddListener(HideDialogue);
-        EventManager.OnJumpToDialogueLine.AddListener(JumpToDialogueLine);
-        EventManager.OnInteractWithNPC.AddListener(InteractWithNPC);
+        dialogueID.Add(0, introLines);
+        dialogueID.Add(1, quest1Lines);
+        dialogueID.Add(2, quest2Lines);
+        dialogueID.Add(3, quest3Lines);
     }
 
     void Start()
@@ -61,40 +62,49 @@ public class DialogueManager : MonoBehaviour
 
     void ShowNextLine()
     {
-        currentLine++;
+        
     }
 
-    void JumpToDialogueLine(int lineID)
+    /*void JumpToDialogueLine(int lineID)
     {
         dialogTextField.text = lines[lineID].lineText;
-    }
+        nameTextField.text = lines[lineID].charType.name;
+    }*/
 
-    void InteractWithNPC(string npcName)
+    public void StartQuest(int questID)
     {
-        //schreit nach Dictionary
-        switch (npcName)
-        {
-            case "Racoon":
-                if (!dialogueIsShowing)
-                {
-                    ShowDialogue();
-                    JumpToDialogueLine(0);
-                }
-                else if (dialogueIsShowing && currentLine < (lines.Length-1))
-                {
-                    ShowNextLine();
-                    JumpToDialogueLine(currentLine);
-                }
-                else if (dialogueIsShowing && currentLine >= (lines.Length-1))
-                {
-                    HideDialogue();
-                }
-                return;
-        }
+        currentLine = 0;
+        currentDialogueRead = false;
+        dialogTextField.text = dialogueID[questID][0].lineText;
+        nameTextField.text = dialogueID[questID][0].charType.name;
+        EventManager.OnDialogueStart.Invoke();
+        ShowDialogue();
+    }
 
-        if (!dialogueIsShowing)
+    public void ProgressQuestUntilFinish(int questID)
+    {
+        if (currentLine < (dialogueID[questID].Length)-1)
         {
-            ShowDialogue();
+            currentLine++;
+            dialogTextField.text = dialogueID[questID][currentLine].lineText;
+            nameTextField.text = dialogueID[questID][currentLine].charType.name;
+        }
+        else if (currentLine >= (dialogueID[questID].Length)-1)
+        {
+            currentDialogueRead = true;
+            EventManager.OnDialogueEnd.Invoke();
+            HideDialogue();
         }
     }
+
+    public void RepeatLastLine(int questID)
+    {
+        ShowDialogue();
+        dialogTextField.text = dialogueID[questID][(dialogueID[questID].Length)-1].lineText;
+        nameTextField.text = dialogueID[questID][0].charType.name;
+        EventManager.OnDialogueEnd.Invoke();
+        HideDialogue();
+    }
+
+
 }

@@ -195580,13 +195580,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c29a6e3e1f82446b41731c97d7161a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogTextField: {fileID: 446286840}
+  dialogTextField: {fileID: 2044535624}
+  nameTextField: {fileID: 446286840}
   dialogBox: {fileID: 425624848}
   dialogueIsShowing: 0
-  lines:
+  introLines:
   - {fileID: 11400000, guid: 8e1bd7b3773e8eb41b94c89833b12587, type: 2}
   - {fileID: 11400000, guid: 855db0414fe0448409b8d7d69754c2a9, type: 2}
+  - {fileID: 11400000, guid: 1e5ebeb887a401e46a97b091bd7797de, type: 2}
+  - {fileID: 11400000, guid: 01a04a2955b80cb4da696c8f76a55f95, type: 2}
+  quest1Lines: []
+  quest2Lines: []
+  quest3Lines: []
   currentLine: 0
+  currentDialogueRead: 0
 --- !u!1 &468524926
 GameObject:
   m_ObjectHideFlags: 0
@@ -555620,6 +555627,7 @@ MonoBehaviour:
   - {fileID: 1874124189}
   - {fileID: 1658683723}
   - {fileID: 618946465}
+  dialogueManager: {fileID: 465697989}
 --- !u!1 &2091250239
 GameObject:
   m_ObjectHideFlags: 0

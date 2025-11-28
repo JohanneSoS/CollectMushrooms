@@ -18,7 +18,7 @@ public class npc : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerHovering)
         {
-            EventManager.OnInteractWithNPC.Invoke(charName);
+            EventManager.OnInteractWithNPC.Invoke();
         }
     }
 
@@ -36,10 +36,5 @@ public class npc : MonoBehaviour
         {
             playerHovering = false;
         }
-    }
-
-    private void Interact()
-    {
-
     }
 }
