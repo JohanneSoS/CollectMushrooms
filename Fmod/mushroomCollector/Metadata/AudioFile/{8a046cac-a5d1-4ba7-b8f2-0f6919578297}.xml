@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{8a046cac-a5d1-4ba7-b8f2-0f6919578297}">
+		<property name="assetPath">
+			<value>Ambience/FieldRec/Forest/Forest_Edge_LocationD_Calm_1_DeNoise_Loopable.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>64.15047916666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{9da181b3-6812-48fe-a847-da0cb4284f7a}</destination>
+		</relationship>
+	</object>
+</objects>
