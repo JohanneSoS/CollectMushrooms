@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     
     [SerializeField] private int currentLine = 0;
     public bool currentDialogueRead = false;
+    private int lastActiveQuest = 0;
     
     void Awake()
     {
@@ -67,7 +68,10 @@ public class DialogueManager : MonoBehaviour
         dialogTextField.text = dialogueID[questID][0].lineText;
         nameTextField.text = dialogueID[questID][0].charType.name;
         EventManager.OnDialogueStart.Invoke();
-        ShowDialogue();
+        if (questID != 2)
+        {
+            ShowDialogue(); //Problem: Keine eigene Quest-ID für Dialoge - letzte Quest abgeben und Bieber ansprechen sind die selbe ID - ändern!
+        }
     }
 
     public void ProgressQuestUntilFinish(int questID)

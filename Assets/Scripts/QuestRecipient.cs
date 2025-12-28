@@ -14,6 +14,7 @@ public class QuestRecipient : MonoBehaviour
     private static List<Item> currentItemsInBox = new();
     //private Item recieveItem;
     private int totalRequestedItemCount;
+    private int deliveredCount = 0;
     private float amountForSingleSection;
     private int roundedAmountForSingleSection;
 
@@ -97,12 +98,15 @@ public class QuestRecipient : MonoBehaviour
             currentItemsInBox.Add(selectedItem);
             matchingRequestedUIItem.DeliverItem();
 
-            var deliveredCount = requestedUIItems.Count(ui => ui.delivered);
+            //var deliveredCount = requestedUIItems.Count(ui => ui.delivered);
+            deliveredCount = requestedUIItems.Count(ui => ui.delivered);
             var deliverProgress = (float)requestedUIItems.Count / deliveredCount;
             
             if (deliveredCount == requestedUIItems.Count)
             {
+                //QuestManager.instance.QuestFinished();
                 EventManager.OnQuestFinished.Invoke();
+                Debug.Log("Alle Items sind da");
                 CloseUI();
                 //Destroy(gameObject, 2);
             }

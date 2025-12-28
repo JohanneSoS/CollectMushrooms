@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 357d5f2c808d6ff4188d644a7a4a08e8
+guid: 74e01e9aa67ee6f4a8d1a68c17d31b12
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6650949062556648146
-    second: boar_sw_0
+      213: 1751314037236353543
+    second: beaver_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: boar_sw_0
+      name: beaver_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 31
+        x: 4
+        y: 4
+        width: 24
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d208e42feaec4c50800000000000000
-      internalID: 6650949062556648146
+      spriteID: 70ac0a786daed4810800000000000000
+      internalID: 1751314037236353543
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      boar_sw_0: 6650949062556648146
+      beaver_0: 1751314037236353543
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

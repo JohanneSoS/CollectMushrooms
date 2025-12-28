@@ -54,6 +54,10 @@ public class QuestManager : MonoBehaviour
             {
                 dialogueManager.ProgressQuestUntilFinish(questCount);
             }
+            else if (dialogueManager.currentDialogueRead)
+            {
+                dialogueManager.HideDialogue();
+            }
         }
     }
 
@@ -66,7 +70,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    void QuestFinished()
+    public void QuestFinished()
     {
         questCount++;
         if (questCount > 1)
@@ -74,7 +78,7 @@ public class QuestManager : MonoBehaviour
             questBoxes[questCount-2].SetActive(false);
         }
         questBoxes[questCount-1].SetActive(true);
-        
+        dialogueManager.StartQuest(questCount);
         switch (questCount)
         {
             case 1:
