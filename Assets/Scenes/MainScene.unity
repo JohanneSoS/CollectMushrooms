@@ -751,18 +751,42 @@ MonoBehaviour:
     Path: event:/Ambience/Area
   sniff:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  sniff2:
+      Data1: -1765162309
+      Data2: 1184985733
+      Data3: 849365892
+      Data4: 308329833
+    Path: event:/Oneshots/Sniff
+  pickUpMushroom:
+    Guid:
+      Data1: 1837162422
+      Data2: 1236054886
+      Data3: -1136462973
+      Data4: -361488890
+    Path: event:/Oneshots/PickUpItem
+  deliverMushroom:
+    Guid:
+      Data1: -461315991
+      Data2: 1294565009
+      Data3: 1608508298
+      Data4: -93004732
+    Path: event:/Oneshots/DeliverItem
+  eatMushroom:
     Guid:
       Data1: 0
       Data2: 0
       Data3: 0
       Data4: 0
     Path: 
+  openChestUI:
+    Guid:
+      Data1: 457648974
+      Data2: 1194607363
+      Data3: -951253330
+      Data4: -1799156062
+    Path: event:/Oneshots/OpenChest
+  player: {fileID: 1586517286}
+  clockManager: {fileID: 1094819545}
+  playerMovement: {fileID: 1586517289}
 --- !u!224 &173433828 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5263135611850030996, guid: 5e0a6393d2f79d24e81b11b179dd5da5, type: 3}

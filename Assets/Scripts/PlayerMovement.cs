@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float movementSpeed;
     [SerializeField] private int maxHealth;
-    [SerializeField] private int currentHealth;
+    [SerializeField] public int currentHealth;
     
     [SerializeField] public float sniffDuration;
     [SerializeField] private float sniffCooldown;

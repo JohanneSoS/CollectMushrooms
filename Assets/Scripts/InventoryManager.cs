@@ -61,6 +61,8 @@ public class InventoryManager : MonoBehaviour
                 {
                     itemInSlot.RefreshCount();
                 }
+
+                EventManager.OnGiveItem.Invoke();
             }
             return item;
         }
@@ -82,6 +84,7 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.count++;
                 itemInSlot.RefreshCount();
+                EventManager.OnPickItem.Invoke();
                 return true;
             }
         }
@@ -93,6 +96,7 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot == null)
             {
                 SpawnNewItem(item, slot);
+                EventManager.OnPickItem.Invoke();
                 return true;
             }
         }
