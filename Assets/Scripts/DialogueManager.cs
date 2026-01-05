@@ -13,22 +13,38 @@ public class DialogueManager : MonoBehaviour
     
     [Header("Dialogue Lines")]
     public DialogueLine[] introLines;
+    public DialogueLine[] introCompleteLines;
     public DialogueLine[] quest1Lines;
+    public DialogueLine[] quest1CompleteLines;
     public DialogueLine[] quest2Lines;
+    public DialogueLine[] quest2CompleteLines;
     public DialogueLine[] quest3Lines;
+    public DialogueLine[] quest3CompleteLines;
     
     private Dictionary<int, DialogueLine[]> dialogueID = new Dictionary<int, DialogueLine[]>();
+    private Dictionary<int, DialogueLine[]> dialogueIDComplete = new Dictionary<int, DialogueLine[]>();
     
     [SerializeField] private int currentLine = 0;
     public bool currentDialogueRead = false;
     private int lastActiveQuest = 0;
+    public bool itemsDelivered = false;
+    private int currentQuestID = 0;
     
     void Awake()
     {
+        EventManager.OnStartQuest.AddListener(OnStartQuest);
+        EventManager.OnDialogueStart.AddListener(OnDialogueStart);
+        EventManager.OnItemsDelivered.AddListener(OnItemsDelivered);
+        
         dialogueID.Add(0, introLines);
         dialogueID.Add(1, quest1Lines);
         dialogueID.Add(2, quest2Lines);
         dialogueID.Add(3, quest3Lines);
+        
+        dialogueIDComplete.Add(0, introCompleteLines);
+        dialogueIDComplete.Add(1, quest1CompleteLines);
+        dialogueIDComplete.Add(2, quest2CompleteLines);
+        dialogueIDComplete.Add(3, quest3CompleteLines);
     }
 
     void Start()
@@ -49,44 +65,67 @@ public class DialogueManager : MonoBehaviour
     }
 
     
-    void ShowDialogue()
+    public void ShowDialogue()
     {
         dialogBox.SetActive(true);
         dialogueIsShowing = true;
+        //disable movement
     }
 
     public void HideDialogue()
     {
         dialogBox.SetActive(false);
         dialogueIsShowing = false;
+        //enable movement
     }
 
-    public void StartQuest(int questID)
+    void OnStartQuest(int questID)
     {
         currentLine = 0;
         currentDialogueRead = false;
         dialogTextField.text = dialogueID[questID][0].lineText;
         nameTextField.text = dialogueID[questID][0].charType.name;
-        EventManager.OnDialogueStart.Invoke();
-        if (questID != 2)
-        {
-            ShowDialogue(); //Problem: Keine eigene Quest-ID für Dialoge - letzte Quest abgeben und Bieber ansprechen sind die selbe ID - ändern!
-        }
+        currentQuestID = questID;
+    }
+
+    void OnDialogueStart()
+    {
+        ShowDialogue();
     }
 
     public void ProgressQuestUntilFinish(int questID)
     {
-        if (currentLine < (dialogueID[questID].Length)-1)
+        if (itemsDelivered == false)
         {
-            currentLine++;
-            dialogTextField.text = dialogueID[questID][currentLine].lineText;
-            nameTextField.text = dialogueID[questID][currentLine].charType.name;
+            if (currentLine < (dialogueID[questID].Length)-1)
+            {
+                currentLine++;
+                dialogTextField.text = dialogueID[questID][currentLine].lineText;
+                nameTextField.text = dialogueID[questID][currentLine].charType.name;
+            }
+            else if (currentLine >= (dialogueID[questID].Length)-1)
+            {
+                currentDialogueRead = true;
+                //EventManager.OnDialogueEnd.Invoke();
+                EventManager.OnAdvanceQuest.Invoke(questID);
+                HideDialogue();
+            }
         }
-        else if (currentLine >= (dialogueID[questID].Length)-1)
+        else
         {
-            currentDialogueRead = true;
-            EventManager.OnDialogueEnd.Invoke();
-            HideDialogue();
+            if (currentLine < (dialogueIDComplete[questID].Length)-1)
+            {
+                currentLine++;
+                dialogTextField.text = dialogueIDComplete[questID][currentLine].lineText;
+                nameTextField.text = dialogueIDComplete[questID][currentLine].charType.name;
+            }
+            else if (currentLine >= (dialogueIDComplete[questID].Length)-1)
+            {
+                currentDialogueRead = true;
+                //EventManager.OnDialogueEnd.Invoke();
+                EventManager.OnAdvanceQuest.Invoke(questID);
+                HideDialogue();
+            }
         }
     }
 
@@ -97,5 +136,12 @@ public class DialogueManager : MonoBehaviour
         nameTextField.text = dialogueID[questID][0].charType.name;
     }
 
-
+    void OnItemsDelivered()
+    {
+        itemsDelivered = true;
+        currentLine = 0;
+        currentDialogueRead = false;
+        dialogTextField.text = dialogueIDComplete[currentQuestID][0].lineText;
+        nameTextField.text = dialogueIDComplete[currentQuestID][0].charType.name;
+    }
 }

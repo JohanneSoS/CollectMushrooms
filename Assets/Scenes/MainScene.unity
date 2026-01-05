@@ -195757,17 +195757,28 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 114e6687af831564e93adf9e1ec17cf7, type: 2}
   - {fileID: 11400000, guid: bd0197daef9254e4c8e4736b3ca8a46b, type: 2}
   - {fileID: 11400000, guid: bb19a9783c3ef7c4cbf1e7e8520b1434, type: 2}
+  introCompleteLines:
+  - {fileID: 11400000, guid: f453518de8080bc4baed639f304a6a55, type: 2}
+  - {fileID: 11400000, guid: 273b38fa13a4a49478c8663c607347ad, type: 2}
   quest1Lines:
   - {fileID: 11400000, guid: 1e5ebeb887a401e46a97b091bd7797de, type: 2}
   - {fileID: 11400000, guid: e4bc80dc54ea95142875b983c59e070c, type: 2}
   - {fileID: 11400000, guid: 01a04a2955b80cb4da696c8f76a55f95, type: 2}
+  quest1CompleteLines:
+  - {fileID: 11400000, guid: f453518de8080bc4baed639f304a6a55, type: 2}
+  - {fileID: 11400000, guid: 273b38fa13a4a49478c8663c607347ad, type: 2}
   quest2Lines:
   - {fileID: 11400000, guid: 6e4340af960c5ed42bc85fbc83713f26, type: 2}
   - {fileID: 11400000, guid: 81fd595a672718249952ea405d08d0d3, type: 2}
   - {fileID: 11400000, guid: 7021ac5e76caa19439372b5bc27a6a19, type: 2}
+  quest2CompleteLines:
+  - {fileID: 11400000, guid: 5c93fbde8cc7e98469fd14639879d67d, type: 2}
+  - {fileID: 11400000, guid: d8ae40fcb136e3347be3568448c3145c, type: 2}
   quest3Lines: []
+  quest3CompleteLines: []
   currentLine: 0
   currentDialogueRead: 0
+  itemsDelivered: 0
 --- !u!1 &468524926
 GameObject:
   m_ObjectHideFlags: 0
@@ -556133,6 +556144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questCount: 0
+  questStep: 0
   questBoxes:
   - {fileID: 1874124189}
   - {fileID: 1658683723}

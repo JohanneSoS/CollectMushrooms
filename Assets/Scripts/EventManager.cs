@@ -18,9 +18,9 @@ public static class EventManager
     public static UnityEvent OnQuestFinished = new UnityEvent();
     public static UnityEvent OnBaseUpgrade = new UnityEvent();
 
-    public static UnityEvent OnFirstQuestComplete = new UnityEvent();
+    /*public static UnityEvent OnFirstQuestComplete = new UnityEvent();
     public static UnityEvent OnSecondQuestComplete = new UnityEvent();
-    public static UnityEvent OnThirdQuestComplete = new UnityEvent();
+    public static UnityEvent OnThirdQuestComplete = new UnityEvent();*/
 
     public static FloatEvent OnChangeZoomForArea = new FloatEvent();
     public static UnityEvent OnResetZoom = new UnityEvent();
@@ -32,10 +32,14 @@ public static class EventManager
     public static IntEvent ApplyHeal = new IntEvent();
     public static IntEvent UpdateHealthBar = new IntEvent();
 
-    [Header ("Dialogue")]
+    [Header ("Quest and Dialogue")]
+    public static IntEvent OnStartQuest = new IntEvent();
+    public static IntEvent OnAdvanceQuest = new IntEvent();
+    public static UnityEvent OnItemsDelivered = new UnityEvent();
+    public static IntEvent OnCompleteQuest = new IntEvent();
     public static UnityEvent OnInteractWithNPC = new UnityEvent();
     public static UnityEvent OnDialogueStart = new UnityEvent();
-    public static UnityEvent OnDialogueEnd = new UnityEvent();
+    //public static UnityEvent OnDialogueEnd = new UnityEvent();
 
 }
 public class FloatEvent : UnityEvent<float> { }

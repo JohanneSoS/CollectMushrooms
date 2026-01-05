@@ -105,7 +105,7 @@ public class QuestRecipient : MonoBehaviour
             if (deliveredCount == requestedUIItems.Count)
             {
                 //QuestManager.instance.QuestFinished();
-                EventManager.OnQuestFinished.Invoke();
+                EventManager.OnItemsDelivered.Invoke();
                 Debug.Log("Alle Items sind da");
                 CloseUI();
                 //Destroy(gameObject, 2);
