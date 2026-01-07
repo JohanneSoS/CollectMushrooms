@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1b10fc484c96c44853c715d6373fc5, type: 3}
   m_Name: 2_2_Finished
   m_EditorClassIdentifier: 
-  charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
-  lineText: See you later!
+  charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
+  lineText: Bluargh!

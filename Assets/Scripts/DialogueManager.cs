@@ -81,6 +81,7 @@ public class DialogueManager : MonoBehaviour
 
     void OnStartQuest(int questID)
     {
+        itemsDelivered = false;
         currentLine = 0;
         currentDialogueRead = false;
         dialogTextField.text = dialogueID[questID][0].lineText;

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 2_1_Finished
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
-  lineText: Thank you!
+  lineText: Thank you! You are very generous!

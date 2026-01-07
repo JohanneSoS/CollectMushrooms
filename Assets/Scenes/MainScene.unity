@@ -195763,19 +195763,35 @@ MonoBehaviour:
   quest1Lines:
   - {fileID: 11400000, guid: 1e5ebeb887a401e46a97b091bd7797de, type: 2}
   - {fileID: 11400000, guid: e4bc80dc54ea95142875b983c59e070c, type: 2}
+  - {fileID: 11400000, guid: 19455b89311adc542b24c2a792e89381, type: 2}
   - {fileID: 11400000, guid: 01a04a2955b80cb4da696c8f76a55f95, type: 2}
+  - {fileID: 11400000, guid: 13eebf2b965764e4a9e794059ad3b673, type: 2}
+  - {fileID: 11400000, guid: ac43359d1baa49c4fa0bacf75bc67895, type: 2}
   quest1CompleteLines:
   - {fileID: 11400000, guid: f453518de8080bc4baed639f304a6a55, type: 2}
   - {fileID: 11400000, guid: 273b38fa13a4a49478c8663c607347ad, type: 2}
+  - {fileID: 11400000, guid: 38d18aec9cd1cdf438d2613c43cee16d, type: 2}
+  - {fileID: 11400000, guid: 7f43f094f689fa345ae2da32fee5a34d, type: 2}
+  - {fileID: 11400000, guid: 6196c663330966644b55cf528e2855bd, type: 2}
   quest2Lines:
   - {fileID: 11400000, guid: 6e4340af960c5ed42bc85fbc83713f26, type: 2}
+  - {fileID: 11400000, guid: be2ac1df64fbd7f42887c8d4695d5cf9, type: 2}
   - {fileID: 11400000, guid: 81fd595a672718249952ea405d08d0d3, type: 2}
   - {fileID: 11400000, guid: 7021ac5e76caa19439372b5bc27a6a19, type: 2}
   quest2CompleteLines:
   - {fileID: 11400000, guid: 5c93fbde8cc7e98469fd14639879d67d, type: 2}
   - {fileID: 11400000, guid: d8ae40fcb136e3347be3568448c3145c, type: 2}
-  quest3Lines: []
-  quest3CompleteLines: []
+  - {fileID: 11400000, guid: c93269f8751ac3f469edc45b64a2d824, type: 2}
+  - {fileID: 11400000, guid: 4835509dad4f7be44ba64a4c3ff8c706, type: 2}
+  - {fileID: 11400000, guid: cfc711a9da7061245bef764baa6ca2c1, type: 2}
+  quest3Lines:
+  - {fileID: 11400000, guid: 065a791ee184a8143900fa0d056de3d2, type: 2}
+  - {fileID: 11400000, guid: 283e2dd5ea1c9ec449c246161aed0c35, type: 2}
+  - {fileID: 11400000, guid: 79ecb6a70d2bd82419dd39d2f3a1659f, type: 2}
+  - {fileID: 11400000, guid: 34d54fa0de13d5f4e93c29f39c2299c3, type: 2}
+  quest3CompleteLines:
+  - {fileID: 11400000, guid: df4105cb1b64db24ab19f4005d5ae0ae, type: 2}
+  - {fileID: 11400000, guid: 090a620ab391c614d864be050277060e, type: 2}
   currentLine: 0
   currentDialogueRead: 0
   itemsDelivered: 0
