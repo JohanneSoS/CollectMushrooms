@@ -30,7 +30,14 @@ public static class EventManager
     [Header("Combat")]
     public static IntEvent ApplyDamage = new IntEvent();
     public static IntEvent ApplyHeal = new IntEvent();
+    public static IntEvent ApplyHunger = new IntEvent();
+    public static IntEvent HealHunger = new IntEvent();
+    public static IntEvent ApplyExhaustion = new IntEvent();
+    public static UnityEvent ResetExhaustion = new UnityEvent();
+    
     public static IntEvent UpdateHealthBar = new IntEvent();
+    public static IntEvent UpdateHungerBar = new IntEvent();
+    public static IntEvent UpdateExhaustionBar = new IntEvent();
 
     [Header ("Quest and Dialogue")]
     public static IntEvent OnStartQuest = new IntEvent();

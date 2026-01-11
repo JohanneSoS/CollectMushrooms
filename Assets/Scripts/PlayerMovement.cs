@@ -19,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private int maxHealth;
     [SerializeField] public int currentHealth;
+
+    [SerializeField] private int maxHunger;
+    [SerializeField] public int currentHunger;
+    [SerializeField] private int maxExhaustion;
+    [SerializeField] public int currentExhaustion;
     
     [SerializeField] public float sniffDuration;
     [SerializeField] private float sniffCooldown;
@@ -47,11 +52,17 @@ public class PlayerMovement : MonoBehaviour
         EventManager.OnNightStart.AddListener(NightStart);
         EventManager.ApplyDamage.AddListener(RecieveDmg);
         EventManager.ApplyHeal.AddListener(HealHealth);
+        EventManager.ApplyExhaustion.AddListener(ApplyExhaustion);
+        EventManager.ResetExhaustion.AddListener(ResetExhaustion);
+        EventManager.ApplyHunger.AddListener(ApplyHunger);
+        EventManager.HealHunger.AddListener(HealHunger);
     }
 
     private void Start()
     {
         HealFully();
+        ResetExhaustion();
+        ResetHunger();
     }
 
     void FixedUpdate()
@@ -218,9 +229,39 @@ public class PlayerMovement : MonoBehaviour
         EventManager.UpdateHealthBar.Invoke(currentHealth);
     }
 
+    private void ApplyExhaustion(int exhaustionValue)
+    {
+        currentExhaustion = currentExhaustion - exhaustionValue;
+        EventManager.UpdateExhaustionBar.Invoke(currentExhaustion);
+    }
+
+    private void ApplyHunger(int hungerValue)
+    {
+        currentHunger = currentHunger - hungerValue;
+        EventManager.UpdateHungerBar.Invoke(currentHunger);
+    }
+
+    private void HealHunger(int hungerValue)
+    {
+        currentHunger = currentHunger + hungerValue;
+        EventManager.UpdateHungerBar.Invoke(currentHunger);
+    }
+
     private void HealFully()
     {
         currentHealth = maxHealth;
         EventManager.UpdateHealthBar.Invoke(currentHealth);
+    }
+
+    private void ResetHunger()
+    {
+        currentHunger = maxHunger;
+        EventManager.UpdateHungerBar.Invoke(currentHunger);
+    }
+
+    private void ResetExhaustion()
+    {
+        currentExhaustion = maxExhaustion;
+        EventManager.UpdateExhaustionBar.Invoke(currentExhaustion);
     }
 }

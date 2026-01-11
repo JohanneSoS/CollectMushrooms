@@ -61,6 +61,8 @@ public class ClockManager : MonoBehaviour
         {
             minutes = 0;
             hours += 1;
+            EventManager.ApplyHunger.Invoke(10);
+            EventManager.ApplyExhaustion.Invoke(5);
         }
 
         if (hours >= 24)
@@ -189,6 +191,11 @@ public class ClockManager : MonoBehaviour
         if (hours >= 18)
         {
             days = days + 1;
+            EventManager.ResetExhaustion.Invoke();
+        }
+        else
+        {
+            EventManager.ApplyExhaustion.Invoke(-50);
         }
         hours = 5;
         minutes = 59;
