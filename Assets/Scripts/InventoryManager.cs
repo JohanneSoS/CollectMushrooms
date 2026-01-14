@@ -109,4 +109,14 @@ public class InventoryManager : MonoBehaviour
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
     }
+
+    /*private void ActivateItem(int currentHunger)
+    {
+        var selectedItem = GetSelectedItem(false);
+        if (selectedItem.canEat && currentHunger <= 99)
+        {
+            EventManager.HealHunger.Invoke(selectedItem.hungerAmount);
+            Item recieveItem = GetSelectedItem(true);
+        }
+    }*/
 }

@@ -79,12 +79,14 @@ public class QuestRecipient : MonoBehaviour
         panel.SetActive(true);
         yield return new WaitForSeconds(0.2f);
         uiActive = true;
+        EventManager.ToggleUI.Invoke(uiActive);
     }
 
     private void CloseUI()
     {
         panel.SetActive(false);
         uiActive = false;
+        EventManager.ToggleUI.Invoke(uiActive);
     }
     
     private void Interact()

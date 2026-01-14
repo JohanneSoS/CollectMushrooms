@@ -12,6 +12,8 @@ public class Item : ScriptableObject
     public bool canSell = true;
     public float sellPrice;
     public float buyPrice;
+    public bool canEat;
+    public int hungerAmount;
     
     [Header("Only UI")]
     public bool stackable = true;

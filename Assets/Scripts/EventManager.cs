@@ -3,12 +3,15 @@ using UnityEngine.Events;
 
 public static class EventManager
 {
+    public static BoolEvent ToggleUI = new BoolEvent();
+    
     public static UnityEvent OnWalkingStart = new UnityEvent();
     public static UnityEvent OnWalkingStop = new UnityEvent();
     public static UnityEvent OnSniffing = new UnityEvent();
     public static UnityEvent OnSniffingEnd = new UnityEvent();
     public static UnityEvent OnPickItem = new UnityEvent();
     public static UnityEvent OnGiveItem = new UnityEvent();
+    public static UnityEvent ActivateItem = new UnityEvent();
 
     public static UnityEvent OnDayStart = new UnityEvent();
     public static UnityEvent OnEveningStart = new UnityEvent();
@@ -52,4 +55,5 @@ public static class EventManager
 public class FloatEvent : UnityEvent<float> { }
 public class IntEvent : UnityEvent<int> { }
 public class StringEvent : UnityEvent<string> { }
+public class BoolEvent : UnityEvent<bool> { }
 

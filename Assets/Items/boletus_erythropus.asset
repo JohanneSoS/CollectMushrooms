@@ -18,5 +18,7 @@ MonoBehaviour:
   canSell: 1
   sellPrice: 0
   buyPrice: 0
+  canEat: 1
+  hungerAmount: 15
   stackable: 1
   sprite: {fileID: 21300000, guid: a3725e47a487041409febb51c7823f70, type: 3}

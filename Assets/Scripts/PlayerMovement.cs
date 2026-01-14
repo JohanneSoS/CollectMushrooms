@@ -42,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isNight = false;
     private bool isEvening = false;
 
+    public bool uiActive;
+    public bool isCollecting;
+
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
@@ -56,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
         EventManager.ResetExhaustion.AddListener(ResetExhaustion);
         EventManager.ApplyHunger.AddListener(ApplyHunger);
         EventManager.HealHunger.AddListener(HealHunger);
+        EventManager.ToggleUI.AddListener(ToggleUI);
+        EventManager.OnPickItem.AddListener(ToggleIsCollecting);
     }
 
     private void Start()
@@ -100,14 +105,38 @@ public class PlayerMovement : MonoBehaviour
         {
             charRenderer.FlipSprite("left");
         }
-      
-        if (Input.GetKeyDown(KeyCode.F))
+
+        if (!uiActive)
         {
-            Sniff();
-            EnableSwimming();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                var selectedItem = InventoryManager.instance.GetSelectedItem(false);
+                StartCoroutine(CheckIfCanEat(selectedItem));
+            }
+            
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Sniff();
+                //EnableSwimming();
+            }
         }
 
+        if (currentHealth >= maxHealth) { currentHealth = maxHealth; }
+        if (currentHunger >= maxHunger) { currentHunger = maxHunger; }
+        if (currentExhaustion >= maxExhaustion) { currentExhaustion = maxExhaustion; }
+        
         UpdateLightCircle();
+    }
+    
+    IEnumerator CheckIfCanEat(Item selectedItem)
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (selectedItem.canEat && currentHunger < maxHunger && !isCollecting)
+        {
+            EventManager.HealHunger.Invoke(selectedItem.hungerAmount);
+            Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
+        }
+        
     }
     
     private void Sniff()
@@ -263,5 +292,22 @@ public class PlayerMovement : MonoBehaviour
     {
         currentExhaustion = maxExhaustion;
         EventManager.UpdateExhaustionBar.Invoke(currentExhaustion);
+    }
+
+    private void ToggleUI(bool uiState)
+    {
+        uiActive = uiState;
+    }
+
+    private void ToggleIsCollecting()
+    {
+        isCollecting = true;
+        StartCoroutine(WaitForCollecting());
+    }
+
+    IEnumerator WaitForCollecting()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isCollecting = false;
     }
 }
