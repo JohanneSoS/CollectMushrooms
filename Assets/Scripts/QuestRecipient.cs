@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class QuestRecipient : MonoBehaviour
 {
+    [SerializeField] private int boxID;
     [SerializeField] private Item[] requestedItems;
     [SerializeField] private Sprite[] boxStates;
     //public static List<Item> requestedItem;
@@ -37,6 +38,16 @@ public class QuestRecipient : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        EventManager.ToggleUI.AddListener(OnUIToggle);
+    }
+    
+    private void OnUIToggle(bool uiState)
+    {
+        uiActive = uiState;
+    }
+
     private void Start()
     {
         requestedUIItems = new List<RequiredItem>();
@@ -52,17 +63,13 @@ public class QuestRecipient : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && playerHovering && !uiActive)
         {
-            StartCoroutine(OpenUI());
+            EventManager.OpenQuestUI.Invoke(boxID);
+            //StartCoroutine(OpenUI());
         }
 
         if (Input.GetKeyDown(KeyCode.E) && uiActive)
         {
             Interact();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape) && uiActive)
-        {
-            CloseUI();
         }
     }
     
@@ -74,20 +81,13 @@ public class QuestRecipient : MonoBehaviour
         }
     }
 
-    IEnumerator OpenUI()
+    /*IEnumerator OpenUI()
     {
         panel.SetActive(true);
         yield return new WaitForSeconds(0.2f);
         uiActive = true;
         EventManager.ToggleUI.Invoke(uiActive);
-    }
-
-    private void CloseUI()
-    {
-        panel.SetActive(false);
-        uiActive = false;
-        EventManager.ToggleUI.Invoke(uiActive);
-    }
+    }*/
     
     private void Interact()
     {
@@ -109,7 +109,7 @@ public class QuestRecipient : MonoBehaviour
                 //QuestManager.instance.QuestFinished();
                 EventManager.OnItemsDelivered.Invoke();
                 Debug.Log("Alle Items sind da");
-                CloseUI();
+                EventManager.CloseQuestUI.Invoke();
                 //Destroy(gameObject, 2);
             }
         }
