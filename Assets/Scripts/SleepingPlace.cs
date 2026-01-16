@@ -42,7 +42,6 @@ public class SleepingPlace : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Hide();
             playerHovering = true;
         }
     }
@@ -51,7 +50,6 @@ public class SleepingPlace : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Show();
             playerHovering = false;
         }
     }
@@ -81,8 +79,8 @@ public class SleepingPlace : MonoBehaviour
     
     private void Sleep()
     {
-        EventManager.OnSkipToDay.Invoke();
-        EventManager.ApplyHeal.Invoke(sleepHealAmount);
+        EventManager.OpenSleepUI.Invoke();
+        //EventManager.ApplyHeal.Invoke(sleepHealAmount);
     }
 
     private void ChangeSprites(int id)

@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public static class EventManager
 {
     public static BoolEvent ToggleUI = new BoolEvent();
+    public static UnityEvent OpenSleepUI = new UnityEvent();
     public static UnityEvent PauseGame = new UnityEvent();
     public static UnityEvent ResumeGame = new UnityEvent();
     

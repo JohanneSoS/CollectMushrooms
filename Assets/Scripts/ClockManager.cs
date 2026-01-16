@@ -198,10 +198,12 @@ public class ClockManager : MonoBehaviour
         {
             days = days + 1;
             EventManager.ResetExhaustion.Invoke();
+            EventManager.ApplyHeal.Invoke(50);
         }
         else
         {
             EventManager.ApplyExhaustion.Invoke(-50);
+            EventManager.ApplyHeal.Invoke(25);
         }
         hours = 5;
         minutes = 59;
