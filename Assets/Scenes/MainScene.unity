@@ -972,6 +972,9 @@ MonoBehaviour:
   SleepMenu: {fileID: 216560290}
   PauseMenu: {fileID: 62933529}
   GameOverMenu: {fileID: 0}
+  QuestMenu:
+  - {fileID: 299518680}
+  - {fileID: 91445917}
   uiActive: 0
   currentMenu: none
 --- !u!224 &166796883
@@ -197686,6 +197689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0d50854b43d1348ad6438a858276ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxID: 3
   requestedItems:
   - {fileID: 11400000, guid: 9e4aecd96ca9b5949b5ce0631bdb0909, type: 2}
   - {fileID: 11400000, guid: 9e4aecd96ca9b5949b5ce0631bdb0909, type: 2}
@@ -219317,6 +219321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUI: {fileID: 62933529}
+  isShowing: 0
 --- !u!1 &1063743777
 GameObject:
   m_ObjectHideFlags: 0
@@ -556211,6 +556216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0d50854b43d1348ad6438a858276ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxID: 2
   requestedItems:
   - {fileID: 11400000, guid: 9e4aecd96ca9b5949b5ce0631bdb0909, type: 2}
   - {fileID: 11400000, guid: 9e4aecd96ca9b5949b5ce0631bdb0909, type: 2}
@@ -556956,6 +556962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0d50854b43d1348ad6438a858276ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxID: 1
   requestedItems:
   - {fileID: 11400000, guid: 9e4aecd96ca9b5949b5ce0631bdb0909, type: 2}
   - {fileID: 11400000, guid: 9e4aecd96ca9b5949b5ce0631bdb0909, type: 2}
