@@ -69,6 +69,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogBox.SetActive(true);
         dialogueIsShowing = true;
+        EventManager.ToggleUI.Invoke(true);
         //disable movement
     }
 
@@ -76,6 +77,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogBox.SetActive(false);
         dialogueIsShowing = false;
+        EventManager.ToggleUI.Invoke(false);
         //enable movement
     }
 

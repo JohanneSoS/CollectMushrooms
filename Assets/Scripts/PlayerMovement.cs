@@ -119,6 +119,11 @@ public class PlayerMovement : MonoBehaviour
                 Sniff();
                 //EnableSwimming();
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                EventManager.PauseGame.Invoke();
+            }
         }
 
         if (currentHealth >= maxHealth) { currentHealth = maxHealth; }

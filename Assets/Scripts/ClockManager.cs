@@ -12,6 +12,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI timeDisplay;
     
     public float tick;
+    private float defaultTick;
     public float seconds;
     public float minutes;
     public float hours;
@@ -28,6 +29,9 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private float eveningLightIntensity;
     [SerializeField] private float dayTimeShiftDuration;
 
+    [SerializeField] private int hungerPerHour;
+    [SerializeField] private int exhaustionPerHour;
+
     [SerializeField] private bool isNight;
     private bool isEvening;
     private bool dayTimeShifting;
@@ -35,10 +39,12 @@ public class ClockManager : MonoBehaviour
     void Awake()
     {
         EventManager.OnSkipToDay.AddListener(SkipToDay);
+        EventManager.ToggleUI.AddListener(OnUIToggle);
     }
     void Start()
     {
         //postProcessVolume.weight = 1;
+        defaultTick = tick;
     }
     
     private void FixedUpdate()
@@ -61,8 +67,8 @@ public class ClockManager : MonoBehaviour
         {
             minutes = 0;
             hours += 1;
-            EventManager.ApplyHunger.Invoke(10);
-            EventManager.ApplyExhaustion.Invoke(5);
+            EventManager.ApplyHunger.Invoke(hungerPerHour);
+            EventManager.ApplyExhaustion.Invoke(exhaustionPerHour);
         }
 
         if (hours >= 24)
@@ -200,5 +206,19 @@ public class ClockManager : MonoBehaviour
         hours = 5;
         minutes = 59;
         seconds = 59;
+    }
+
+    void OnUIToggle(bool uiState)
+    {
+        if (uiState)
+        {
+            tick = 0;
+            Time.timeScale = 0f;
+        }
+        else if (!uiState)
+        {
+            tick = defaultTick;
+            Time.timeScale = 1f;
+        }
     }
 }
