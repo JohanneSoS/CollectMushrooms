@@ -977,6 +977,7 @@ MonoBehaviour:
   - {fileID: 91445917}
   uiActive: 0
   currentMenu: none
+  activeBox: 0
 --- !u!224 &166796883
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1098,7 +1099,7 @@ MonoBehaviour:
     Path: event:/Oneshots/OpenChest
   player: {fileID: 1586517286}
   clockManager: {fileID: 1094819545}
-  playerMovement: {fileID: 1586517289}
+  playerStats: {fileID: 0}
 --- !u!224 &173433828 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5263135611850030996, guid: 5e0a6393d2f79d24e81b11b179dd5da5, type: 3}
@@ -195947,7 +195948,7 @@ GameObject:
   - component: {fileID: 414286158}
   m_Layer: 0
   m_Name: Racoon
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197044,7 +197045,7 @@ GameObject:
   - component: {fileID: 522453433}
   m_Layer: 0
   m_Name: Boar
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197657,7 +197658,7 @@ GameObject:
   - component: {fileID: 618946467}
   m_Layer: 0
   m_Name: ThirdBox
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218380,7 +218381,7 @@ GameObject:
   - component: {fileID: 804338025}
   m_Layer: 0
   m_Name: SleepPlace
-  m_TagString: Untagged
+  m_TagString: SleepingPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218616,6 +218617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 851826917}
   - component: {fileID: 851826918}
+  - component: {fileID: 851826919}
   m_Layer: 6
   m_Name: CharLightCircle
   m_TagString: Untagged
@@ -218690,6 +218692,21 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &851826919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851826916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d734f9969546664eb841a8dddb5bf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightIntensityNight: 1
+  lightIntensityEvening: 0.5
+  sniffLightRadius: 3
 --- !u!1 &867974182
 GameObject:
   m_ObjectHideFlags: 0
@@ -219320,8 +219337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae1ca7d5a5e94b40a75c16a1d1f739b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuUI: {fileID: 62933529}
-  isShowing: 0
 --- !u!1 &1063743777
 GameObject:
   m_ObjectHideFlags: 0
@@ -489021,7 +489036,7 @@ GameObject:
   - component: {fileID: 1108994996}
   m_Layer: 0
   m_Name: Beaver
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -556037,6 +556052,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1586517287}
+  - component: {fileID: 1586517292}
+  - component: {fileID: 1586517291}
   - component: {fileID: 1586517289}
   - component: {fileID: 1586517288}
   - component: {fileID: 1586517290}
@@ -556104,26 +556121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc936d8fbac06554fae7599c600a4def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 1586517292}
   charRenderer: {fileID: 867974184}
   rbody: {fileID: 1586517288}
-  charLight: {fileID: 851826918}
   riverCol: {fileID: 1094109996}
   movementSpeed: 2.5
-  maxHealth: 100
-  currentHealth: 0
-  maxHunger: 100
-  currentHunger: 0
-  maxExhaustion: 100
-  currentExhaustion: 0
-  sniffDuration: 2
-  sniffCooldown: 5
-  sniffLightRadius: 3
   swimmingSlowFactor: 1
-  lightIntensityEvening: 0.5
-  lightIntensityNight: 1
-  sniffActive: 0
   uiActive: 0
-  isCollecting: 0
 --- !u!61 &1586517290
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -556170,6 +556174,42 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.58, y: 0.36}
   m_EdgeRadius: 0
+--- !u!114 &1586517291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586517286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e737f303bee7e974ca2cb6d40670fdc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 1586517292}
+  uiActive: 0
+  canSniff: 1
+  sniffDuration: 2
+  sniffCooldown: 5
+  isCollecting: 0
+--- !u!114 &1586517292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586517286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce1f5fd559b0c843b69308c0e7c8adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  maxHunger: 100
+  currentHunger: 0
+  maxExhaustion: 100
+  currentExhaustion: 0
 --- !u!1 &1658683723
 GameObject:
   m_ObjectHideFlags: 0
@@ -556184,7 +556224,7 @@ GameObject:
   - component: {fileID: 1658683725}
   m_Layer: 0
   m_Name: SecondBox
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -556945,7 +556985,7 @@ GameObject:
   - component: {fileID: 1874124190}
   m_Layer: 0
   m_Name: FirstBox
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -557818,6 +557858,7 @@ MonoBehaviour:
   - {x: -5.73, y: 13.62}
   - {x: 5.67, y: 17.32}
   - {x: -42.3, y: 18.98}
+  uIManager: {fileID: 166796882}
 --- !u!1 &2091250239
 GameObject:
   m_ObjectHideFlags: 0

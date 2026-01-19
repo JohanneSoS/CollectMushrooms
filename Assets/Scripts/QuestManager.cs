@@ -15,6 +15,8 @@ public class QuestManager : MonoBehaviour
     
     [SerializeField] private Vector2[] npcPos;
     private Dictionary<string, Vector2> npcPosDict = new Dictionary<string, Vector2>();
+    
+    [SerializeField] private UIManager uIManager;
 
     void Awake()
     {
@@ -159,6 +161,7 @@ public class QuestManager : MonoBehaviour
     void EnableQuestBox()
     {
         questBoxes[questCount-1].SetActive(true);
+        uIManager.activeBox = (questCount-1);
     }
 
     void DisableQuestBox()

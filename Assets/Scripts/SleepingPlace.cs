@@ -16,12 +16,6 @@ public class SleepingPlace : MonoBehaviour
     private bool canSleep = false;
 
     [SerializeField] private int sleepHealAmount;
-
-    void Awake()
-    {
-        EventManager.OnDayStart.AddListener(DenySleeping);
-        EventManager.OnEveningStart.AddListener(AllowSleeping);
-    }
     
     void Start()
     {
@@ -30,13 +24,13 @@ public class SleepingPlace : MonoBehaviour
         ChangeSprites(upgradeStage);
     }
 
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && playerHovering)
         {
             Interact();
         }
-    }
+    }*/
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -54,33 +48,17 @@ public class SleepingPlace : MonoBehaviour
         }
     }
 
-    private void Interact()
+    /*private void Interact()
     {
         if (isUpgradable){ UpgradeBase(); }
         else if (canSleep) { Sleep(); }
-    }
+    }*/
     private void UpgradeBase()
     {
         upgradeStage++;
         ChangeSprites(upgradeStage);
         EventManager.OnBaseUpgrade.Invoke();
         isUpgradable = false;
-    }
-
-    private void AllowSleeping()
-    {
-        canSleep = true;
-    }
-
-    private void DenySleeping()
-    {
-        canSleep = false;
-    }
-    
-    private void Sleep()
-    {
-        EventManager.OpenSleepUI.Invoke();
-        //EventManager.ApplyHeal.Invoke(sleepHealAmount);
     }
 
     private void ChangeSprites(int id)

@@ -14,19 +14,24 @@ public class UIManager : MonoBehaviour
     public bool uiActive = false;
     public string currentMenu = "none";
 
+    public int activeBox = 0;
+
     void Awake()
     {
         EventManager.OpenSleepUI.AddListener(ActivateSleepMenu);
         EventManager.ToggleUI.AddListener(OnUIToggle);
         EventManager.OpenQuestUI.AddListener(OpenQuestUI);
         EventManager.CloseQuestUI.AddListener(ResumeGame);
+        EventManager.PauseGame.AddListener(ActivatePauseMenu);
+        EventManager.ResumeGame.AddListener(ResumeGame);
+        EventManager.ConfirmUI.AddListener(ConfirmUI);
     }
     
     private void OnUIToggle(bool uiState)
     {
         uiActive = uiState;
     }
-   void Update()
+   /*void Update()
     {
         if (uiActive)
         {
@@ -49,9 +54,9 @@ public class UIManager : MonoBehaviour
                         return;
                 }
 
-            }
+            }*/
 
-            if (Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.KeypadEnter)))
+            /*if (Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.KeypadEnter)))
             {
                 switch (currentMenu)
                 {
@@ -68,12 +73,22 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-        else if (!uiActive)
+    }*/
+
+    public void ConfirmUI()
+    {
+        switch (currentMenu)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                ActivatePauseMenu();
-            }
+            case "pause":
+                ResumeGame();
+                break;
+            case "gameover":
+                //ApplyPenalty
+                ResumeGame();
+                break;
+            case "sleep":
+                SkipToDay();
+                break;
         }
     }
 
@@ -121,14 +136,14 @@ public class UIManager : MonoBehaviour
         ResumeGame();
     }
     
-    void OpenQuestUI(int boxID)
+    void OpenQuestUI()
     {
-        StartCoroutine(OpenQuestMenu(boxID));
+        StartCoroutine(OpenQuestMenu());
     }
 
-    IEnumerator OpenQuestMenu(int boxID)
+    IEnumerator OpenQuestMenu()
     {
-        QuestMenu[(boxID-1)].SetActive(true);
+        QuestMenu[(activeBox)].SetActive(true);
         currentMenu = "quest";
         yield return new WaitForSeconds(0.2f);
         uiActive = true;

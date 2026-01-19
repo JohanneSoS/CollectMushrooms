@@ -41,6 +41,7 @@ public class QuestRecipient : MonoBehaviour
     void Awake()
     {
         EventManager.ToggleUI.AddListener(OnUIToggle);
+        EventManager.InteractWithBox.AddListener(Interact);
     }
     
     private void OnUIToggle(bool uiState)
@@ -59,11 +60,11 @@ public class QuestRecipient : MonoBehaviour
         }
     }
 
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && playerHovering && !uiActive)
         {
-            EventManager.OpenQuestUI.Invoke(boxID);
+            //EventManager.OpenQuestUI.Invoke(boxID);
             //StartCoroutine(OpenUI());
         }
 
@@ -71,7 +72,7 @@ public class QuestRecipient : MonoBehaviour
         {
             Interact();
         }
-    }
+    }*/
     
     private void OnTriggerExit2D(Collider2D other)
     {

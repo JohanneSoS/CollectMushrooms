@@ -14,13 +14,13 @@ public class npc : MonoBehaviour
         charName = charType.name;
     }
     
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && playerHovering)
         {
             EventManager.OnInteractWithNPC.Invoke();
         }
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D other)
     {

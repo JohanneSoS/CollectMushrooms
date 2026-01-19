@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - River
+  - SleepingPlace
+  - NPC
+  - Box
   layers:
   - Default
   - TransparentFX

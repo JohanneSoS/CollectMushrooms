@@ -9,11 +9,14 @@ public class Item : ScriptableObject
     public ItemType type;
     //public ActionType actionType;
     public Vector2Int range = new Vector2Int(5, 4);
-    public bool canSell = true;
+    /*public bool canSell = true;
     public float sellPrice;
-    public float buyPrice;
+    public float buyPrice;*/
     public bool canEat;
+    public bool usable;
     public int hungerAmount;
+    public int healAmount;
+    public int exhaustAmount;
     
     [Header("Only UI")]
     public bool stackable = true;
@@ -24,7 +27,7 @@ public class Item : ScriptableObject
     public enum ItemType
     {
         Mushroom,
-        BuildingBlock,
+        QuestItem,
         Tool,
     }
 

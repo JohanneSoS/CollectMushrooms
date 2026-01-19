@@ -31,7 +31,7 @@ public class FmodEvents : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField] private ClockManager clockManager;
-    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerStats playerStats;
 
     private float currentHour;
     private void Awake()
@@ -82,7 +82,7 @@ public class FmodEvents : MonoBehaviour
 
     void GetHit(int amount)
     {
-        float currentHealth = playerMovement.currentHealth;
+        float currentHealth = playerStats.currentHealth;
         _musicInstance.setParameterByName("Health", currentHealth);
     }
 

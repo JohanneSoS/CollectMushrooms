@@ -5,10 +5,11 @@ public static class EventManager
 {
     public static BoolEvent ToggleUI = new BoolEvent();
     public static UnityEvent OpenSleepUI = new UnityEvent();
-    public static IntEvent OpenQuestUI = new IntEvent();
+    public static UnityEvent OpenQuestUI = new UnityEvent();
     public static UnityEvent CloseQuestUI = new UnityEvent();
     public static UnityEvent PauseGame = new UnityEvent();
     public static UnityEvent ResumeGame = new UnityEvent();
+    public static UnityEvent ConfirmUI = new UnityEvent();
     
     public static UnityEvent OnWalkingStart = new UnityEvent();
     public static UnityEvent OnWalkingStop = new UnityEvent();
@@ -53,6 +54,7 @@ public static class EventManager
     public static UnityEvent OnItemsDelivered = new UnityEvent();
     public static IntEvent OnCompleteQuest = new IntEvent();
     public static UnityEvent OnInteractWithNPC = new UnityEvent();
+    public static UnityEvent InteractWithBox = new UnityEvent();
     public static UnityEvent OnDialogueStart = new UnityEvent();
     //public static UnityEvent OnDialogueEnd = new UnityEvent();
 
