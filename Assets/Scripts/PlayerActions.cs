@@ -115,6 +115,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
                         EventManager.PauseGame.Invoke();
                     }
                     break;
+                case "Mushroom":
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        EventManager.PickUpMushroom.Invoke();                    
+                    } 
+                    break;
                 case "none":
                 {
                     if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
@@ -156,10 +162,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         var selectedItem = InventoryManager.instance.GetSelectedItem(false);
         if (selectedItem.canEat && playerStats.currentHunger < playerStats.maxHunger && !isCollecting)
-        {
+        { 
             EventManager.HealHunger.Invoke(selectedItem.hungerAmount);
             Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
-        }
+        } 
         //StartCoroutine(CheckIfCanEat(selectedItem));
     }
     

@@ -15,6 +15,7 @@ public class Loot : MonoBehaviour
     {
         EventManager.OnDayStart.AddListener(StartDay);
         EventManager.OnNightStart.AddListener(StartNight);
+        EventManager.PickUpMushroom.AddListener(PickUp);
         age = 1;
     }
 
@@ -43,13 +44,13 @@ public class Loot : MonoBehaviour
         spriteRenderer.sprite = item.sprite;
     }
 
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && playerHovering)
         {
             PickUp();
         }
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -69,12 +70,16 @@ public class Loot : MonoBehaviour
     
     private void PickUp()
     {
-        bool canAdd = InventoryManager.instance.AddItem(item);
-        if (canAdd)
+        if (playerHovering)
         {
-            Destroy(collider);
-            Destroy(gameObject);
+            bool canAdd = InventoryManager.instance.AddItem(item);
+            if (canAdd)
+            {
+                Destroy(collider);
+                Destroy(gameObject);
+            }
         }
+
     }
     /*private void OnTriggerEnter2D(Collider2D other)
     {

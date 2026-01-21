@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5668528100956269533}
   m_Layer: 0
   m_Name: boletus_erythropus
-  m_TagString: Untagged
+  m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

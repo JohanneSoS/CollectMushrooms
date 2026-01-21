@@ -8,6 +8,7 @@ TagManager:
   - SleepingPlace
   - NPC
   - Box
+  - Mushroom
   layers:
   - Default
   - TransparentFX

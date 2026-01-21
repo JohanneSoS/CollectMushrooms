@@ -111,7 +111,7 @@ public class QuestRecipient : MonoBehaviour
                 EventManager.OnItemsDelivered.Invoke();
                 Debug.Log("Alle Items sind da");
                 EventManager.CloseQuestUI.Invoke();
-                //Destroy(gameObject, 2);
+                Destroy(gameObject, 2);
             }
         }
     }

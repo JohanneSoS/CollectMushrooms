@@ -18,6 +18,7 @@ public static class EventManager
     public static UnityEvent OnPickItem = new UnityEvent();
     public static UnityEvent OnGiveItem = new UnityEvent();
     public static UnityEvent ActivateItem = new UnityEvent();
+    public static UnityEvent PickUpMushroom = new UnityEvent();
 
     public static UnityEvent OnDayStart = new UnityEvent();
     public static UnityEvent OnEveningStart = new UnityEvent();
