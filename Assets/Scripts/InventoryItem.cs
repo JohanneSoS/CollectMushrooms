@@ -28,4 +28,9 @@ public class InventoryItem : MonoBehaviour
         RefreshCount();
     }
 
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
+    }
+
 }

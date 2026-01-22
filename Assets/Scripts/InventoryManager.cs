@@ -15,6 +15,7 @@ public class InventoryManager : MonoBehaviour
     public void Awake()
     {
         instance = this;
+        EventManager.OnRespawn.AddListener(ClearInventory);
     }
 
     private void Start()
@@ -119,4 +120,19 @@ public class InventoryManager : MonoBehaviour
             Item recieveItem = GetSelectedItem(true);
         }
     }*/
+
+    void ClearInventory()
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null)
+            {
+                itemInSlot.Destroy();
+            }
+            
+        }
+        
+    }
 }
