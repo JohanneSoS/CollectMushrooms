@@ -44,6 +44,8 @@ public static class EventManager
     public static IntEvent HealHunger = new IntEvent();
     public static IntEvent ApplyExhaustion = new IntEvent();
     public static UnityEvent ResetExhaustion = new UnityEvent();
+    public static StringEvent OnGameOver = new StringEvent();
+    public static UnityEvent OnRespawn = new UnityEvent();
     
     public static IntEvent UpdateHealthBar = new IntEvent();
     public static IntEvent UpdateHungerBar = new IntEvent();

@@ -205,6 +205,10 @@ public class ClockManager : MonoBehaviour
             EventManager.ApplyExhaustion.Invoke(-50);
             EventManager.ApplyHeal.Invoke(25);
         }
+    }
+
+    void StartDay()
+    {
         hours = 5;
         minutes = 59;
         seconds = 59;
@@ -222,5 +226,14 @@ public class ClockManager : MonoBehaviour
             tick = defaultTick;
             Time.timeScale = 1f;
         }
+    }
+
+    void Respawn()
+    {
+        if (hours <= 6)
+        {
+            days = days - 1;
+        }
+        StartDay();
     }
 }

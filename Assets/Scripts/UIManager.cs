@@ -1,5 +1,6 @@
 using System.Collections;
 using NUnit.Framework.Constraints;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject SleepMenu;
     [SerializeField] private GameObject PauseMenu;
     [SerializeField] private GameObject GameOverMenu;
+    [SerializeField] private TextMeshProUGUI GameOverText;
     [SerializeField] private GameObject [] QuestMenu;
     //[SerializeField] private GameObject DialogueUI;
 
@@ -25,55 +27,13 @@ public class UIManager : MonoBehaviour
         EventManager.PauseGame.AddListener(ActivatePauseMenu);
         EventManager.ResumeGame.AddListener(ResumeGame);
         EventManager.ConfirmUI.AddListener(ConfirmUI);
+        EventManager.OnGameOver.AddListener(OnGameOver);
     }
     
     private void OnUIToggle(bool uiState)
     {
         uiActive = uiState;
     }
-   /*void Update()
-    {
-        if (uiActive)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                switch (currentMenu)
-                {
-                    case "pause":
-                        ResumeGame();
-                        return;
-                    case "gameover":
-                        //ApplyPenalty
-                        ResumeGame();
-                        return;
-                    case "sleep":
-                        ResumeGame();
-                        return;
-                    case "quest":
-                        ResumeGame();
-                        return;
-                }
-
-            }*/
-
-            /*if (Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.KeypadEnter)))
-            {
-                switch (currentMenu)
-                {
-                    case "pause":
-                        ResumeGame();
-                        return;
-                    case "gameover":
-                        //ApplyPenalty
-                        ResumeGame();
-                        return;
-                    case "sleep":
-                        SkipToDay();
-                        return;
-                }
-            }
-        }
-    }*/
 
     public void ConfirmUI()
     {
@@ -83,7 +43,7 @@ public class UIManager : MonoBehaviour
                 ResumeGame();
                 break;
             case "gameover":
-                //ApplyPenalty
+                EventManager.OnRespawn.Invoke();
                 ResumeGame();
                 break;
             case "sleep":
@@ -120,7 +80,7 @@ public class UIManager : MonoBehaviour
     {
         SleepMenu.SetActive(false);
         PauseMenu.SetActive(false);
-       //GameOverMenu.SetActive(false);
+        GameOverMenu.SetActive(false);
         for (int i = 0; i < QuestMenu.Length; i++)
         {
             QuestMenu[i].SetActive(false);
@@ -138,14 +98,39 @@ public class UIManager : MonoBehaviour
     
     void OpenQuestUI()
     {
-        StartCoroutine(OpenQuestMenu());
+        QuestMenu[(activeBox)].SetActive(true);
+        currentMenu = "quest";
+        //yield return new WaitForSeconds(0.2f);
+        uiActive = true;
+        EventManager.ToggleUI.Invoke(true);
+        //StartCoroutine(OpenQuestMenu());
     }
 
-    IEnumerator OpenQuestMenu()
+    /*IEnumerator OpenQuestMenu()
     {
         QuestMenu[(activeBox)].SetActive(true);
         currentMenu = "quest";
-        yield return new WaitForSeconds(0.2f);
+        //yield return new WaitForSeconds(0.2f);
+        uiActive = true;
+        EventManager.ToggleUI.Invoke(true);
+    }*/
+
+    void OnGameOver(string deathReason)
+    {
+        switch (deathReason)
+        {
+            case "hunger":
+                GameOverText.text = "You starved!";
+                break;
+            case "exhaustion":
+                GameOverText.text = "You died of Exhaustion!";
+                break;
+            case "health":
+                GameOverText.text = "You have been slain by a wolf!";
+                break;
+        }
+        GameOverMenu.SetActive(true);
+        currentMenu = "gameover";
         uiActive = true;
         EventManager.ToggleUI.Invoke(true);
     }

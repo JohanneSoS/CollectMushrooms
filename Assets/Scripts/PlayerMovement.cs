@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField] private float sniffCooldown;
     
     [SerializeField] private float swimmingSlowFactor;
+    [SerializeField] private Vector3 spawnPos;
     
     //[SerializeField] private float lightIntensityEvening;
     //[SerializeField] private float lightIntensityNight;
@@ -41,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
         charRenderer = GetComponentInChildren<CharacterRenderer>();
         EventManager.ToggleUI.AddListener(ToggleUI);
+        EventManager.OnRespawn.AddListener(Respawn);
     }
     
     void FixedUpdate()
@@ -126,5 +128,10 @@ public class PlayerMovement : MonoBehaviour
     private void ToggleUI(bool uiState)
     {
         uiActive = uiState;
+    }
+
+    void Respawn()
+    {
+        transform.position = spawnPos;
     }
 }

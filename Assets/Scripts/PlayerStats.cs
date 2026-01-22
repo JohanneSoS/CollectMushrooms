@@ -15,6 +15,19 @@ public class PlayerStats : MonoBehaviour
         if (currentHealth >= maxHealth) { currentHealth = maxHealth; }
         if (currentHunger >= maxHunger) { currentHunger = maxHunger; }
         if (currentExhaustion >= maxExhaustion) { currentExhaustion = maxExhaustion; }
+
+        if (currentHealth <= 0)
+        {
+            EventManager.OnGameOver.Invoke("health");
+        }
+        if (currentExhaustion <= 0)
+        {
+            EventManager.OnGameOver.Invoke("exhaustion");
+        }
+        if (currentHunger <= 0)
+        {
+            EventManager.OnGameOver.Invoke("hunger");
+        }
     }
     private void Awake()
     {
@@ -24,6 +37,7 @@ public class PlayerStats : MonoBehaviour
         EventManager.ResetExhaustion.AddListener(ResetExhaustion);
         EventManager.ApplyHunger.AddListener(ApplyHunger);
         EventManager.HealHunger.AddListener(HealHunger);
+        EventManager.OnRespawn.AddListener(Respawn);
     }
     private void Start()
     {
@@ -78,5 +92,12 @@ public class PlayerStats : MonoBehaviour
     {
         currentExhaustion = maxExhaustion;
         EventManager.UpdateExhaustionBar.Invoke(currentExhaustion);
+    }
+
+    void Respawn()
+    {
+        ResetHunger();
+        ResetExhaustion();
+        HealFully();
     }
 }
