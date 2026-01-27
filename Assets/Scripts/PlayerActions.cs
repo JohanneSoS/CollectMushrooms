@@ -25,6 +25,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         EventManager.OnDayStart.AddListener(DayStart);
         EventManager.OnEveningStart.AddListener(EveningStart);
         EventManager.OnPickItem.AddListener(ToggleIsCollecting);
+        EventManager.EnterZone.AddListener(OnEnterZone);
+        EventManager.ExitZone.AddListener(OnExitZone);
     }
 
     void Update()
@@ -121,7 +123,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                         EventManager.PickUpMushroom.Invoke();                    
                     } 
                     break;
-                case "none":
+                case "None":
                 {
                     if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
                     {
@@ -141,15 +143,32 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
-        hovering = other.tag;
+        if (!other.CompareTag("Zone"))
+        {
+            hovering = other.tag;
+        }
+
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (hovering == other.tag)
         {
             hovering = "none";
+        }
+    }*/
+
+    void OnEnterZone(string origin)
+    {
+        hovering = origin;
+    }
+
+    void OnExitZone(string origin)
+    {
+        if (hovering == origin || (hovering != "Box" && hovering != "NPC" && hovering != "SleepingPlace" && hovering !=  "Mushroom" && hovering !=  "None"))
+        {
+            hovering = "None";
         }
     }
     

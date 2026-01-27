@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2318460482941712189}
   - component: {fileID: 7715997069442590746}
   - component: {fileID: 93185262363139969}
+  - component: {fileID: -8291754648556797951}
   - component: {fileID: 3089010285664387495}
   m_Layer: 0
   m_Name: coprinus_comatus
@@ -204,6 +205,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &-8291754648556797951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999592109318140897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880c8b616c19fc84d91f328f5e3331b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3089010285664387495
 MonoBehaviour:
   m_ObjectHideFlags: 0

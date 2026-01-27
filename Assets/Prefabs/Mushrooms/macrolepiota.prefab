@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9197748313608462684}
   - component: {fileID: 3320365662462184370}
   - component: {fileID: 6161381518234146093}
+  - component: {fileID: -1122821106695255874}
   - component: {fileID: -5778828140768826369}
   m_Layer: 0
   m_Name: macrolepiota
@@ -204,6 +205,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &-1122821106695255874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7208388340678255350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880c8b616c19fc84d91f328f5e3331b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-5778828140768826369
 MonoBehaviour:
   m_ObjectHideFlags: 0

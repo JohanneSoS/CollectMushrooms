@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4910150091233775529}
   - component: {fileID: 3679535063746211235}
   - component: {fileID: 5062877295312523406}
+  - component: {fileID: 3484692163545664925}
   - component: {fileID: -5566132983782773724}
   m_Layer: 0
   m_Name: boletus_edulis
@@ -204,6 +205,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &3484692163545664925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4070009018722465998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880c8b616c19fc84d91f328f5e3331b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-5566132983782773724
 MonoBehaviour:
   m_ObjectHideFlags: 0

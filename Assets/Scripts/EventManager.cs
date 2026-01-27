@@ -37,6 +37,10 @@ public static class EventManager
 
     public static UnityEvent OnChasing = new UnityEvent();
     
+    [Header("Zone Management")]
+    public static StringEvent EnterZone = new StringEvent();
+    public static StringEvent ExitZone = new StringEvent();
+    
     [Header("Combat")]
     public static IntEvent ApplyDamage = new IntEvent();
     public static IntEvent ApplyHeal = new IntEvent();
@@ -66,4 +70,6 @@ public class FloatEvent : UnityEvent<float> { }
 public class IntEvent : UnityEvent<int> { }
 public class StringEvent : UnityEvent<string> { }
 public class BoolEvent : UnityEvent<bool> { }
+
+public class Collider2DEvent : UnityEvent<Collider2D> { }
 

@@ -205,6 +205,7 @@ public class ClockManager : MonoBehaviour
             EventManager.ApplyExhaustion.Invoke(-50);
             EventManager.ApplyHeal.Invoke(25);
         }
+        StartDay();
     }
 
     void StartDay()

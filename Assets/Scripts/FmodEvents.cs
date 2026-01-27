@@ -24,8 +24,8 @@ public class FmodEvents : MonoBehaviour
     [SerializeField] private EventReference eatMushroom;
     [SerializeField] private EventReference openChestUI;
 
-    private EventInstance _ambienceInstance;
-    private EventInstance _musicInstance;
+    public EventInstance _ambienceInstance;
+    public EventInstance _musicInstance;
 
     public static FmodEvents instance;
 
@@ -49,7 +49,7 @@ public class FmodEvents : MonoBehaviour
         EventManager.OnSniffing.AddListener(Sniff);
         EventManager.OnPickItem.AddListener(PickUpMushroom);
         EventManager.OnGiveItem.AddListener(DeliverMushroom);
-        EventManager.ApplyDamage.AddListener(GetHit);
+        EventManager.ApplyDamage.AddListener(UpdateHealth);
     }
 
     private void OnDisable()
@@ -57,7 +57,7 @@ public class FmodEvents : MonoBehaviour
         EventManager.OnSniffing.RemoveListener(Sniff);
         EventManager.OnPickItem.RemoveListener(PickUpMushroom);
         EventManager.OnGiveItem.RemoveListener(DeliverMushroom);
-        EventManager.ApplyDamage.RemoveListener(GetHit);
+        EventManager.ApplyDamage.RemoveListener(UpdateHealth);
     }
 
     void Start()
@@ -80,10 +80,22 @@ public class FmodEvents : MonoBehaviour
         }
     }
 
-    void GetHit(int amount)
+    void UpdateHealth(int amount)
     {
         float currentHealth = playerStats.currentHealth;
         _musicInstance.setParameterByName("Health", currentHealth);
+    }
+
+    void UpdateExhaustion(int amount)
+    {
+        float currentExhaustion = playerStats.currentExhaustion;
+        _musicInstance.setParameterByName("Exhaustion", currentExhaustion);
+    }
+
+    void UpdateHunger(int amount)
+    {
+        float currentHunger = playerStats.currentHunger;
+        _musicInstance.setParameterByName("Hunger", currentHunger);
     }
 
     void Sniff()

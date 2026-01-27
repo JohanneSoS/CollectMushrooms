@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2235952172125547769}
   - component: {fileID: 3052877114663367698}
   - component: {fileID: 8492700160930623197}
+  - component: {fileID: 6096691079254391662}
   - component: {fileID: 5668528100956269533}
   m_Layer: 0
   m_Name: boletus_erythropus
@@ -204,6 +205,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &6096691079254391662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009382071994902964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880c8b616c19fc84d91f328f5e3331b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5668528100956269533
 MonoBehaviour:
   m_ObjectHideFlags: 0
