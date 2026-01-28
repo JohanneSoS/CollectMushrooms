@@ -50,6 +50,8 @@ public class FmodEvents : MonoBehaviour
         EventManager.OnPickItem.AddListener(PickUpMushroom);
         EventManager.OnGiveItem.AddListener(DeliverMushroom);
         EventManager.ApplyDamage.AddListener(UpdateHealth);
+        EventManager.UpdateExhaustionBar.AddListener(UpdateExhaustion);
+        EventManager.UpdateHungerBar.AddListener(UpdateHunger);
     }
 
     private void OnDisable()
@@ -75,7 +77,8 @@ public class FmodEvents : MonoBehaviour
         if (currentHour != clockManager.hours)
         {
             _ambienceInstance.setParameterByName("DayTime", clockManager.hours);
-            _musicInstance.setParameterByName("Music", clockManager.hours);
+            _musicInstance.setParameterByName("DayTime", clockManager.hours);
+            //_musicInstance.setParameterByName("Music", clockManager.hours);
             currentHour = clockManager.hours;
         }
     }

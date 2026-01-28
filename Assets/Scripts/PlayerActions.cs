@@ -161,7 +161,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void OnEnterZone(string origin)
     {
-        hovering = origin;
+        if (origin == "Box" || origin == "NPC" || origin == "SleepingPlace" || origin == "Mushroom")
+        {
+            hovering = origin;
+        }
     }
 
     void OnExitZone(string origin)
