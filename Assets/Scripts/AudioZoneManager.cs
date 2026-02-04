@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
@@ -10,14 +11,26 @@ public class AudioZoneManager : MonoBehaviour
     public string currentCol;
     
     private AudioZone river = AudioZone.Outside;
-    private AudioZone npc = AudioZone.Outside;
+    private AudioZone racoon = AudioZone.Outside;
+    private AudioZone beaver = AudioZone.Outside;
+    private AudioZone boar = AudioZone.Outside;
     private AudioZone wolf = AudioZone.Outside;
 
-    private float oldRiverValue = 0f;
+    /*private float oldRiverValue = 0f;
     private float newRiverValue = 0f;
 
     private float oldRacoonValue = 0f;
     private float newRacoonValue = 0f;
+    private float oldBeaverValue = 0f;
+    private float newBeaverValue = 0f;
+    private float oldBoarValue = 0f;
+    private float newBoarValue = 0f;
+    private float oldWolfValue = 0f;*/
+
+    Dictionary<ZoneOrigin, AudioZone> npcs = new Dictionary<ZoneOrigin, AudioZone>();
+    Dictionary<ZoneOrigin, float> oldValues = new Dictionary<ZoneOrigin, float>();
+    Dictionary<ZoneOrigin, float> newValues = new Dictionary<ZoneOrigin, float>();
+    Dictionary<ZoneOrigin, string> paramNames = new Dictionary<ZoneOrigin, string>();
     
 
     void Awake()
@@ -25,55 +38,63 @@ public class AudioZoneManager : MonoBehaviour
         EventManager.EnterAudioZone.AddListener(OnEnterZone);
         EventManager.ExitAudioZone.AddListener(OnExitZone);
         EventManager.OnCompleteQuest.AddListener(OnCompleteQuest);
+
+        npcs.Add(ZoneOrigin.Racoon, AudioZone.Outside);
+        npcs.Add(ZoneOrigin.Beaver, AudioZone.Outside);
+        npcs.Add(ZoneOrigin.Boar, AudioZone.Outside);
+        npcs.Add(ZoneOrigin.Wolf, AudioZone.Outside);
+        oldValues.Add(ZoneOrigin.River, 0);
+        oldValues.Add(ZoneOrigin.Racoon, 0);
+        oldValues.Add(ZoneOrigin.Beaver, 0);
+        oldValues.Add(ZoneOrigin.Boar, 0);
+        oldValues.Add(ZoneOrigin.Wolf, 0);
+        newValues.Add(ZoneOrigin.River, 0);
+        newValues.Add(ZoneOrigin.Racoon, 0);
+        newValues.Add(ZoneOrigin.Beaver, 0);
+        newValues.Add(ZoneOrigin.Boar, 0);
+        newValues.Add(ZoneOrigin.Wolf, 0);
+        paramNames.Add(ZoneOrigin.River, "River");
+        paramNames.Add(ZoneOrigin.Racoon, "Racoon");
+        paramNames.Add(ZoneOrigin.Beaver, "Beaver");
+        paramNames.Add(ZoneOrigin.Boar, "Boar");
+        paramNames.Add(ZoneOrigin.Wolf, "Wolf");
     }
 
-    void Update()
+    void UpdateValues()
     {
-
-        CheckRiverZone();
-        //CheckWolfZone();
-        CheckNPCZone();
-
-        if (oldRiverValue != newRiverValue)
-        {
-            //FmodEvents.instance._ambienceInstance.setParameterByName("River", (Mathf.Lerp(oldRiverValue, newRiverValue, time)));
-            StartCoroutine(WaitForLerpRiver(oldRiverValue, newRiverValue, "River"));
-        }
-
-
-        if (oldRacoonValue != newRacoonValue)
-        {
-            //FmodEvents.instance._musicInstance.setParameterByName("Racoon", (Mathf.Lerp(oldRacoonValue, newRacoonValue, 1)));
-            StartCoroutine(WaitForLerpRacoon(oldRacoonValue, newRacoonValue, "Racoon"));
-        }
+        racoon = npcs[ZoneOrigin.Racoon];
+        beaver = npcs[ZoneOrigin.Beaver];
+        boar = npcs[ZoneOrigin.Boar];
+        wolf = npcs[ZoneOrigin.Wolf];
     }
 
-    private IEnumerator WaitForLerpRiver(float oldValue, float newValue, string parameter)
-    {
-        float time = 0;
-        
-        while (time < 1)
-        {
-            FmodEvents.instance._musicInstance.setParameterByName(parameter, (Mathf.Lerp(oldRiverValue, newRiverValue, time / 1)));
-            //oldValue = Mathf.Lerp(oldValue, newValue, time / 1);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        oldRiverValue = newRiverValue;
-    }
-
-    private IEnumerator WaitForLerpRacoon(float oldValue, float newValue, string parameter)
+    private IEnumerator WaitForLerpRiver(ZoneOrigin origin)
     {
         float time = 0;
         
         while (time < 1)
         {
-            FmodEvents.instance._musicInstance.setParameterByName(parameter, (Mathf.Lerp(oldRacoonValue, newRacoonValue, time / 1)));
+            FmodEvents.instance._musicInstance.setParameterByName(paramNames[origin], (Mathf.Lerp(oldValues[origin], newValues[origin], time / 1)));
             //oldValue = Mathf.Lerp(oldValue, newValue, time / 1);
             time += Time.deltaTime;
             yield return null;
         }
-        oldRacoonValue = newRacoonValue;
+
+        oldValues[origin] = newValues[origin];
+    }
+
+    private IEnumerator WaitForLerpNPC(ZoneOrigin origin)
+    {
+        float time = 0;
+        
+        while (time < 1)
+        {
+            FmodEvents.instance._musicInstance.setParameterByName(paramNames[origin], (Mathf.Lerp(oldValues[origin], newValues[origin], time / 1)));
+            //oldValue = Mathf.Lerp(oldValue, newValue, time / 1);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        oldValues[origin] = newValues[origin];
     }
 
     void CheckRiverZone()
@@ -82,94 +103,89 @@ public class AudioZoneManager : MonoBehaviour
         switch (river)
         {
             case AudioZone.Outside:
-                newRiverValue = 0f;
+                newValues[ZoneOrigin.River] = 0f;
                 break;
             case AudioZone.Furthest:
-                newRiverValue = 0.2f;
+                newValues[ZoneOrigin.River] = 0.2f;
                 break;
             case AudioZone.Far:
-                newRiverValue = 0.4f;
+                newValues[ZoneOrigin.River] = 0.4f;
                 break;
             case AudioZone.Mid:
-                newRiverValue = 0.6f;
+                newValues[ZoneOrigin.River] = 0.6f;
                 break;
             case AudioZone.Close:
-                newRiverValue = 0.8f;
+                newValues[ZoneOrigin.River] = 0.8f;
                 break;
             case AudioZone.Closest:
-                newRiverValue = 1;
+                newValues[ZoneOrigin.River] = 1;
                 break;
         }
+        StartCoroutine(WaitForLerpRiver(ZoneOrigin.River));
     }
 
-    /*void CheckWolfZone()
+    void CheckNPCZone(ZoneOrigin origin)
     {
-        if (!wolfZoneClose && !wolfZoneFar)
-        {
-            FmodEvents.instance._musicInstance.setParameterByName("Wolf", 0f);
-        }
-        else if (wolfZoneClose)
-        {
-            FmodEvents.instance._musicInstance.setParameterByName("Wolf", 1f);
-        }
-        else if (wolfZoneFar)
-        {
-            FmodEvents.instance._musicInstance.setParameterByName("Wolf", 0.5f);
-        }
-    }*/
-
-    void CheckNPCZone()
-    {
-        //ToDo: Create New Better Zones
-        switch (npc)
+        switch (npcs[origin])
         {
             case AudioZone.Outside:
-                newRacoonValue = 0f;
+                newValues[origin] = 0f;
                 break;
             case AudioZone.Furthest:
+                newValues[origin] = 0.5f;
                 break;
             case AudioZone.Far:
-                newRacoonValue = 1f;
+                newValues[origin] = 1f;
                 break;
             case AudioZone.Mid:
+                newValues[origin] = 1.5f;
                 break;
             case AudioZone.Close:
-                newRacoonValue = 2f;
+                newValues[origin] = 2f;
                 break;
             case AudioZone.Closest:
-                newRacoonValue = 3f;
+                newValues[origin] = 3f;
                 break;
         }
+        StartCoroutine(WaitForLerpNPC(origin));
     }
     void OnEnterZone(AudioZone zone, ZoneOrigin origin)
     {
-        switch (origin)
+        if (origin == ZoneOrigin.River)
         {
-            case ZoneOrigin.River:
-                river = zone;
-                break;
-            case ZoneOrigin.Racoon:
-                npc = zone;
-                break;
+            river = zone;
+            CheckRiverZone();
         }
+        else
+        {
+            npcs[origin] = zone;
+            CheckNPCZone(origin);
+        }
+        UpdateValues();
+
     }
 
     void OnExitZone(AudioZone zone, ZoneOrigin origin)
     {
-        switch (origin)
+        if (origin == ZoneOrigin.River)
         {
-            case ZoneOrigin.River:
-                river = (zone - 1);
-                break;
-            case ZoneOrigin.Racoon:
-                npc = (zone - 1);
-                break;
+            river = (zone - 1);
+            CheckRiverZone();
         }
+        else
+        {
+            npcs[origin] = (zone - 1);
+            CheckNPCZone(origin);
+        }
+        UpdateValues();
     }
 
     void OnCompleteQuest(int questCount)
     {
-        npc = AudioZone.Outside;
+        foreach (KeyValuePair<ZoneOrigin, AudioZone> zone in npcs)
+        {
+            npcs[zone.Key] = AudioZone.Outside;
+        }
     }
 }
 

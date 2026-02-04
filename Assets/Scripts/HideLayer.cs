@@ -25,8 +25,10 @@ public class HideLayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Hide();
-            playerHovering = true;
+            if (!playerHovering)
+            {
+                playerHovering = true;
+            }
         }
     }
 
@@ -34,8 +36,10 @@ public class HideLayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Show();
-            playerHovering = false;
+            if (playerHovering)
+            {
+                playerHovering = false;
+            }
         }
     }
 
