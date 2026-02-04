@@ -38,3 +38,10 @@ public class npc : MonoBehaviour
         }
     }
 }
+
+public enum NPC
+{
+    Racoon,
+    Beaver,
+    Boar
+}

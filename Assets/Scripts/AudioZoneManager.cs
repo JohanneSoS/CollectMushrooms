@@ -2,21 +2,16 @@ using System.Collections;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using Unity.VisualScripting;
 
 public class AudioZoneManager : MonoBehaviour
 {
 
     public string currentCol;
-    public bool atFarRiver = false;
-    public bool atMidRiver = false;
-    public bool atCloseRiver = false;
-    public bool atRiverCoast = false;
-    public bool insideRiver = false;
-    public bool wolfZoneClose = false;
-    public bool wolfZoneFar = false;
-    public bool racoonFar = false;
-    public bool racoonFurthest = false;
-    public bool racoonClose = false;
+    
+    private AudioZone river = AudioZone.Outside;
+    private AudioZone npc = AudioZone.Outside;
+    private AudioZone wolf = AudioZone.Outside;
 
     private float oldRiverValue = 0f;
     private float newRiverValue = 0f;
@@ -27,8 +22,8 @@ public class AudioZoneManager : MonoBehaviour
 
     void Awake()
     {
-        EventManager.EnterZone.AddListener(OnEnterZone);
-        EventManager.ExitZone.AddListener(OnExitZone);
+        EventManager.EnterAudioZone.AddListener(OnEnterZone);
+        EventManager.ExitAudioZone.AddListener(OnExitZone);
         EventManager.OnCompleteQuest.AddListener(OnCompleteQuest);
     }
 
@@ -36,7 +31,7 @@ public class AudioZoneManager : MonoBehaviour
     {
 
         CheckRiverZone();
-        CheckWolfZone();
+        //CheckWolfZone();
         CheckNPCZone();
 
         if (oldRiverValue != newRiverValue)
@@ -83,33 +78,31 @@ public class AudioZoneManager : MonoBehaviour
 
     void CheckRiverZone()
     {
-        if (!atFarRiver && !atMidRiver && !atCloseRiver && !atRiverCoast && !insideRiver)
+        //ToDo: Create New Better Zones
+        switch (river)
         {
-            newRiverValue = 0f;
-        }
-        else if (atFarRiver)
-        {
-            newRiverValue = 0.2f;
-        }
-        else if (atMidRiver & !atFarRiver)
-        {
-            newRiverValue = 0.4f;
-        }
-        else if (atCloseRiver & !atMidRiver)
-        {
-            newRiverValue = 0.6f;
-        }
-        else if (atRiverCoast & !atCloseRiver)
-        {
-            newRiverValue = 0.8f;
-        }
-        else if (insideRiver & !atRiverCoast)
-        {
-            newRiverValue = 1f;
+            case AudioZone.Outside:
+                newRiverValue = 0f;
+                break;
+            case AudioZone.Furthest:
+                newRiverValue = 0.2f;
+                break;
+            case AudioZone.Far:
+                newRiverValue = 0.4f;
+                break;
+            case AudioZone.Mid:
+                newRiverValue = 0.6f;
+                break;
+            case AudioZone.Close:
+                newRiverValue = 0.8f;
+                break;
+            case AudioZone.Closest:
+                newRiverValue = 1;
+                break;
         }
     }
 
-    void CheckWolfZone()
+    /*void CheckWolfZone()
     {
         if (!wolfZoneClose && !wolfZoneFar)
         {
@@ -123,116 +116,78 @@ public class AudioZoneManager : MonoBehaviour
         {
             FmodEvents.instance._musicInstance.setParameterByName("Wolf", 0.5f);
         }
-    }
+    }*/
 
     void CheckNPCZone()
     {
-        if (!racoonClose && !racoonFar && !racoonFurthest)
+        //ToDo: Create New Better Zones
+        switch (npc)
         {
-            newRacoonValue = 0f;
-            //FmodEvents.instance._musicInstance.setParameterByName("Racoon", 0f);
-        }
-        else if (racoonClose)
-        {
-            newRacoonValue = 3f;
-            //FmodEvents.instance._musicInstance.setParameterByName("Racoon", 3f);
-        }
-        else if (racoonFar)
-        {
-            newRacoonValue = 2f;
-            //FmodEvents.instance._musicInstance.setParameterByName("Racoon", 2f);
-        }
-        else if (racoonFurthest)
-        {
-            newRacoonValue = 1f;
-            //FmodEvents.instance._musicInstance.setParameterByName("Racoon", 1f);
+            case AudioZone.Outside:
+                newRacoonValue = 0f;
+                break;
+            case AudioZone.Furthest:
+                break;
+            case AudioZone.Far:
+                newRacoonValue = 1f;
+                break;
+            case AudioZone.Mid:
+                break;
+            case AudioZone.Close:
+                newRacoonValue = 2f;
+                break;
+            case AudioZone.Closest:
+                newRacoonValue = 3f;
+                break;
         }
     }
-    void OnEnterZone(string origin)
+    void OnEnterZone(AudioZone zone, ZoneOrigin origin)
     {
-        Debug.Log(origin+ "Colider Entered");
         switch (origin)
         {
-            case "FarRiver":
-                atFarRiver = true;
+            case ZoneOrigin.River:
+                river = zone;
                 break;
-            case "MidRiver":
-                atMidRiver = true;
-                break;
-            case "CloseRiver":
-                atCloseRiver = true;
-                atRiverCoast = false;
-                break;
-            case "Water":
-                insideRiver = true;
-                atRiverCoast = false;
-                break;
-            case "WolfZoneClose":
-                wolfZoneClose = true;
-                break;
-            case "WolfZoneFar":
-                wolfZoneFar = true;
-                break;
-            case "RacoonZoneFurthest":
-                racoonFurthest = true;
-                break;
-            case "RacoonZoneFar":
-                racoonFar = true;
-                racoonFurthest = false;
-                break;
-            case "RacoonZoneClose":
-                racoonClose = true;
-                racoonFurthest = false;
-                racoonFar = false;
+            case ZoneOrigin.Racoon:
+                npc = zone;
                 break;
         }
     }
 
-    void OnExitZone(string origin)
+    void OnExitZone(AudioZone zone, ZoneOrigin origin)
     {
-        Debug.Log(origin + "Colider Exited");
         switch (origin)
         {
-            case "FarRiver":
-                atFarRiver = false;
+            case ZoneOrigin.River:
+                river = (zone - 1);
                 break;
-            case "MidRiver":
-                atMidRiver = false;
-                break;
-            case "CloseRiver":
-                atCloseRiver = false;
-                if (!atMidRiver)
-                {
-                    atRiverCoast = true;
-                }
-                break;
-            case "Water":
-                insideRiver = false;
-                break;
-            case "WolfZoneClose":
-                wolfZoneClose = false;
-                break;
-            case "WolfZoneFar":
-                wolfZoneFar = false;
-                break;
-            case "RacoonZoneFurthest":
-                racoonFurthest = false;
-                break;
-            case "RacoonZoneFar":
-                racoonFar = false;
-                racoonFurthest = true;
-                break;
-            case "RacoonZoneClose":
-                racoonClose = false;
-                racoonFar = true;
+            case ZoneOrigin.Racoon:
+                npc = (zone - 1);
                 break;
         }
     }
 
     void OnCompleteQuest(int questCount)
     {
-        racoonClose = false;
-        racoonFar = false;
-        racoonFurthest = false;
+        npc = AudioZone.Outside;
     }
+}
+
+public enum AudioZone 
+{
+    Outside,
+    Furthest,
+    Far,
+    Mid,
+    Close,
+    Closest
+}
+
+public enum ZoneOrigin
+{
+    River,
+    Wolf,
+    Racoon,
+    Beaver,
+    Boar
 }

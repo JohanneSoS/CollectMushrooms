@@ -40,6 +40,8 @@ public static class EventManager
     [Header("Zone Management")]
     public static StringEvent EnterZone = new StringEvent();
     public static StringEvent ExitZone = new StringEvent();
+    public static AudioZoneEvent EnterAudioZone = new AudioZoneEvent();
+    public static AudioZoneEvent ExitAudioZone = new AudioZoneEvent();
     
     [Header("Combat")]
     public static IntEvent ApplyDamage = new IntEvent();
@@ -69,6 +71,7 @@ public static class EventManager
 public class FloatEvent : UnityEvent<float> { }
 public class IntEvent : UnityEvent<int> { }
 public class StringEvent : UnityEvent<string> { }
+public class AudioZoneEvent : UnityEvent<AudioZone, ZoneOrigin> {}
 public class BoolEvent : UnityEvent<bool> { }
 
 public class Collider2DEvent : UnityEvent<Collider2D> { }

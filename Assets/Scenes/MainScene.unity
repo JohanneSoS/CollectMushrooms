@@ -489946,7 +489946,7 @@ MonoBehaviour:
   postProcessVolume: {fileID: 1783529920}
   globalLight: {fileID: 1338257335}
   timeDisplay: {fileID: 353894728}
-  tick: 1500
+  tick: 1000
   seconds: 0
   minutes: 55
   hours: 5

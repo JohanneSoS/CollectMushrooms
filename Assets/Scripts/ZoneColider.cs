@@ -22,6 +22,7 @@ public class ZoneColider : MonoBehaviour
             else if (gameObject.tag == "AudioZone")
             {
                 EventManager.EnterZone.Invoke(this.gameObject.name);
+                //New Event for AudioZone-Enter
                 Debug.Log(this.gameObject.name);
             }
         }
