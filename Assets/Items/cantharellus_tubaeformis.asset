@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d86a456b7310c424597e8a161af65c38, type: 3}
-  m_Name: sparassis_crispa
+  m_Name: cantharellus_tubaeformis
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: a5b9db81abae6c44e94ade8a83871b84, type: 2}
+  tile: {fileID: 11400000, guid: 92b8a6d3386a41842bfc2ab17fb62509, type: 2}
   type: 0
   range: {x: 5, y: 4}
   canEat: 1
@@ -21,4 +21,4 @@ MonoBehaviour:
   healAmount: 0
   exhaustAmount: 0
   stackable: 1
-  sprite: {fileID: 21300000, guid: 73629239f106b8443859ebed11652925, type: 3}
+  sprite: {fileID: 21300000, guid: ac8708ea139800c42b1d856057f2d8b1, type: 3}

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d86a456b7310c424597e8a161af65c38, type: 3}
-  m_Name: sparassis_crispa
+  m_Name: suillus_variegatus
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: a5b9db81abae6c44e94ade8a83871b84, type: 2}
+  tile: {fileID: 11400000, guid: 0721612222820fb448c1d13068715308, type: 2}
   type: 0
   range: {x: 5, y: 4}
   canEat: 1
   usable: 0
-  hungerAmount: 20
+  hungerAmount: 15
   healAmount: 0
   exhaustAmount: 0
   stackable: 1
-  sprite: {fileID: 21300000, guid: 73629239f106b8443859ebed11652925, type: 3}
+  sprite: {fileID: 21300000, guid: fac4729d4f75be040a35cc3e0ddf06ed, type: 3}
