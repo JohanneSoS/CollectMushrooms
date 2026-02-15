@@ -15,10 +15,11 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: 9277c33f75215f94b9e8be01ed410168, type: 2}
   type: 0
   range: {x: 5, y: 4}
-  canSell: 1
-  sellPrice: 0
-  buyPrice: 0
   canEat: 1
+  usable: 0
   hungerAmount: 15
+  healAmount: 0
+  exhaustAmount: 0
   stackable: 1
+  itemName: Fichten-Steinpilz
   sprite: {fileID: 21300000, guid: 5186e6b6f48d0e246a0b2123d54cce64, type: 3}

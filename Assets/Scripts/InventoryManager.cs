@@ -42,6 +42,7 @@ public class InventoryManager : MonoBehaviour
         }
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
+        EventManager.UpdateItemDiscription.Invoke(GetSelectedItem(false));
     }
 
     public Item GetSelectedItem(bool use)

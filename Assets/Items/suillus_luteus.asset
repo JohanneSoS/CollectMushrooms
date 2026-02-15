@@ -21,4 +21,5 @@ MonoBehaviour:
   healAmount: 0
   exhaustAmount: 0
   stackable: 1
+  itemName: "Butterr\xF6hrling"
   sprite: {fileID: 21300000, guid: 51c85c8c904114f41bc66960d8e477a3, type: 3}

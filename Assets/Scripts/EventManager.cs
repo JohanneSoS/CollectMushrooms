@@ -19,6 +19,7 @@ public static class EventManager
     public static UnityEvent OnGiveItem = new UnityEvent();
     public static UnityEvent ActivateItem = new UnityEvent();
     public static UnityEvent PickUpMushroom = new UnityEvent();
+    public static ItemEvent UpdateItemDiscription = new ItemEvent();
 
     public static UnityEvent OnDayStart = new UnityEvent();
     public static UnityEvent OnEveningStart = new UnityEvent();
@@ -73,6 +74,8 @@ public class IntEvent : UnityEvent<int> { }
 public class StringEvent : UnityEvent<string> { }
 public class AudioZoneEvent : UnityEvent<AudioZone, ZoneOrigin> {}
 public class BoolEvent : UnityEvent<bool> { }
+
+public class ItemEvent : UnityEvent<Item> { }
 
 public class Collider2DEvent : UnityEvent<Collider2D> { }
 

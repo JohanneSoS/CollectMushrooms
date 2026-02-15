@@ -21,4 +21,5 @@ MonoBehaviour:
   healAmount: 0
   exhaustAmount: 0
   stackable: 1
+  itemName: Schopf-Tintling
   sprite: {fileID: 21300000, guid: 93f32644f86da91498db1237a1cd52bd, type: 3}

@@ -21,4 +21,5 @@ MonoBehaviour:
   healAmount: 5
   exhaustAmount: 5
   stackable: 1
+  itemName: Violetter Lacktrichterling
   sprite: {fileID: 21300000, guid: a738319b8fbf07f4596c95099da628b6, type: 3}

@@ -21,4 +21,5 @@ MonoBehaviour:
   healAmount: 0
   exhaustAmount: 0
   stackable: 1
+  itemName: "Sandr\xF6hrling"
   sprite: {fileID: 21300000, guid: fac4729d4f75be040a35cc3e0ddf06ed, type: 3}

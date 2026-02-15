@@ -15,10 +15,11 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: cc7b8fb5932a81b428902ffbf496e431, type: 2}
   type: 0
   range: {x: 5, y: 4}
-  canSell: 1
-  sellPrice: 0
-  buyPrice: 0
   canEat: 1
+  usable: 0
   hungerAmount: 15
+  healAmount: 0
+  exhaustAmount: 0
   stackable: 1
+  itemName: Pfifferling
   sprite: {fileID: 21300000, guid: 331ee970575371e428ae919b3b110359, type: 3}
