@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d86a456b7310c424597e8a161af65c38, type: 3}
-  m_Name: cantharellus
+  m_Name: lacaria_amethystea
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: cc7b8fb5932a81b428902ffbf496e431, type: 2}
+  tile: {fileID: 11400000, guid: 712981cb988418548856e4a627e4931b, type: 2}
   type: 0
   range: {x: 5, y: 4}
   canEat: 1
   usable: 0
-  hungerAmount: 15
-  healAmount: 0
-  exhaustAmount: 0
+  hungerAmount: 5
+  healAmount: 5
+  exhaustAmount: 5
   stackable: 1
-  itemName: Pfifferling
-  sprite: {fileID: 21300000, guid: 331ee970575371e428ae919b3b110359, type: 3}
+  itemName: Violetter Lacktrichterling
+  sprite: {fileID: 21300000, guid: a738319b8fbf07f4596c95099da628b6, type: 3}

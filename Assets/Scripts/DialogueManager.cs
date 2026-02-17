@@ -110,7 +110,9 @@ public class DialogueManager : MonoBehaviour
             {
                 currentDialogueRead = true;
                 //EventManager.OnDialogueEnd.Invoke();
+                Debug.Log("vor OnAdvanceQuest");
                 EventManager.OnAdvanceQuest.Invoke(questID);
+                Debug.Log("nach OnAdvanceQuest");
                 HideDialogue();
             }
         }

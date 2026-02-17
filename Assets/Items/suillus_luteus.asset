@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d86a456b7310c424597e8a161af65c38, type: 3}
-  m_Name: cantharellus
+  m_Name: suillus_luteus
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: cc7b8fb5932a81b428902ffbf496e431, type: 2}
+  tile: {fileID: 11400000, guid: a024745a55fd624499d8cd29e05df077, type: 2}
   type: 0
   range: {x: 5, y: 4}
   canEat: 1
@@ -21,5 +21,5 @@ MonoBehaviour:
   healAmount: 0
   exhaustAmount: 0
   stackable: 1
-  itemName: Pfifferling
-  sprite: {fileID: 21300000, guid: 331ee970575371e428ae919b3b110359, type: 3}
+  itemName: "Butterr\xF6hrling"
+  sprite: {fileID: 21300000, guid: 51c85c8c904114f41bc66960d8e477a3, type: 3}

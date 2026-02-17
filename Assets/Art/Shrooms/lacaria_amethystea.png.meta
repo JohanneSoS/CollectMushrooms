@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 73629239f106b8443859ebed11652925
+guid: a738319b8fbf07f4596c95099da628b6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7940730199727527655
-    second: sparassis_crispa_0
+      213: -2067819667645347981
+    second: lacaria_amethystea_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sparassis_crispa_0
+      name: lacaria_amethystea_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 16
-        height: 13
+        width: 12
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7e6d9fb7b04233e60800000000000000
-      internalID: 7940730199727527655
+      spriteID: 377ce62d7f0ad43e0800000000000000
+      internalID: -2067819667645347981
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sparassis_crispa_0: 7940730199727527655
+      lacaria_amethystea_0: -2067819667645347981
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

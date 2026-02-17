@@ -15,10 +15,11 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: 2621f7d41d0d0b746858b4efc1e36dd6, type: 2}
   type: 0
   range: {x: 5, y: 4}
-  canSell: 1
-  sellPrice: 0
-  buyPrice: 0
   canEat: 1
+  usable: 0
   hungerAmount: 15
+  healAmount: 0
+  exhaustAmount: 0
   stackable: 1
+  itemName: "Hexenr\xF6hrling"
   sprite: {fileID: 21300000, guid: a3725e47a487041409febb51c7823f70, type: 3}

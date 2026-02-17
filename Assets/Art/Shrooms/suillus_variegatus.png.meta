@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 73629239f106b8443859ebed11652925
+guid: fac4729d4f75be040a35cc3e0ddf06ed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7940730199727527655
-    second: sparassis_crispa_0
+      213: 3435970003836177752
+    second: suillus_variegatus_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sparassis_crispa_0
+      name: suillus_variegatus_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
-        height: 13
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7e6d9fb7b04233e60800000000000000
-      internalID: 7940730199727527655
+      spriteID: 85d8d8193840faf20800000000000000
+      internalID: 3435970003836177752
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sparassis_crispa_0: 7940730199727527655
+      suillus_variegatus_0: 3435970003836177752
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
