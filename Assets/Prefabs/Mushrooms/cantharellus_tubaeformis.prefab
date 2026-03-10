@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ac8708ea139800c42b1d856057f2d8b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4002190526316719283}
   collider: {fileID: 7928215387356951359}
-  item: {fileID: 11400000, guid: e6ed7027613b538469306cf67d496495, type: 2}
+  item: {fileID: 11400000, guid: 54e24fad9deed5a4a83e6a56f1284b84, type: 2}
 --- !u!114 &7993083153648295088
 MonoBehaviour:
   m_ObjectHideFlags: 0
