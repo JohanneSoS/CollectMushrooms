@@ -1370,6 +1370,7 @@ Transform:
   - {fileID: 747035833}
   - {fileID: 366264415}
   - {fileID: 1967250511}
+  - {fileID: 346721894}
   - {fileID: 33949960}
   - {fileID: 1770557945}
   - {fileID: 1581475866}
@@ -2318,6 +2319,62 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5263135611850030996, guid: 5e0a6393d2f79d24e81b11b179dd5da5, type: 3}
   m_PrefabInstance: {fileID: 314337833}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &346721893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 346721894}
+  - component: {fileID: 346721895}
+  m_Layer: 0
+  m_Name: Macrolepiota (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &346721894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346721893}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 202782003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &346721895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346721893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17028a2a3ec3d448bd47a9dbce2967a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemPrefab: {fileID: 7208388340678255350, guid: 2dd0e6f5f2a1aa9498c0fa65fc464ab1, type: 3}
+  spawnAmount: 10
+  radius: 0
+  minXAxis: -71.9
+  maxXAxis: -43.1
+  minYAxis: -50.9
+  maxYAxis: -23.73
+  spawnOnDay: 1
+  spawnOnNight: 1
+  riverLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &353894726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,12 +2561,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemPrefab: {fileID: 7208388340678255350, guid: 2dd0e6f5f2a1aa9498c0fa65fc464ab1, type: 3}
-  spawnAmount: 25
+  spawnAmount: 40
   radius: 0
-  minXAxis: -61.8
-  maxXAxis: -0.84
-  minYAxis: -18.9
-  maxYAxis: 44
+  minXAxis: -42.9
+  maxXAxis: 27.1
+  minYAxis: -58.4
+  maxYAxis: 22.7
   spawnOnDay: 1
   spawnOnNight: 1
   riverLayer:
@@ -11266,10 +11323,10 @@ MonoBehaviour:
   ItemPrefab: {fileID: 7208388340678255350, guid: 2dd0e6f5f2a1aa9498c0fa65fc464ab1, type: 3}
   spawnAmount: 15
   radius: 0
-  minXAxis: -1.21
-  maxXAxis: 29.8
-  minYAxis: -21.5
-  maxYAxis: 24
+  minXAxis: 27.56
+  maxXAxis: 74.1
+  minYAxis: -57.3
+  maxYAxis: -23.73
   spawnOnDay: 1
   spawnOnNight: 1
   riverLayer:
