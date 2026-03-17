@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class QuestManager : MonoBehaviour
 {
@@ -13,19 +14,38 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] private GameObject[] npcs;
     
-    [SerializeField] private Vector2[] npcPos;
-    private Dictionary<string, Vector2> npcPosDict = new Dictionary<string, Vector2>();
+    //[SerializeField] private Vector2[] npcPos;
+    [SerializeField] private Quest[] quests;
+    //private Dictionary<string, Vector3> npcPosDict = new Dictionary<string, Vector3>();
+    private Dictionary<int, Quest> questDict = new Dictionary<int, Quest>();
+    private Dictionary<NPC, GameObject> npcDict = new Dictionary<NPC, GameObject>();
+    private Dictionary<int, GameObject> boxDict = new Dictionary<int, GameObject>();
     
     [SerializeField] private UIManager uIManager;
 
     void Awake()
     {
         instance = this;
+
+        for (int i = 0; i < quests.Length; i++)
+        {
+            questDict[i] = quests[i];
+        }
         
-        npcPosDict.Add("racoon1", npcPos[0]);
-        npcPosDict.Add("racoon2", npcPos[1]);
-        npcPosDict.Add("beaver1", npcPos[2]);
-        npcPosDict.Add("boar1", npcPos[3]);
+        /*npcPosDict.Add("racoon1", quests[0].charPos);
+        npcPosDict.Add("racoon2", quests[1].charPos);
+        npcPosDict.Add("beaver1", quests[2].charPos);
+        npcPosDict.Add("boar1", quests[3].charPos);*/
+
+        foreach (GameObject box in questBoxes)
+        {
+            int id = box.GetComponent<QuestRecipient>().questID;
+            boxDict[id] = box;
+        }
+        
+        npcDict.Add(NPC.Racoon, npcs[0]);
+        npcDict.Add(NPC.Beaver, npcs[1]);
+        npcDict.Add(NPC.Boar, npcs[2]);
         
         EventManager.OnStartQuest.AddListener(StartQuest);
         EventManager.OnAdvanceQuest.AddListener(AdvanceQuest);
@@ -85,7 +105,7 @@ public class QuestManager : MonoBehaviour
                return;
             case 3:
                 //FinishDialogue, EnableBox
-                if (questCount == 0)
+                if (quests[questCount].questType == QuestType.OnlyDialogue)
                 {
                     EventManager.OnCompleteQuest.Invoke(questCount);
                 }
@@ -128,50 +148,38 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    /*public void QuestFinished()
-    {
-        questCount++;
-        if (questCount > 1)
-        {
-            questBoxes[questCount-2].SetActive(false);
-        }
-        questBoxes[questCount-1].SetActive(true);
-        dialogueManager.StartQuest(questCount);
-        switch (questCount)
-        {
-            case 1:
-                npcs[0].transform.position = new Vector3 (npcPosDict["racoon2"].x, npcPosDict["racoon2"].y, 6);
-                EventManager.OnFirstQuestComplete.Invoke();
-                return;
-            case 2:
-                npcs[0].SetActive(false);
-                npcs[1].transform.position = new Vector3 (npcPosDict["beaver1"].x, npcPosDict["beaver1"].y, 6);
-                EventManager.OnSecondQuestComplete.Invoke();
-                npcs[1].SetActive(true);
-                return;
-            case 3:
-                npcs[1].SetActive(false);
-                npcs[2].transform.position = new Vector3 (npcPosDict["boar1"].x, npcPosDict["boar1"].y, 6);
-                npcs[2].SetActive(true);
-                EventManager.OnThirdQuestComplete.Invoke();
-                return;
-        }
-    }*/
-
     void EnableQuestBox()
     {
-        questBoxes[questCount-1].SetActive(true);
-        uIManager.activeBox = (questCount-1);
+        if (quests[questCount].questType != QuestType.OnlyDialogue)
+        {
+            for (int i = 0; i < questBoxes.Length; i++)
+            {
+                questBoxes[i].SetActive(false); 
+            }
+            boxDict[questCount].transform.position = quests[questCount].charPos + new Vector3(-0.5f, -1f, 0);
+            boxDict[questCount].SetActive(true);
+            //questBoxes[questCount-1].SetActive(true);
+            uIManager.activeBox = boxDict[questCount].GetComponent<QuestRecipient>().boxID;
+            //uIManager.requiredItemSlotAmount = boxDict[questCount].GetComponent<QuestRecipient>().requiredItemSlotAmount;
+            //uIManager.LoadRequiredBoxSlots();
+        }
     }
 
     void DisableQuestBox()
     {   
-        questBoxes[questCount-1].SetActive(false);
+        boxDict[questCount].SetActive(false);
     }
 
     void UpdateNPCLocations()
     {
-        switch (questCount)
+            npcDict[quests[questCount].npcType].transform.position = quests[questCount].charPos;
+            foreach (GameObject npc in npcDict.Values)
+            {
+                npc.SetActive(false);
+            }
+            npcDict[quests[questCount].npcType].SetActive(true);
+        
+        /*switch (questCount)
         {
             case 0:
                 npcs[0].transform.position = new Vector3(npcPosDict["racoon1"].x, npcPosDict["racoon1"].y, 6);
@@ -191,6 +199,12 @@ public class QuestManager : MonoBehaviour
                 npcs[2].transform.position = new Vector3 (npcPosDict["boar1"].x, npcPosDict["boar1"].y, 6);
                 npcs[2].SetActive(true);
                 return;
-        } 
+        } */
     }
+}
+
+public enum QuestType
+{
+    OnlyDialogue,
+    ItemDelivery
 }

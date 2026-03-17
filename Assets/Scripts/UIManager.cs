@@ -2,6 +2,7 @@ using System.Collections;
 using NUnit.Framework.Constraints;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -11,12 +12,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject GameOverMenu;
     [SerializeField] private TextMeshProUGUI GameOverText;
     [SerializeField] private GameObject [] QuestMenu;
+    [SerializeField] private QuestRecipient [] Boxes;
     //[SerializeField] private GameObject DialogueUI;
+    [SerializeField] private GameObject itemSlotPrefab;
 
     public bool uiActive = false;
     public string currentMenu = "none";
 
     public int activeBox = 0;
+    //public int requiredItemSlotAmount = 0;
+    //private Dictionary <int, GameObject> questMenuDir = new Dictionary <int, GameObject>(); 
 
     void Awake()
     {
@@ -28,6 +33,7 @@ public class UIManager : MonoBehaviour
         EventManager.ResumeGame.AddListener(ResumeGame);
         EventManager.ConfirmUI.AddListener(ConfirmUI);
         EventManager.OnGameOver.AddListener(OnGameOver);
+        LoadRequiredBoxSlots();
     }
     
     private void OnUIToggle(bool uiState)
@@ -134,5 +140,18 @@ public class UIManager : MonoBehaviour
         uiActive = true;
         EventManager.ToggleUI.Invoke(true);
     }
-    
+
+    public void LoadRequiredBoxSlots()
+    {
+        for (int box = 0; box < Boxes.Length; box++)
+        {
+            GameObject[] itemSlots = new GameObject[Boxes[box].requestedItems.Length];
+            Boxes[box].requiredItemSlots =  new InventorySlot[Boxes[box].requestedItems.Length];
+            for (int slot = 0; slot < Boxes[box].requestedItems.Length; slot++)
+            {
+                itemSlots[slot] = Instantiate(itemSlotPrefab, QuestMenu[(box)].transform);
+                Boxes[box].requiredItemSlots[slot] = itemSlots[slot].GetComponent<InventorySlot>();
+            }
+        }
+    }
 }

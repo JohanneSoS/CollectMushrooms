@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
+  m_Name: QuestStart3
+  m_EditorClassIdentifier: 
+  charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
+  lineTexts:
+  - "There you are, you found me!\t"
+  - Did you already find some of those mushrooms? I've heard you pigs are great at
+    finding those!
+  - They really help against hunger, and the only other thing that matters in life
+    is sleep. But these haystacks scattered throughout the forest should also meet
+    your urban needs!
+  - Speaking of Mushrooms, you don't mind bringing me some of those Shaggy Ink Caps.
+    You will find those in open terrain!

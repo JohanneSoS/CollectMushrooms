@@ -7,4 +7,5 @@ public class DialogueLine : ScriptableObject
     public DialogueCharacter charType;
     [TextArea]
     public string lineText;
+    
 }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
+  m_Name: QuestFinish2
+  m_EditorClassIdentifier: 
+  charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
+  lineTexts:
+  - You really brought me some! That's neat!
+  - You really still look confused... You still wonder how you got here and what
+    you should do now, am I right?
+  - You really lost all of your recent memories? You know what? I will try to ask
+    around if somebody saw something, and maybe I will figure out where you cam from!
+  - Maybe you can ask around too, and even if you wanna go back, you need to get
+    used to forest life at least a little bit. But be careful not to run into wolves,
+    maybe the lake in the east is a good start to explore!

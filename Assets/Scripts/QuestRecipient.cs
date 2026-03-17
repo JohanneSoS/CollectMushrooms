@@ -6,8 +6,9 @@ using System.Collections.Generic;
 
 public class QuestRecipient : MonoBehaviour
 {
-    [SerializeField] private int boxID;
-    [SerializeField] private Item[] requestedItems;
+    [SerializeField] public int boxID;
+    [SerializeField] public int questID;
+    [SerializeField] public Item[] requestedItems;
     [SerializeField] private Sprite[] boxStates;
     //public static List<Item> requestedItem;
     private static List <RequiredItem> requestedUIItems;
@@ -23,11 +24,14 @@ public class QuestRecipient : MonoBehaviour
 
     private bool playerHovering = false;
     private float interactionTimer = 2f; //Add Cooldown
-    
+
     [Header("UI Logic")]
-    public InventorySlot [] requiredItemSlots;
-    public RequiredItem requiredItemPrefab;
-    public GameObject panel;
+    //public InventorySlot [] requiredItemSlots;
+    public UIManager uiManager;
+    public InventorySlot[] requiredItemSlots;
+    public int requiredItemSlotAmount;
+    public RequiredItem requiredItemPrefab; 
+    //public GameObject panel;
     private bool uiActive;
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -42,6 +46,7 @@ public class QuestRecipient : MonoBehaviour
     {
         EventManager.ToggleUI.AddListener(OnUIToggle);
         EventManager.InteractWithBox.AddListener(Interact);
+        requiredItemSlotAmount = requestedItems.Length;
     }
     
     private void OnUIToggle(bool uiState)

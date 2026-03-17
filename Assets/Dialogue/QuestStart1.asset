@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
+  m_Name: QuestStart1
+  m_EditorClassIdentifier: 
+  charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
+  lineTexts:
+  - Woah, hey there! Were are you comming from!
+  - Aren't you like a domestic pigs those humans keep?
+  - You don't know how you came here? Are you sure you want to go back?
+  - I sure enjoy some of the junk food of those humans, but the fruits of the roots
+    in this forest are great too!
+  - Well, take a look around! You'll find me somewhere to the north of that lovely
+    stream!
