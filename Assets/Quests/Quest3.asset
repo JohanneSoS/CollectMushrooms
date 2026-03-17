@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9f63e4fd6868341a3d25904f2a9ed4, type: 3}
+  m_Name: Quest3
+  m_EditorClassIdentifier: 
+  charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
+  startDialogue: {fileID: 11400000, guid: 50bc0de9b881097419637cc7b751f7fd, type: 2}
+  endDialogue: {fileID: 11400000, guid: 5f43fd128520bc7439cff0fe39f3792c, type: 2}
+  charPos: {x: -4.26, y: 34.09, z: -0.24509776}
+  charPosObject: {fileID: 5428036621202937442, guid: 0b24a24bb6e619141bec934c442a0b88, type: 3}
+  questType: 1
