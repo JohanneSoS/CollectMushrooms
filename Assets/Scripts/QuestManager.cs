@@ -31,11 +31,6 @@ public class QuestManager : MonoBehaviour
         {
             questDict[i] = quests[i];
         }
-        
-        /*npcPosDict.Add("racoon1", quests[0].charPos);
-        npcPosDict.Add("racoon2", quests[1].charPos);
-        npcPosDict.Add("beaver1", quests[2].charPos);
-        npcPosDict.Add("boar1", quests[3].charPos);*/
 
         foreach (GameObject box in questBoxes)
         {
@@ -52,7 +47,6 @@ public class QuestManager : MonoBehaviour
         EventManager.OnCompleteQuest.AddListener(CompleteQuest);
         EventManager.OnInteractWithNPC.AddListener(InteractWithNPC);
         EventManager.OnItemsDelivered.AddListener(OnItemsDelivered);
-        //EventManager.OnDialogueEnd.AddListener(DialogueEnd);
     }
     void Start()
     {
@@ -68,7 +62,6 @@ public class QuestManager : MonoBehaviour
             {
                 //erstes Mal Quest Advancen
                 EventManager.OnAdvanceQuest.Invoke(questCount);
-                //dialogueManager.StartQuest(questCount);
             }
             else if (dialogueManager.currentDialogueRead)
             {
@@ -149,7 +142,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    void EnableQuestBox() //nach erster Quest wird die 1. Box zerstört und Wenn die 2. Box aktiviert werden soll, wird versucht auf die erste statt auf die zweite Box zuzugreifen.
+    void EnableQuestBox()
     {
         if (quests[questCount].questType != QuestType.OnlyDialogue)
         {
@@ -159,10 +152,7 @@ public class QuestManager : MonoBehaviour
             }
             boxDict[questCount].transform.position = quests[questCount].charPos + new Vector3(-0.5f, -1f, 0);
             boxDict[questCount].SetActive(true);
-            //questBoxes[questCount-1].SetActive(true);
             uIManager.activeBox = boxDict[questCount].GetComponent<QuestRecipient>().boxID;
-            //uIManager.requiredItemSlotAmount = boxDict[questCount].GetComponent<QuestRecipient>().requiredItemSlotAmount;
-            //uIManager.LoadRequiredBoxSlots();
         }
     }
 
@@ -179,28 +169,6 @@ public class QuestManager : MonoBehaviour
                 npc.SetActive(false);
             }
             npcDict[quests[questCount].npcType].SetActive(true);
-        
-        /*switch (questCount)
-        {
-            case 0:
-                npcs[0].transform.position = new Vector3(npcPosDict["racoon1"].x, npcPosDict["racoon1"].y, 6);
-                npcs[1].SetActive(false);
-                npcs[2].SetActive(false);
-                return;
-            case 1:
-                npcs[0].transform.position = new Vector3 (npcPosDict["racoon2"].x, npcPosDict["racoon2"].y, 6);
-                return;
-            case 2:
-                npcs[0].SetActive(false);
-                npcs[1].transform.position = new Vector3 (npcPosDict["beaver1"].x, npcPosDict["beaver1"].y, 6);
-                npcs[1].SetActive(true);
-                return;
-            case 3:
-                npcs[1].SetActive(false);
-                npcs[2].transform.position = new Vector3 (npcPosDict["boar1"].x, npcPosDict["boar1"].y, 6);
-                npcs[2].SetActive(true);
-                return;
-        } */
     }
 }
 

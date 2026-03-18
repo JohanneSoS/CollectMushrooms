@@ -13,7 +13,7 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private QuestManager questManager;
     
-    [Header("Dialogue Lines")]
+    //DialogLines
     private DialogueQuest[] questStart;
     private DialogueQuest[] questFinish;
 
@@ -42,17 +42,6 @@ public class DialogueManager : MonoBehaviour
             dialogueID.Add(i, questStart[i]);
             dialogueIDComplete.Add(i, questFinish[i]);
         }
-       
-        
-        /*dialogueID.Add(0, questStart[0]);
-        dialogueID.Add(1, quest1Lines);
-        dialogueID.Add(2, quest2Lines);
-        dialogueID.Add(3, quest3Lines);
-        
-        dialogueIDComplete.Add(0, introCompleteLines);
-        dialogueIDComplete.Add(1, quest1CompleteLines);
-        dialogueIDComplete.Add(2, quest2CompleteLines);
-        dialogueIDComplete.Add(3, quest3CompleteLines);*/
     }
 
     void Start()
@@ -117,7 +106,6 @@ public class DialogueManager : MonoBehaviour
             else if (currentLine >= (dialogueID[questID].lineTexts.Length)-1)
             {
                 currentDialogueRead = true;
-                //EventManager.OnDialogueEnd.Invoke();
                 Debug.Log("vor OnAdvanceQuest");
                 EventManager.OnAdvanceQuest.Invoke(questID);
                 Debug.Log("nach OnAdvanceQuest");
@@ -135,7 +123,6 @@ public class DialogueManager : MonoBehaviour
             else if (currentLine >= (dialogueIDComplete[questID].lineTexts.Length)-1)
             {
                 currentDialogueRead = true;
-                //EventManager.OnDialogueEnd.Invoke();
                 EventManager.OnAdvanceQuest.Invoke(questID);
                 HideDialogue();
             }

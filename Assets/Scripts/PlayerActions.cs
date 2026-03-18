@@ -146,23 +146,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
         }
     }
-
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.CompareTag("Zone"))
-        {
-            hovering = other.tag;
-        }
-
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (hovering == other.tag)
-        {
-            hovering = "none";
-        }
-    }*/
-
+    
     void OnEnterZone(string origin)
     {
         if (origin == "Box" || origin == "NPC" || origin == "SleepingPlace" || origin == "Mushroom")

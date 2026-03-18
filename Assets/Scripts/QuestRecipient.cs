@@ -92,11 +92,9 @@ public class QuestRecipient : MonoBehaviour
                 var deliverProgress = (float)requestedUIItems.Count / deliveredCount;
                 if (deliveredCount == requestedUIItems.Count)
                 {
-                    //QuestManager.instance.QuestFinished();
                     EventManager.OnItemsDelivered.Invoke();
                     Debug.Log("Alle Items sind da");
                     EventManager.CloseQuestUI.Invoke();
-                    //Destroy(gameObject, 2);
                 }
             }
         }
