@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
   m_Name: QuestStart3
   m_EditorClassIdentifier: 
-  charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
+  charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
   lineTexts:
-  - "There you are, you found me!\t"
-  - Did you already find some of those mushrooms? I've heard you pigs are great at
-    finding those!
-  - They really help against hunger, and the only other thing that matters in life
-    is sleep. But these haystacks scattered throughout the forest should also meet
-    your urban needs!
-  - Speaking of Mushrooms, you don't mind bringing me some of those Shaggy Ink Caps.
-    You will find those in open terrain!
+  - "Wah! Oh my, you really startled me! I\u2019ve never seen you here before!"
+  - I sure would have recognized a creature that pink.
+  - You're a pig? I only know those boars, they sometimes come through here but they
+    don't really like talking...
+  - "Whether I\u2019ve seen anything that explains how you got here? Nah, sorry I
+    was busy working on the trees all night!"
+  - Are those mushrooms? I never really tried those! Can you bring me some of those?

@@ -3087,7 +3087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c236165dcbb31444a4f0bd4975620ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charType: {fileID: 0}
+  charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
 --- !u!212 &414286157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3213,6 +3213,18 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 166796882}
+    - target: {fileID: 4730146507208707857, guid: 7d0613f6c8510c44ab4d7bc235bac3e8, type: 3}
+      propertyPath: requestedItems.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730146507208707857, guid: 7d0613f6c8510c44ab4d7bc235bac3e8, type: 3}
+      propertyPath: 'requestedItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 75c7b1a1e620ffd46a716c84b0362438, type: 2}
+    - target: {fileID: 4730146507208707857, guid: 7d0613f6c8510c44ab4d7bc235bac3e8, type: 3}
+      propertyPath: 'requestedItems.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 75c7b1a1e620ffd46a716c84b0362438, type: 2}
     - target: {fileID: 4730146507208707857, guid: 7d0613f6c8510c44ab4d7bc235bac3e8, type: 3}
       propertyPath: requiredItemSlots.Array.size
       value: 0
@@ -3821,48 +3833,7 @@ MonoBehaviour:
   nameTextField: {fileID: 446286840}
   dialogBox: {fileID: 425624848}
   dialogueIsShowing: 0
-  introLines:
-  - {fileID: 11400000, guid: 8e1bd7b3773e8eb41b94c89833b12587, type: 2}
-  - {fileID: 11400000, guid: 855db0414fe0448409b8d7d69754c2a9, type: 2}
-  - {fileID: 11400000, guid: b7c0001b539ad3d4e945a36771761914, type: 2}
-  - {fileID: 11400000, guid: 114e6687af831564e93adf9e1ec17cf7, type: 2}
-  - {fileID: 11400000, guid: bd0197daef9254e4c8e4736b3ca8a46b, type: 2}
-  - {fileID: 11400000, guid: bb19a9783c3ef7c4cbf1e7e8520b1434, type: 2}
-  introCompleteLines:
-  - {fileID: 11400000, guid: f453518de8080bc4baed639f304a6a55, type: 2}
-  - {fileID: 11400000, guid: 273b38fa13a4a49478c8663c607347ad, type: 2}
-  quest1Lines:
-  - {fileID: 11400000, guid: 1e5ebeb887a401e46a97b091bd7797de, type: 2}
-  - {fileID: 11400000, guid: e4bc80dc54ea95142875b983c59e070c, type: 2}
-  - {fileID: 11400000, guid: 19455b89311adc542b24c2a792e89381, type: 2}
-  - {fileID: 11400000, guid: 01a04a2955b80cb4da696c8f76a55f95, type: 2}
-  - {fileID: 11400000, guid: 13eebf2b965764e4a9e794059ad3b673, type: 2}
-  - {fileID: 11400000, guid: ac43359d1baa49c4fa0bacf75bc67895, type: 2}
-  quest1CompleteLines:
-  - {fileID: 11400000, guid: f453518de8080bc4baed639f304a6a55, type: 2}
-  - {fileID: 11400000, guid: 273b38fa13a4a49478c8663c607347ad, type: 2}
-  - {fileID: 11400000, guid: 38d18aec9cd1cdf438d2613c43cee16d, type: 2}
-  - {fileID: 11400000, guid: 7f43f094f689fa345ae2da32fee5a34d, type: 2}
-  - {fileID: 11400000, guid: 6196c663330966644b55cf528e2855bd, type: 2}
-  quest2Lines:
-  - {fileID: 11400000, guid: 6e4340af960c5ed42bc85fbc83713f26, type: 2}
-  - {fileID: 11400000, guid: be2ac1df64fbd7f42887c8d4695d5cf9, type: 2}
-  - {fileID: 11400000, guid: 81fd595a672718249952ea405d08d0d3, type: 2}
-  - {fileID: 11400000, guid: 7021ac5e76caa19439372b5bc27a6a19, type: 2}
-  quest2CompleteLines:
-  - {fileID: 11400000, guid: 5c93fbde8cc7e98469fd14639879d67d, type: 2}
-  - {fileID: 11400000, guid: d8ae40fcb136e3347be3568448c3145c, type: 2}
-  - {fileID: 11400000, guid: c93269f8751ac3f469edc45b64a2d824, type: 2}
-  - {fileID: 11400000, guid: 4835509dad4f7be44ba64a4c3ff8c706, type: 2}
-  - {fileID: 11400000, guid: cfc711a9da7061245bef764baa6ca2c1, type: 2}
-  quest3Lines:
-  - {fileID: 11400000, guid: 065a791ee184a8143900fa0d056de3d2, type: 2}
-  - {fileID: 11400000, guid: 283e2dd5ea1c9ec449c246161aed0c35, type: 2}
-  - {fileID: 11400000, guid: 79ecb6a70d2bd82419dd39d2f3a1659f, type: 2}
-  - {fileID: 11400000, guid: 34d54fa0de13d5f4e93c29f39c2299c3, type: 2}
-  quest3CompleteLines:
-  - {fileID: 11400000, guid: df4105cb1b64db24ab19f4005d5ae0ae, type: 2}
-  - {fileID: 11400000, guid: 090a620ab391c614d864be050277060e, type: 2}
+  questManager: {fileID: 2085307307}
   currentLine: 0
   currentDialogueRead: 0
   itemsDelivered: 0
@@ -4557,7 +4528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c236165dcbb31444a4f0bd4975620ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charType: {fileID: 0}
+  charType: {fileID: 11400000, guid: 2250251fc32ffca4abeb9fd108bfc3de, type: 2}
 --- !u!212 &522453435
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8113,7 +8084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c236165dcbb31444a4f0bd4975620ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charType: {fileID: 0}
+  charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
 --- !u!212 &1108994995
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12212,6 +12183,14 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 166796882}
+    - target: {fileID: 9156327837412231796, guid: 6a8854db79c47fd4c957b991a0a9c235, type: 3}
+      propertyPath: requestedItems.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156327837412231796, guid: 6a8854db79c47fd4c957b991a0a9c235, type: 3}
+      propertyPath: 'requestedItems.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a96b516846a64a0469b62349333d3359, type: 2}
     - target: {fileID: 9156327837412231796, guid: 6a8854db79c47fd4c957b991a0a9c235, type: 3}
       propertyPath: requiredItemSlots.Array.size
       value: 0

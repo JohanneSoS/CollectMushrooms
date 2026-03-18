@@ -10,19 +10,16 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameTextField;
     public GameObject dialogBox;
     public bool dialogueIsShowing = false;
+
+    [SerializeField] private QuestManager questManager;
     
     [Header("Dialogue Lines")]
-    public DialogueLine[] introLines;
-    public DialogueLine[] introCompleteLines;
-    public DialogueLine[] quest1Lines;
-    public DialogueLine[] quest1CompleteLines;
-    public DialogueLine[] quest2Lines;
-    public DialogueLine[] quest2CompleteLines;
-    public DialogueLine[] quest3Lines;
-    public DialogueLine[] quest3CompleteLines;
-    
-    private Dictionary<int, DialogueLine[]> dialogueID = new Dictionary<int, DialogueLine[]>();
-    private Dictionary<int, DialogueLine[]> dialogueIDComplete = new Dictionary<int, DialogueLine[]>();
+    private DialogueQuest[] questStart;
+    private DialogueQuest[] questFinish;
+
+        
+    private Dictionary<int, DialogueQuest> dialogueID = new Dictionary<int, DialogueQuest>();
+    private Dictionary<int, DialogueQuest> dialogueIDComplete = new Dictionary<int, DialogueQuest>();
     
     [SerializeField] private int currentLine = 0;
     public bool currentDialogueRead = false;
@@ -36,7 +33,18 @@ public class DialogueManager : MonoBehaviour
         EventManager.OnDialogueStart.AddListener(OnDialogueStart);
         EventManager.OnItemsDelivered.AddListener(OnItemsDelivered);
         
-        dialogueID.Add(0, introLines);
+        questStart = new DialogueQuest[questManager.quests.Length];
+        questFinish = new DialogueQuest[questManager.quests.Length];
+        for (int i = 0; i < questManager.quests.Length; i++)
+        {
+            questStart[i] = questManager.quests[i].startDialogue;
+            questFinish[i] = questManager.quests[i].endDialogue;
+            dialogueID.Add(i, questStart[i]);
+            dialogueIDComplete.Add(i, questFinish[i]);
+        }
+       
+        
+        /*dialogueID.Add(0, questStart[0]);
         dialogueID.Add(1, quest1Lines);
         dialogueID.Add(2, quest2Lines);
         dialogueID.Add(3, quest3Lines);
@@ -44,7 +52,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIDComplete.Add(0, introCompleteLines);
         dialogueIDComplete.Add(1, quest1CompleteLines);
         dialogueIDComplete.Add(2, quest2CompleteLines);
-        dialogueIDComplete.Add(3, quest3CompleteLines);
+        dialogueIDComplete.Add(3, quest3CompleteLines);*/
     }
 
     void Start()
@@ -86,8 +94,8 @@ public class DialogueManager : MonoBehaviour
         itemsDelivered = false;
         currentLine = 0;
         currentDialogueRead = false;
-        dialogTextField.text = dialogueID[questID][0].lineText;
-        nameTextField.text = dialogueID[questID][0].charType.name;
+        dialogTextField.text = dialogueID[questID].lineTexts[0];
+        nameTextField.text = dialogueID[questID].charType.name;
         currentQuestID = questID;
     }
 
@@ -100,13 +108,13 @@ public class DialogueManager : MonoBehaviour
     {
         if (itemsDelivered == false)
         {
-            if (currentLine < (dialogueID[questID].Length)-1)
+            if (currentLine < (dialogueID[questID].lineTexts.Length)-1)
             {
                 currentLine++;
-                dialogTextField.text = dialogueID[questID][currentLine].lineText;
-                nameTextField.text = dialogueID[questID][currentLine].charType.name;
+                dialogTextField.text = dialogueID[questID].lineTexts[currentLine];
+                nameTextField.text = dialogueID[questID].charType.name;
             }
-            else if (currentLine >= (dialogueID[questID].Length)-1)
+            else if (currentLine >= (dialogueID[questID].lineTexts.Length)-1)
             {
                 currentDialogueRead = true;
                 //EventManager.OnDialogueEnd.Invoke();
@@ -118,13 +126,13 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if (currentLine < (dialogueIDComplete[questID].Length)-1)
+            if (currentLine < (dialogueIDComplete[questID].lineTexts.Length)-1)
             {
                 currentLine++;
-                dialogTextField.text = dialogueIDComplete[questID][currentLine].lineText;
-                nameTextField.text = dialogueIDComplete[questID][currentLine].charType.name;
+                dialogTextField.text = dialogueIDComplete[questID].lineTexts[currentLine];
+                nameTextField.text = dialogueIDComplete[questID].charType.name;
             }
-            else if (currentLine >= (dialogueIDComplete[questID].Length)-1)
+            else if (currentLine >= (dialogueIDComplete[questID].lineTexts.Length)-1)
             {
                 currentDialogueRead = true;
                 //EventManager.OnDialogueEnd.Invoke();
@@ -137,8 +145,8 @@ public class DialogueManager : MonoBehaviour
     public void RepeatLastLine(int questID)
     {
         ShowDialogue();
-        dialogTextField.text = dialogueID[questID][(dialogueID[questID].Length)-1].lineText;
-        nameTextField.text = dialogueID[questID][0].charType.name;
+        dialogTextField.text = dialogueID[questID].lineTexts[(dialogueID[questID].lineTexts.Length)-1];
+        nameTextField.text = dialogueID[questID].charType.name;
     }
 
     void OnItemsDelivered()
@@ -146,7 +154,7 @@ public class DialogueManager : MonoBehaviour
         itemsDelivered = true;
         currentLine = 0;
         currentDialogueRead = false;
-        dialogTextField.text = dialogueIDComplete[currentQuestID][0].lineText;
-        nameTextField.text = dialogueIDComplete[currentQuestID][0].charType.name;
+        dialogTextField.text = dialogueIDComplete[currentQuestID].lineTexts[0];
+        nameTextField.text = dialogueIDComplete[currentQuestID].charType.name;
     }
 }

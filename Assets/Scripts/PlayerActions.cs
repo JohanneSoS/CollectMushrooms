@@ -19,6 +19,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     //Items
     public bool isCollecting;
     
+    //Box
+    public int currentBox = 0;
+    
     void Awake()
     {
         EventManager.ToggleUI.AddListener(ToggleUI);
@@ -27,6 +30,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         EventManager.OnPickItem.AddListener(ToggleIsCollecting);
         EventManager.EnterZone.AddListener(OnEnterZone);
         EventManager.ExitZone.AddListener(OnExitZone);
+        EventManager.OnCompleteBoxQuest.AddListener(CountCurrentBox);
     }
 
     void Update()
@@ -38,7 +42,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 switch (hovering)
                 {
                     case "Box":
-                        EventManager.InteractWithBox.Invoke();
+                        EventManager.InteractWithBox.Invoke(currentBox);
                         break;
                     case "NPC":
                         EventManager.OnInteractWithNPC.Invoke();
@@ -241,6 +245,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         isCollecting = false;
+    }
+
+    private void CountCurrentBox()
+    {
+        currentBox++;
     }
     
 }

@@ -15,7 +15,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private GameObject[] npcs;
     
     //[SerializeField] private Vector2[] npcPos;
-    [SerializeField] private Quest[] quests;
+    [SerializeField] public Quest[] quests;
     //private Dictionary<string, Vector3> npcPosDict = new Dictionary<string, Vector3>();
     private Dictionary<int, Quest> questDict = new Dictionary<int, Quest>();
     private Dictionary<NPC, GameObject> npcDict = new Dictionary<NPC, GameObject>();
@@ -125,6 +125,7 @@ public class QuestManager : MonoBehaviour
             case 6:
                 //FinishDialogue, FinishQuest
                 EventManager.OnCompleteQuest.Invoke(questCount);
+                EventManager.OnCompleteBoxQuest.Invoke();
                 return;
         }
     }
@@ -148,7 +149,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    void EnableQuestBox()
+    void EnableQuestBox() //nach erster Quest wird die 1. Box zerstört und Wenn die 2. Box aktiviert werden soll, wird versucht auf die erste statt auf die zweite Box zuzugreifen.
     {
         if (quests[questCount].questType != QuestType.OnlyDialogue)
         {

@@ -64,20 +64,7 @@ public class QuestRecipient : MonoBehaviour
             requestedUIItems.Add(newRequestedUIItem);
         }
     }
-
-    /*void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && playerHovering && !uiActive)
-        {
-            //EventManager.OpenQuestUI.Invoke(boxID);
-            //StartCoroutine(OpenUI());
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && uiActive)
-        {
-            Interact();
-        }
-    }*/
+    
     
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -86,44 +73,40 @@ public class QuestRecipient : MonoBehaviour
             playerHovering = false;
         }
     }
-
-    /*IEnumerator OpenUI()
-    {
-        panel.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        uiActive = true;
-        EventManager.ToggleUI.Invoke(uiActive);
-    }*/
     
-    private void Interact()
+    
+    private void Interact(int box)
     {
-        var selectedItem = InventoryManager.instance.GetSelectedItem(false);
-        var matchingRequestedUIItem = requestedUIItems.FirstOrDefault(ui => ui.requiredItem == selectedItem && !ui.delivered);
-
-        if (matchingRequestedUIItem != null)
-        {
-            UseSelectedItem();
-            currentItemsInBox.Add(selectedItem);
-            matchingRequestedUIItem.DeliverItem();
-
-            //var deliveredCount = requestedUIItems.Count(ui => ui.delivered);
-            deliveredCount = requestedUIItems.Count(ui => ui.delivered);
-            var deliverProgress = (float)requestedUIItems.Count / deliveredCount;
+        if (box == boxID) {
             
-            if (deliveredCount == requestedUIItems.Count)
+            var selectedItem = InventoryManager.instance.GetSelectedItem(false);
+            var matchingRequestedUIItem = requestedUIItems.FirstOrDefault(ui => ui.requiredItem == selectedItem && !ui.delivered);
+
+            if (matchingRequestedUIItem != null)
             {
-                //QuestManager.instance.QuestFinished();
-                EventManager.OnItemsDelivered.Invoke();
-                Debug.Log("Alle Items sind da");
-                EventManager.CloseQuestUI.Invoke();
-                Destroy(gameObject, 2);
+                matchingRequestedUIItem.DeliverItem();
+                UseSelectedItem();
+                currentItemsInBox.Add(selectedItem);
+                
+                deliveredCount = requestedUIItems.Count(ui => ui.delivered);
+                var deliverProgress = (float)requestedUIItems.Count / deliveredCount;
+                if (deliveredCount == requestedUIItems.Count)
+                {
+                    //QuestManager.instance.QuestFinished();
+                    EventManager.OnItemsDelivered.Invoke();
+                    Debug.Log("Alle Items sind da");
+                    EventManager.CloseQuestUI.Invoke();
+                    //Destroy(gameObject, 2);
+                }
             }
         }
     }
     
     public void UseSelectedItem()
     {
+
         Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
+        
     }
 
     private void CheckBoxState()

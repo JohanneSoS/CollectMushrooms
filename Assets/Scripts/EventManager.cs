@@ -63,8 +63,9 @@ public static class EventManager
     public static IntEvent OnAdvanceQuest = new IntEvent();
     public static UnityEvent OnItemsDelivered = new UnityEvent();
     public static IntEvent OnCompleteQuest = new IntEvent();
+    public static UnityEvent OnCompleteBoxQuest = new UnityEvent();
     public static UnityEvent OnInteractWithNPC = new UnityEvent();
-    public static UnityEvent InteractWithBox = new UnityEvent();
+    public static IntEvent InteractWithBox = new IntEvent();
     public static UnityEvent OnDialogueStart = new UnityEvent();
     //public static UnityEvent OnDialogueEnd = new UnityEvent();
 

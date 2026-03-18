@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Quest3
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
+  npcType: 1
   startDialogue: {fileID: 11400000, guid: 50bc0de9b881097419637cc7b751f7fd, type: 2}
-  endDialogue: {fileID: 11400000, guid: 5f43fd128520bc7439cff0fe39f3792c, type: 2}
-  charPos: {x: -4.26, y: 34.09, z: -0.24509776}
+  endDialogue: {fileID: 11400000, guid: 1ac0b8678fce8bc4f9e6c39d86e4bf16, type: 2}
+  charPos: {x: 17.03, y: 21.65, z: -0.24509776}
   charPosObject: {fileID: 5428036621202937442, guid: 0b24a24bb6e619141bec934c442a0b88, type: 3}
   questType: 1
