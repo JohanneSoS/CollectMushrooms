@@ -12946,8 +12946,8 @@ MonoBehaviour:
   npcs:
   - {fileID: 414286153}
   - {fileID: 1108994991}
-  - {fileID: 522453432}
   - {fileID: 8769230154190343950}
+  - {fileID: 522453432}
   quests:
   - {fileID: 11400000, guid: 540771926b4b53c429edfe4b3660423a, type: 2}
   - {fileID: 11400000, guid: d860de6f4584a914a9d0ac8aafcc5abf, type: 2}

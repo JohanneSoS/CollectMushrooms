@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
   npcType: 0
-  startDialogue: {fileID: 11400000, guid: 50bc0de9b881097419637cc7b751f7fd, type: 2}
-  endDialogue: {fileID: 11400000, guid: 1ac0b8678fce8bc4f9e6c39d86e4bf16, type: 2}
+  startDialogue: {fileID: 11400000, guid: 0198e5acf4aa04249ba68a9c9900023e, type: 2}
+  endDialogue: {fileID: 11400000, guid: ad6f34236febb124fafb0fe48f107d2c, type: 2}
   charPos: {x: 17.03, y: 21.65, z: -0.24509776}
   charPosObject: {fileID: 3475918733026137687, guid: ec19e4870bb1acc45b9539db37e05e70, type: 3}
   questType: 1

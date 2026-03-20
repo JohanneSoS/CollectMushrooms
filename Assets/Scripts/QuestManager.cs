@@ -151,7 +151,7 @@ public class QuestManager : MonoBehaviour
             {
                 questBoxes[i].SetActive(false); 
             }
-            boxDict[questCount].transform.position = quests[questCount].charPos + new Vector3(-0.5f, -1f, 0);
+            boxDict[questCount].transform.position = quests[questCount].charPosObject.transform.position + new Vector3(-0.5f, -1f, 0);
             boxDict[questCount].SetActive(true);
             uIManager.activeBox = boxDict[questCount].GetComponent<QuestRecipient>().boxID;
         }
