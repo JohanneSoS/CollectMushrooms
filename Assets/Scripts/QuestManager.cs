@@ -40,7 +40,8 @@ public class QuestManager : MonoBehaviour
         
         npcDict.Add(NPC.Racoon, npcs[0]);
         npcDict.Add(NPC.Beaver, npcs[1]);
-        npcDict.Add(NPC.Boar, npcs[2]);
+        npcDict.Add(NPC.Jay, npcs[2]);
+        npcDict.Add(NPC.Boar, npcs[3]);
         
         EventManager.OnStartQuest.AddListener(StartQuest);
         EventManager.OnAdvanceQuest.AddListener(AdvanceQuest);
@@ -150,7 +151,7 @@ public class QuestManager : MonoBehaviour
             {
                 questBoxes[i].SetActive(false); 
             }
-            boxDict[questCount].transform.position = quests[questCount].charPos + new Vector3(-0.5f, -1f, 0);
+            boxDict[questCount].transform.position = quests[questCount].charPosObject.transform.position + new Vector3(-0.5f, -1f, 0);
             boxDict[questCount].SetActive(true);
             uIManager.activeBox = boxDict[questCount].GetComponent<QuestRecipient>().boxID;
         }
@@ -163,7 +164,7 @@ public class QuestManager : MonoBehaviour
 
     void UpdateNPCLocations()
     {
-            npcDict[quests[questCount].npcType].transform.position = quests[questCount].charPos;
+            npcDict[quests[questCount].npcType].transform.position = quests[questCount].charPosObject.transform.position;
             foreach (GameObject npc in npcDict.Values)
             {
                 npc.SetActive(false);

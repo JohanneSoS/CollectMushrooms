@@ -43,5 +43,6 @@ public enum NPC
 {
     Racoon,
     Beaver,
+    Jay,
     Boar
 }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
+  m_Name: QuestFinish4
+  m_EditorClassIdentifier: 
+  charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
+  lineTexts:
+  - "*Yawn*, that nap really did me good! Oh, you brought me the caps\u2014so sweet! "
+  - Let's move over to the Jay, i met them in the north-west near the other branch
+    of the river!

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
+  m_Name: QuestStart6
+  m_EditorClassIdentifier: 
+  charType: {fileID: 11400000, guid: c0929d5203a972646bd8aafa1fdcd9e5, type: 2}
+  lineTexts:
+  - It really is you, the one they brought here!
+  - Is what the raccoon said true? That you can't remember anything?
+  - I saw how you got here, I am watching over the forest which is currently quite
+    a challenge because I still have to collect and stock a lot of supplies for the
+    winter!
+  - Would  you mind bringing me some specific mushrooms? The Racoon that you are
+    an expert in finding those?

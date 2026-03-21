@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
+  m_Name: QuestFinish6
+  m_EditorClassIdentifier: 
+  charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
+  lineTexts:
+  - 'Great, now I''m back on schedule! So, about my report:'
+  - 'A few people led you here, gave you something to sniff, and then ran after you. '
+  - It looked like they wanted you to find something for them.
+  - "But it didn\u2019t look like it worked out. The people were talking loudly,
+    and then I heard a gunshot."
+  - "After that, you were lying on the ground. I thought they had\u2026 but apparently
+    you woke up again!"
+  - Are you sure you want to go back to those humans? Well let's talk later, my scedule
+    says I need to collect more nuts now!
