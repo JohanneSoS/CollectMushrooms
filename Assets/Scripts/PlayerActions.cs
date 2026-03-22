@@ -171,23 +171,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     void UseSelectedItem()
     {
         var selectedItem = InventoryManager.instance.GetSelectedItem(false);
-        if (selectedItem.canEat && playerStats.currentHunger < playerStats.maxHunger && !isCollecting)
-        { 
-            EventManager.HealHunger.Invoke(selectedItem.hungerAmount);
-            Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
-        } 
-        //StartCoroutine(CheckIfCanEat(selectedItem));
-    }
-    
-    /*IEnumerator CheckIfCanEat(Item selectedItem)
-    {
-        yield return new WaitForSeconds(0.2f);
-        if (selectedItem.canEat && playerStats.currentHunger < playerStats.maxHunger && !isCollecting)
+        if (selectedItem != null)
         {
-            EventManager.HealHunger.Invoke(selectedItem.hungerAmount);
-            Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
+            if (selectedItem.canEat && playerStats.currentHunger < playerStats.maxHunger && !isCollecting)
+            { 
+                EventManager.HealHunger.Invoke(selectedItem.hungerAmount);
+                Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
+            } 
         }
-    }*/
+    }
     
     private void Sniff()
     {
