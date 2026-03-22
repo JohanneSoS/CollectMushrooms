@@ -2175,10 +2175,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapGrid
       objectReference: {fileID: 0}
-    - target: {fileID: 2487468612217024373, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
-      propertyPath: m_GeometryType
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6813009175060710977, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2218,10 +2214,6 @@ PrefabInstance:
     - target: {fileID: 6813009175060710977, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7747588270962040018, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
-      propertyPath: m_GeometryType
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
