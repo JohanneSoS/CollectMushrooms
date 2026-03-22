@@ -1,7 +1,7 @@
 using System.Collections;
 using NUnit.Framework.Constraints;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,14 +25,14 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        EventManager.OpenSleepUI.AddListener(ActivateSleepMenu);
-        EventManager.ToggleUI.AddListener(OnUIToggle);
-        EventManager.OpenQuestUI.AddListener(OpenQuestUI);
-        EventManager.CloseQuestUI.AddListener(ResumeGame);
-        EventManager.PauseGame.AddListener(ActivatePauseMenu);
-        EventManager.ResumeGame.AddListener(ResumeGame);
-        EventManager.ConfirmUI.AddListener(ConfirmUI);
-        EventManager.OnGameOver.AddListener(OnGameOver);
+        GlobalEventManager.OpenSleepUI.AddListener(ActivateSleepMenu);
+        GlobalEventManager.ToggleUI.AddListener(OnUIToggle);
+        GlobalEventManager.OpenQuestUI.AddListener(OpenQuestUI);
+        GlobalEventManager.CloseQuestUI.AddListener(ResumeGame);
+        GlobalEventManager.PauseGame.AddListener(ActivatePauseMenu);
+        GlobalEventManager.ResumeGame.AddListener(ResumeGame);
+        GlobalEventManager.ConfirmUI.AddListener(ConfirmUI);
+        GlobalEventManager.OnGameOver.AddListener(OnGameOver);
         LoadRequiredBoxSlots();
     }
     
@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
                 ResumeGame();
                 break;
             case "gameover":
-                EventManager.OnRespawn.Invoke();
+                GlobalEventManager.OnRespawn.Invoke();
                 ResumeGame();
                 break;
             case "sleep":
@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour
         SleepMenu.SetActive(true);
         currentMenu = "sleep";
         uiActive = true;
-        EventManager.ToggleUI.Invoke(true);
+        GlobalEventManager.ToggleUI.Invoke(true);
     }
 
     void ActivatePauseMenu()
@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
         PauseMenu.SetActive(true);
         currentMenu = "pause";
         uiActive = true;
-        EventManager.ToggleUI.Invoke(true);
+        GlobalEventManager.ToggleUI.Invoke(true);
     }
 
     void ActivateGameOverMenu()
@@ -79,7 +79,7 @@ public class UIManager : MonoBehaviour
         GameOverMenu.SetActive(true);
         currentMenu = "gameover";
         uiActive = true;
-        EventManager.ToggleUI.Invoke(true);
+        GlobalEventManager.ToggleUI.Invoke(true);
     }
 
     public void ResumeGame()
@@ -93,12 +93,12 @@ public class UIManager : MonoBehaviour
         }
         uiActive = false;
         currentMenu = "none";
-        EventManager.ToggleUI.Invoke(false);
+        GlobalEventManager.ToggleUI.Invoke(false);
     }
 
     public void SkipToDay()
     {
-        EventManager.OnSkipToDay.Invoke();
+        GlobalEventManager.OnSkipToDay.Invoke();
         ResumeGame();
     }
     
@@ -108,7 +108,7 @@ public class UIManager : MonoBehaviour
         currentMenu = "quest";
         //yield return new WaitForSeconds(0.2f);
         uiActive = true;
-        EventManager.ToggleUI.Invoke(true);
+        GlobalEventManager.ToggleUI.Invoke(true);
         //StartCoroutine(OpenQuestMenu());
     }
 
@@ -138,7 +138,7 @@ public class UIManager : MonoBehaviour
         GameOverMenu.SetActive(true);
         currentMenu = "gameover";
         uiActive = true;
-        EventManager.ToggleUI.Invoke(true);
+        GlobalEventManager.ToggleUI.Invoke(true);
     }
 
     public void LoadRequiredBoxSlots()

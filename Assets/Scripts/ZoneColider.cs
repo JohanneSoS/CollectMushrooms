@@ -16,12 +16,12 @@ public class ZoneColider : MonoBehaviour
         {
             if (gameObject.tag != "AudioZone")
             {
-                EventManager.EnterZone.Invoke(this.gameObject.tag);
+                GlobalEventManager.EnterZone.Invoke(this.gameObject.tag);
                 Debug.Log(this.gameObject.tag);
             }
             else if (gameObject.tag == "AudioZone")
             {
-                EventManager.EnterZone.Invoke(this.gameObject.name);
+                GlobalEventManager.EnterZone.Invoke(this.gameObject.name);
                 //New Event for AudioZone-Enter
                 Debug.Log(this.gameObject.name);
             }
@@ -34,12 +34,12 @@ public class ZoneColider : MonoBehaviour
         {
             if (gameObject.tag != "AudioZone")
             {
-                EventManager.ExitZone.Invoke(this.gameObject.tag);
+                GlobalEventManager.ExitZone.Invoke(this.gameObject.tag);
                 Debug.Log(this.gameObject.tag);
             }
             else if (gameObject.tag == "AudioZone")
             {
-                EventManager.ExitZone.Invoke(this.gameObject.name);
+                GlobalEventManager.ExitZone.Invoke(this.gameObject.name);
                 Debug.Log(this.gameObject.name);
             }
         }

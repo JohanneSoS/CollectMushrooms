@@ -23,8 +23,8 @@ public class MushroomSpawner : MonoBehaviour
 
     void Awake()
     {
-        EventManager.OnDayStart.AddListener(SpawnDayMushrooms);
-        EventManager.OnNightStart.AddListener(SpawnNightMushrooms);
+        GlobalEventManager.OnDayStart.AddListener(SpawnDayMushrooms);
+        GlobalEventManager.OnNightStart.AddListener(SpawnNightMushrooms);
     }
     
     void Start()

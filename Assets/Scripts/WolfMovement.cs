@@ -25,7 +25,7 @@ public class WolfMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         wolfAnim = GetComponent<Animator>();
-        EventManager.OnDayStart.AddListener(Despawn);
+        GlobalEventManager.OnDayStart.AddListener(Despawn);
     }
 
     void Start()
@@ -50,7 +50,7 @@ public class WolfMovement : MonoBehaviour
         {
             isChasing = true;
             isRunning = true;
-            EventManager.OnChasing.Invoke();
+            GlobalEventManager.OnChasing.Invoke();
             StartCoroutine(WaitForChasingDuration());
         }
         CheckRunningState();
@@ -135,6 +135,6 @@ public class WolfMovement : MonoBehaviour
 
     private void InflictDamage()
     {
-        EventManager.ApplyDamage.Invoke(damage);
+        GlobalEventManager.ApplyDamage.Invoke(damage);
     }
 }

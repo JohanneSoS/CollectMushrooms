@@ -17,11 +17,11 @@ public class PlayerLight : MonoBehaviour
     void Awake()
     {
         charLight = GetComponent<Light2D>();
-        EventManager.OnDayStart.AddListener(DayStart);
-        EventManager.OnEveningStart.AddListener(EveningStart);
-        EventManager.OnNightStart.AddListener(NightStart);
-        EventManager.OnSniffing.AddListener(SniffStart);
-        EventManager.OnSniffingEnd.AddListener(SniffStop);
+        GlobalEventManager.OnDayStart.AddListener(DayStart);
+        GlobalEventManager.OnEveningStart.AddListener(EveningStart);
+        GlobalEventManager.OnNightStart.AddListener(NightStart);
+        GlobalEventManager.OnSniffing.AddListener(SniffStart);
+        GlobalEventManager.OnSniffingEnd.AddListener(SniffStop);
     }
 
     void FixedUpdate()

@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
     public void Awake()
     {
         instance = this;
-        EventManager.OnRespawn.AddListener(ClearInventory);
+        GlobalEventManager.OnRespawn.AddListener(ClearInventory);
     }
 
     private void Start()
@@ -42,7 +42,7 @@ public class InventoryManager : MonoBehaviour
         }
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
-        EventManager.UpdateItemDiscription.Invoke(GetSelectedItem(false));
+        GlobalEventManager.UpdateItemDiscription.Invoke(GetSelectedItem(false));
     }
 
     public Item GetSelectedItem(bool use)
@@ -64,7 +64,7 @@ public class InventoryManager : MonoBehaviour
                     itemInSlot.RefreshCount();
                 }
 
-                EventManager.OnGiveItem.Invoke();
+                GlobalEventManager.OnGiveItem.Invoke();
             }
             return item;
         }
@@ -86,7 +86,7 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.count++;
                 itemInSlot.RefreshCount();
-                EventManager.OnPickItem.Invoke();
+                GlobalEventManager.OnPickItem.Invoke();
                 return true;
             }
         }
@@ -98,7 +98,7 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot == null)
             {
                 SpawnNewItem(item, slot);
-                EventManager.OnPickItem.Invoke();
+                GlobalEventManager.OnPickItem.Invoke();
                 return true;
             }
         }

@@ -43,15 +43,15 @@ public class QuestManager : MonoBehaviour
         npcDict.Add(NPC.Jay, npcs[2]);
         npcDict.Add(NPC.Boar, npcs[3]);
         
-        EventManager.OnStartQuest.AddListener(StartQuest);
-        EventManager.OnAdvanceQuest.AddListener(AdvanceQuest);
-        EventManager.OnCompleteQuest.AddListener(CompleteQuest);
-        EventManager.OnInteractWithNPC.AddListener(InteractWithNPC);
-        EventManager.OnItemsDelivered.AddListener(OnItemsDelivered);
+        GlobalEventManager.OnStartQuest.AddListener(StartQuest);
+        GlobalEventManager.OnAdvanceQuest.AddListener(AdvanceQuest);
+        GlobalEventManager.OnCompleteQuest.AddListener(CompleteQuest);
+        GlobalEventManager.OnInteractWithNPC.AddListener(InteractWithNPC);
+        GlobalEventManager.OnItemsDelivered.AddListener(OnItemsDelivered);
     }
     void Start()
     {
-        EventManager.OnStartQuest.Invoke(questCount);
+        GlobalEventManager.OnStartQuest.Invoke(questCount);
         questBoxes[0].SetActive(false);
     }
 
@@ -62,7 +62,7 @@ public class QuestManager : MonoBehaviour
             if (!dialogueManager.currentDialogueRead)
             {
                 //erstes Mal Quest Advancen
-                EventManager.OnAdvanceQuest.Invoke(questCount);
+                GlobalEventManager.OnAdvanceQuest.Invoke(questCount);
             }
             else if (dialogueManager.currentDialogueRead)
             {
@@ -95,13 +95,13 @@ public class QuestManager : MonoBehaviour
         {
             case 2:
                 //StartDialog
-                EventManager.OnDialogueStart.Invoke();
+                GlobalEventManager.OnDialogueStart.Invoke();
                return;
             case 3:
                 //FinishDialogue, EnableBox
                 if (quests[questCount].questType == QuestType.OnlyDialogue)
                 {
-                    EventManager.OnCompleteQuest.Invoke(questCount);
+                    GlobalEventManager.OnCompleteQuest.Invoke(questCount);
                 }
                 else
                 {
@@ -114,12 +114,12 @@ public class QuestManager : MonoBehaviour
                 return;
             case 5:
                 //StartQuestFinishDialogue
-                EventManager.OnDialogueStart.Invoke();
+                GlobalEventManager.OnDialogueStart.Invoke();
                 return;
             case 6:
                 //FinishDialogue, FinishQuest
-                EventManager.OnCompleteQuest.Invoke(questCount);
-                EventManager.OnCompleteBoxQuest.Invoke();
+                GlobalEventManager.OnCompleteQuest.Invoke(questCount);
+                GlobalEventManager.OnCompleteBoxQuest.Invoke();
                 return;
         }
     }
@@ -132,13 +132,13 @@ public class QuestManager : MonoBehaviour
     {
         questStep = 0;
         questCount++;
-        EventManager.OnStartQuest.Invoke(questCount);
+        GlobalEventManager.OnStartQuest.Invoke(questCount);
     }
     void DialogueEnd()
     {
         if (questCount == 0)
         {
-            EventManager.OnQuestFinished.Invoke();
+            GlobalEventManager.OnQuestFinished.Invoke();
             Debug.Log("DialogueEnd played");
         }
     }

@@ -15,7 +15,7 @@ public class ZoneAudio : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            EventManager.EnterAudioZone.Invoke(zone, zoneOrigin);
+            GlobalEventManager.EnterAudioZone.Invoke(zone, zoneOrigin);
         }
     }
 
@@ -23,7 +23,7 @@ public class ZoneAudio : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            EventManager.ExitAudioZone.Invoke(zone, zoneOrigin);
+            GlobalEventManager.ExitAudioZone.Invoke(zone, zoneOrigin);
         }
     }
 }

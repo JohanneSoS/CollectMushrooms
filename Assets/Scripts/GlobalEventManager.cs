@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public static class EventManager
+public static class GlobalEventManager
 {
     public static BoolEvent ToggleUI = new BoolEvent();
     public static UnityEvent OpenSleepUI = new UnityEvent();
@@ -38,13 +39,13 @@ public static class EventManager
 
     public static UnityEvent OnChasing = new UnityEvent();
     
-    [Header("Zone Management")]
+    //Zone Management
     public static StringEvent EnterZone = new StringEvent();
     public static StringEvent ExitZone = new StringEvent();
     public static AudioZoneEvent EnterAudioZone = new AudioZoneEvent();
     public static AudioZoneEvent ExitAudioZone = new AudioZoneEvent();
     
-    [Header("Combat")]
+    //Combat
     public static IntEvent ApplyDamage = new IntEvent();
     public static IntEvent ApplyHeal = new IntEvent();
     public static IntEvent ApplyHunger = new IntEvent();
@@ -58,7 +59,7 @@ public static class EventManager
     public static IntEvent UpdateHungerBar = new IntEvent();
     public static IntEvent UpdateExhaustionBar = new IntEvent();
 
-    [Header ("Quest and Dialogue")]
+    //Quest and Dialog
     public static IntEvent OnStartQuest = new IntEvent();
     public static IntEvent OnAdvanceQuest = new IntEvent();
     public static UnityEvent OnItemsDelivered = new UnityEvent();

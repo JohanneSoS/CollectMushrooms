@@ -8,7 +8,7 @@ public class ItemDiscription : MonoBehaviour
 
     void Awake()
     {
-        EventManager.UpdateItemDiscription.AddListener(UpdateSelectedItem);
+        GlobalEventManager.UpdateItemDiscription.AddListener(UpdateSelectedItem);
     }
     private void Show()
     {

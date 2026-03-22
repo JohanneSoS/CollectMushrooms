@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using Cache = UnityEngine.Cache;
+//using Cache = UnityEngine.Cache;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Events;
 
@@ -41,8 +41,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
         charRenderer = GetComponentInChildren<CharacterRenderer>();
-        EventManager.ToggleUI.AddListener(ToggleUI);
-        EventManager.OnRespawn.AddListener(Respawn);
+        GlobalEventManager.ToggleUI.AddListener(ToggleUI);
+        GlobalEventManager.OnRespawn.AddListener(Respawn);
     }
     
     void FixedUpdate()
@@ -61,14 +61,14 @@ public class PlayerMovement : MonoBehaviour
         if (inputVector != Vector2.zero && !charRenderer.isRunning)
         {
             charRenderer.isRunning = true;
-            EventManager.OnWalkingStart.Invoke();
+            GlobalEventManager.OnWalkingStart.Invoke();
             charRenderer.CheckRunningState();
         }
 
         if (inputVector == Vector2.zero && charRenderer.isRunning)
         {
             charRenderer.isRunning = false;
-            EventManager.OnWalkingStop.Invoke();
+            GlobalEventManager.OnWalkingStop.Invoke();
             charRenderer.CheckRunningState();
         }
 

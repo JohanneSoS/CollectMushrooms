@@ -19,8 +19,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Awake()
     {
-        EventManager.OnNightStart.AddListener(NightStart);
-        EventManager.OnDayStart.AddListener(DayStart);
+        GlobalEventManager.OnNightStart.AddListener(NightStart);
+        GlobalEventManager.OnDayStart.AddListener(DayStart);
     }
 
     void Update()

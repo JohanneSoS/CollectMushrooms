@@ -13,9 +13,9 @@ public class Loot : MonoBehaviour
 
     void Awake()
     {
-        EventManager.OnDayStart.AddListener(StartDay);
-        EventManager.OnNightStart.AddListener(StartNight);
-        EventManager.PickUpMushroom.AddListener(PickUp);
+        GlobalEventManager.OnDayStart.AddListener(StartDay);
+        GlobalEventManager.OnNightStart.AddListener(StartNight);
+        GlobalEventManager.PickUpMushroom.AddListener(PickUp);
         age = 1;
     }
 

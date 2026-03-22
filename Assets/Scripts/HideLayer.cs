@@ -17,8 +17,8 @@ public class HideLayer : MonoBehaviour
     
     void Awake()
     {
-        EventManager.OnSniffing.AddListener(Hide);
-        EventManager.OnSniffingEnd.AddListener(Show);
+        GlobalEventManager.OnSniffing.AddListener(Hide);
+        GlobalEventManager.OnSniffingEnd.AddListener(Show);
     }
     
     private void OnTriggerEnter2D(Collider2D other)

@@ -24,13 +24,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
     
     void Awake()
     {
-        EventManager.ToggleUI.AddListener(ToggleUI);
-        EventManager.OnDayStart.AddListener(DayStart);
-        EventManager.OnEveningStart.AddListener(EveningStart);
-        EventManager.OnPickItem.AddListener(ToggleIsCollecting);
-        EventManager.EnterZone.AddListener(OnEnterZone);
-        EventManager.ExitZone.AddListener(OnExitZone);
-        EventManager.OnCompleteBoxQuest.AddListener(CountCurrentBox);
+        GlobalEventManager.ToggleUI.AddListener(ToggleUI);
+        GlobalEventManager.OnDayStart.AddListener(DayStart);
+        GlobalEventManager.OnEveningStart.AddListener(EveningStart);
+        GlobalEventManager.OnPickItem.AddListener(ToggleIsCollecting);
+        GlobalEventManager.EnterZone.AddListener(OnEnterZone);
+        GlobalEventManager.ExitZone.AddListener(OnExitZone);
+        GlobalEventManager.OnCompleteBoxQuest.AddListener(CountCurrentBox);
     }
 
     void Update()
@@ -42,16 +42,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 switch (hovering)
                 {
                     case "Box":
-                        EventManager.InteractWithBox.Invoke(currentBox);
+                        GlobalEventManager.InteractWithBox.Invoke(currentBox);
                         break;
                     case "NPC":
-                        EventManager.OnInteractWithNPC.Invoke();
+                        GlobalEventManager.OnInteractWithNPC.Invoke();
                         break;
                     case "SleepingPlace":
-                        EventManager.ConfirmUI.Invoke();
+                        GlobalEventManager.ConfirmUI.Invoke();
                         break;
                     case "None":
-                        EventManager.ConfirmUI.Invoke();
+                        GlobalEventManager.ConfirmUI.Invoke();
                         break;
                 }
             }
@@ -63,7 +63,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 if (hovering != "NPC")
                 {
-                    EventManager.ResumeGame.Invoke();
+                    GlobalEventManager.ResumeGame.Invoke();
                 }
             }
         }
@@ -76,7 +76,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     {
                         if (canSleep)
                         {
-                            EventManager.OpenSleepUI.Invoke();   
+                            GlobalEventManager.OpenSleepUI.Invoke();   
                         }
                         else if (!canSleep)
                         {
@@ -90,13 +90,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     }
                     else if (Input.GetKeyDown(KeyCode.Escape))
                     {
-                        EventManager.PauseGame.Invoke();
+                        GlobalEventManager.PauseGame.Invoke();
                     }
                     break;
                 case "NPC":
                     if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
                     {
-                        EventManager.OnInteractWithNPC.Invoke();
+                        GlobalEventManager.OnInteractWithNPC.Invoke();
                     }
                     else if (Input.GetKeyDown(KeyCode.F))
                     {
@@ -104,13 +104,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     }
                     else if (Input.GetKeyDown(KeyCode.Escape))
                     {
-                        EventManager.PauseGame.Invoke();
+                        GlobalEventManager.PauseGame.Invoke();
                     }
                     break;
                 case "Box":
                     if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
                     {
-                        EventManager.OpenQuestUI.Invoke();
+                        GlobalEventManager.OpenQuestUI.Invoke();
                     }
                     else if (Input.GetKeyDown(KeyCode.F))
                     {
@@ -118,13 +118,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     }
                     else if (Input.GetKeyDown(KeyCode.Escape))
                     {
-                        EventManager.PauseGame.Invoke();
+                        GlobalEventManager.PauseGame.Invoke();
                     }
                     break;
                 case "Mushroom":
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        EventManager.PickUpMushroom.Invoke();                    
+                        GlobalEventManager.PickUpMushroom.Invoke();                    
                     } 
                     break;
                 case "None":
@@ -139,7 +139,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     }
                     else if (Input.GetKeyDown(KeyCode.Escape))
                     {
-                        EventManager.PauseGame.Invoke();
+                        GlobalEventManager.PauseGame.Invoke();
                     }
                     break;
                 }
@@ -175,7 +175,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             if (selectedItem.canEat && playerStats.currentHunger < playerStats.maxHunger && !isCollecting)
             { 
-                EventManager.HealHunger.Invoke(selectedItem.hungerAmount);
+                GlobalEventManager.HealHunger.Invoke(selectedItem.hungerAmount);
                 Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
             } 
         }
@@ -185,7 +185,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (sniffActive != true && canSniff)
         {
-            EventManager.OnSniffing.Invoke();
+            GlobalEventManager.OnSniffing.Invoke();
             StartCoroutine(SniffDuration());
         }
     }
@@ -196,7 +196,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         sniffActive = true;
         yield return new WaitForSeconds(sniffDuration);
         sniffActive = false;
-        EventManager.OnSniffingEnd.Invoke();
+        GlobalEventManager.OnSniffingEnd.Invoke();
         yield return new WaitForSeconds(sniffCooldown);
         canSniff = true;
     }

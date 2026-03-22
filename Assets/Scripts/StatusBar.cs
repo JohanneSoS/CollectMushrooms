@@ -9,9 +9,9 @@ public class StatusBar : MonoBehaviour
 
     void Awake()
     {
-        EventManager.UpdateHealthBar.AddListener(setHealth);
-        EventManager.UpdateHungerBar.AddListener(setHunger);
-        EventManager.UpdateExhaustionBar.AddListener(setExhaustion);
+        GlobalEventManager.UpdateHealthBar.AddListener(setHealth);
+        GlobalEventManager.UpdateHungerBar.AddListener(setHunger);
+        GlobalEventManager.UpdateExhaustionBar.AddListener(setExhaustion);
     }
 
     private void setHealth(int newValue)

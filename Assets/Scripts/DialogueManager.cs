@@ -29,9 +29,9 @@ public class DialogueManager : MonoBehaviour
     
     void Awake()
     {
-        EventManager.OnStartQuest.AddListener(OnStartQuest);
-        EventManager.OnDialogueStart.AddListener(OnDialogueStart);
-        EventManager.OnItemsDelivered.AddListener(OnItemsDelivered);
+        GlobalEventManager.OnStartQuest.AddListener(OnStartQuest);
+        GlobalEventManager.OnDialogueStart.AddListener(OnDialogueStart);
+        GlobalEventManager.OnItemsDelivered.AddListener(OnItemsDelivered);
         
         questStart = new DialogueQuest[questManager.quests.Length];
         questFinish = new DialogueQuest[questManager.quests.Length];
@@ -66,7 +66,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogBox.SetActive(true);
         dialogueIsShowing = true;
-        EventManager.ToggleUI.Invoke(true);
+        GlobalEventManager.ToggleUI.Invoke(true);
         //disable movement
     }
 
@@ -74,7 +74,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogBox.SetActive(false);
         dialogueIsShowing = false;
-        EventManager.ToggleUI.Invoke(false);
+        GlobalEventManager.ToggleUI.Invoke(false);
         //enable movement
     }
 
@@ -107,7 +107,7 @@ public class DialogueManager : MonoBehaviour
             {
                 currentDialogueRead = true;
                 Debug.Log("vor OnAdvanceQuest");
-                EventManager.OnAdvanceQuest.Invoke(questID);
+                GlobalEventManager.OnAdvanceQuest.Invoke(questID);
                 Debug.Log("nach OnAdvanceQuest");
                 HideDialogue();
             }
@@ -123,7 +123,7 @@ public class DialogueManager : MonoBehaviour
             else if (currentLine >= (dialogueIDComplete[questID].lineTexts.Length)-1)
             {
                 currentDialogueRead = true;
-                EventManager.OnAdvanceQuest.Invoke(questID);
+                GlobalEventManager.OnAdvanceQuest.Invoke(questID);
                 HideDialogue();
             }
         }

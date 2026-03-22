@@ -44,8 +44,8 @@ public class QuestRecipient : MonoBehaviour
 
     void Awake()
     {
-        EventManager.ToggleUI.AddListener(OnUIToggle);
-        EventManager.InteractWithBox.AddListener(Interact);
+        GlobalEventManager.ToggleUI.AddListener(OnUIToggle);
+        GlobalEventManager.InteractWithBox.AddListener(Interact);
         requiredItemSlotAmount = requestedItems.Length;
     }
     
@@ -92,9 +92,9 @@ public class QuestRecipient : MonoBehaviour
                 var deliverProgress = (float)requestedUIItems.Count / deliveredCount;
                 if (deliveredCount == requestedUIItems.Count)
                 {
-                    EventManager.OnItemsDelivered.Invoke();
+                    GlobalEventManager.OnItemsDelivered.Invoke();
                     Debug.Log("Alle Items sind da");
-                    EventManager.CloseQuestUI.Invoke();
+                    GlobalEventManager.CloseQuestUI.Invoke();
                 }
             }
         }

@@ -46,20 +46,20 @@ public class FmodEvents : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnSniffing.AddListener(Sniff);
-        EventManager.OnPickItem.AddListener(PickUpMushroom);
-        EventManager.OnGiveItem.AddListener(DeliverMushroom);
-        EventManager.ApplyDamage.AddListener(UpdateHealth);
-        EventManager.UpdateExhaustionBar.AddListener(UpdateExhaustion);
-        EventManager.UpdateHungerBar.AddListener(UpdateHunger);
+        GlobalEventManager.OnSniffing.AddListener(Sniff);
+        GlobalEventManager.OnPickItem.AddListener(PickUpMushroom);
+        GlobalEventManager.OnGiveItem.AddListener(DeliverMushroom);
+        GlobalEventManager.ApplyDamage.AddListener(UpdateHealth);
+        GlobalEventManager.UpdateExhaustionBar.AddListener(UpdateExhaustion);
+        GlobalEventManager.UpdateHungerBar.AddListener(UpdateHunger);
     }
 
     private void OnDisable()
     {
-        EventManager.OnSniffing.RemoveListener(Sniff);
-        EventManager.OnPickItem.RemoveListener(PickUpMushroom);
-        EventManager.OnGiveItem.RemoveListener(DeliverMushroom);
-        EventManager.ApplyDamage.RemoveListener(UpdateHealth);
+        GlobalEventManager.OnSniffing.RemoveListener(Sniff);
+        GlobalEventManager.OnPickItem.RemoveListener(PickUpMushroom);
+        GlobalEventManager.OnGiveItem.RemoveListener(DeliverMushroom);
+        GlobalEventManager.ApplyDamage.RemoveListener(UpdateHealth);
     }
 
     void Start()

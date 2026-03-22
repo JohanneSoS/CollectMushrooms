@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -19,8 +19,8 @@ public class MushroomLighter : MonoBehaviour
 
     void Awake()
     {
-        EventManager.OnSniffing.AddListener(ActivateLight);
-        EventManager.OnSniffingEnd.AddListener(DeactivateLight);
+        GlobalEventManager.OnSniffing.AddListener(ActivateLight);
+        GlobalEventManager.OnSniffingEnd.AddListener(DeactivateLight);
     }
     
     void ActivateLight()

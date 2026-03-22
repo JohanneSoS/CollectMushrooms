@@ -38,8 +38,8 @@ public class ClockManager : MonoBehaviour
 
     void Awake()
     {
-        EventManager.OnSkipToDay.AddListener(SkipToDay);
-        EventManager.ToggleUI.AddListener(OnUIToggle);
+        GlobalEventManager.OnSkipToDay.AddListener(SkipToDay);
+        GlobalEventManager.ToggleUI.AddListener(OnUIToggle);
     }
     void Start()
     {
@@ -67,8 +67,8 @@ public class ClockManager : MonoBehaviour
         {
             minutes = 0;
             hours += 1;
-            EventManager.ApplyHunger.Invoke(hungerPerHour);
-            EventManager.ApplyExhaustion.Invoke(exhaustionPerHour);
+            GlobalEventManager.ApplyHunger.Invoke(hungerPerHour);
+            GlobalEventManager.ApplyExhaustion.Invoke(exhaustionPerHour);
         }
 
         if (hours >= 24)
@@ -105,7 +105,7 @@ public class ClockManager : MonoBehaviour
                 if (minutes > 1)
                 {
                     dayTimeShifting = true;
-                    EventManager.OnEveningStart.Invoke();
+                    GlobalEventManager.OnEveningStart.Invoke();
                     print("Signal of Starting Evening reached");
                     isEvening = true;
                 }
@@ -134,7 +134,7 @@ public class ClockManager : MonoBehaviour
                 if (minutes > 1)
                 {
                     dayTimeShifting = true;
-                    EventManager.OnNightStart.Invoke();
+                    GlobalEventManager.OnNightStart.Invoke();
                     print("Signal of Starting Night reached");
                     isNight = true;
                     isEvening = false;
@@ -164,7 +164,7 @@ public class ClockManager : MonoBehaviour
                 if (minutes > 1)
                 {
                     dayTimeShifting = true;
-                    EventManager.OnDayStart.Invoke();
+                    GlobalEventManager.OnDayStart.Invoke();
                     isNight = false;
                     isEvening = false;
                     print("Signal of Starting Day reached");
@@ -197,13 +197,13 @@ public class ClockManager : MonoBehaviour
         if (hours >= 18)
         {
             days = days + 1;
-            EventManager.ResetExhaustion.Invoke();
-            EventManager.ApplyHeal.Invoke(50);
+            GlobalEventManager.ResetExhaustion.Invoke();
+            GlobalEventManager.ApplyHeal.Invoke(50);
         }
         else
         {
-            EventManager.ApplyExhaustion.Invoke(-50);
-            EventManager.ApplyHeal.Invoke(25);
+            GlobalEventManager.ApplyExhaustion.Invoke(-50);
+            GlobalEventManager.ApplyHeal.Invoke(25);
         }
         StartDay();
     }

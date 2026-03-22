@@ -20,9 +20,9 @@ public class CameraMovement : MonoBehaviour
     {
         defaultCamDistance = virtualCamera.Lens.OrthographicSize;
         camDistance = virtualCamera.Lens.OrthographicSize;
-        EventManager.OnSniffing.AddListener(StartShake);
-        EventManager.OnChangeZoomForArea.AddListener(ChangeZoomForArea);
-        EventManager.OnResetZoom.AddListener(ResetZoom);
+        GlobalEventManager.OnSniffing.AddListener(StartShake);
+        GlobalEventManager.OnChangeZoomForArea.AddListener(ChangeZoomForArea);
+        GlobalEventManager.OnResetZoom.AddListener(ResetZoom);
     }
 
     void Update()

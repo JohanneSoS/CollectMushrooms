@@ -57,7 +57,7 @@ public class SleepingPlace : MonoBehaviour
     {
         upgradeStage++;
         ChangeSprites(upgradeStage);
-        EventManager.OnBaseUpgrade.Invoke();
+        GlobalEventManager.OnBaseUpgrade.Invoke();
         isUpgradable = false;
     }
 

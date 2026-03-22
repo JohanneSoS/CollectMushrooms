@@ -16,7 +16,7 @@ public class ZoomArea : MonoBehaviour
         {
             if (!playerHovering)
             {
-                EventManager.OnChangeZoomForArea.Invoke(zoomValue);
+                GlobalEventManager.OnChangeZoomForArea.Invoke(zoomValue);
                 playerHovering = true;
             }
             
@@ -29,7 +29,7 @@ public class ZoomArea : MonoBehaviour
         {
             if (playerHovering)
             {
-                EventManager.OnResetZoom.Invoke();
+                GlobalEventManager.OnResetZoom.Invoke();
                 playerHovering = false;
             }
         }

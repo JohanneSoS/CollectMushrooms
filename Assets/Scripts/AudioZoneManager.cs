@@ -35,9 +35,9 @@ public class AudioZoneManager : MonoBehaviour
 
     void Awake()
     {
-        EventManager.EnterAudioZone.AddListener(OnEnterZone);
-        EventManager.ExitAudioZone.AddListener(OnExitZone);
-        //EventManager.OnCompleteQuest.AddListener(OnCompleteQuest); //hier fehler
+        GlobalEventManager.EnterAudioZone.AddListener(OnEnterZone);
+        GlobalEventManager.ExitAudioZone.AddListener(OnExitZone);
+        //GlobalEventManager.OnCompleteQuest.AddListener(OnCompleteQuest); //hier fehler
 
         npcs.Add(ZoneOrigin.Racoon, AudioZone.Outside);
         npcs.Add(ZoneOrigin.Beaver, AudioZone.Outside);
