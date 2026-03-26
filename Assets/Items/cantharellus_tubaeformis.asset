@@ -17,9 +17,9 @@ MonoBehaviour:
   range: {x: 5, y: 4}
   canEat: 1
   usable: 0
-  hungerAmount: 20
-  healAmount: 0
-  exhaustAmount: 0
+  hungerAmount: 10
+  healAmount: 5
+  exhaustAmount: 5
   stackable: 1
-  itemName: Trompetenpfifferling
+  itemName: Trumpet Chanterelle
   sprite: {fileID: 21300000, guid: ac8708ea139800c42b1d856057f2d8b1, type: 3}
