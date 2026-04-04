@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Splines;
+using System.Collections;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class InventoryManager : MonoBehaviour
     public Item[] itemsToPickup;
     public int maxStacks;
 
+    private int mouseWheelDirection;
+    private bool itemSlotChangeCD;
     private int selectedSlot = -1;
    
     public void Awake()
@@ -32,16 +35,69 @@ public class InventoryManager : MonoBehaviour
             {
                 ChangeSelectedSlot(number -1);
             }
-        }
+            else if (isNumber && number == 0)
+            {
+                ChangeSelectedSlot(9);
+            }
+            else if (Input.inputString == "ß" || Input.inputString == "." || Input.inputString == "-")
+            {
+                ChangeSelectedSlot(10);
+            }
+            
+        } //this is the input
     }
+
+    private void FixedUpdate()
+    {
+        if ((Input.GetAxis("Mouse ScrollWheel")* 10) != 0)
+        {
+            float mouseWheelInput = Input.GetAxis("Mouse ScrollWheel") * 10;
+            Debug.Log(mouseWheelInput);
+            if (mouseWheelInput > 0)
+            {
+                mouseWheelDirection = -1;
+            }
+            else if (mouseWheelInput < 0)
+            {
+                mouseWheelDirection = 1;
+            }
+            ChangeSelectedSlot((selectedSlot + mouseWheelDirection));
+            /*if (!itemSlotChangeCD)
+            {
+                StartCoroutine(ChangeSelectedSlotWithinCooldown());
+            }*/
+        }
+        else
+        {
+            mouseWheelDirection = 0;
+        }
+        //int newSelectedSlot = selectedSlot + mouseWheelDirection;
+    }
+
+    /*IEnumerator ChangeSelectedSlotWithinCooldown()
+    {
+        itemSlotChangeCD = true;
+        ChangeSelectedSlot((selectedSlot + mouseWheelDirection));
+        yield return new WaitForSeconds(0.5f);
+        itemSlotChangeCD = false;
+    }*/
 
     void ChangeSelectedSlot(int newValue)
     {
+        if (newValue >= 10)
+        {
+            newValue = 10;
+        }
+        else if (newValue <= 0)
+        {
+            newValue = 0;
+        }
         if (selectedSlot >= 0) {
             inventorySlots[selectedSlot].Unselect();
         }
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
+
         GlobalEventManager.UpdateItemDiscription.Invoke(GetSelectedItem(false));
     }
 
