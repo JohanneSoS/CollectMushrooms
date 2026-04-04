@@ -4,6 +4,9 @@ using UnityEngine;
 public class ItemDiscription : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI discriptionText;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI hungerText;
+    [SerializeField] private TextMeshProUGUI exhaustionText;
     private Item itemInSlot;
 
     void Awake()
@@ -25,7 +28,34 @@ public class ItemDiscription : MonoBehaviour
         if (item != null)
         {
             itemInSlot = item;
-            discriptionText.text = "<color=#6900a6>" + itemInSlot.itemName + "</color >" + "\n" + "<color=#502803>"+ itemInSlot.type +"</color >" + "\n" + "<color=#902B2B>" + "Health: "  + "</color >" +itemInSlot.healAmount +"\n" + "<color=#846F2C>" + "Hunger: " + "</color >" +itemInSlot.hungerAmount +"\n" + "<color=#226993>" + "Exhaustion: " + "</color>" +itemInSlot.exhaustAmount;
+            discriptionText.text = "<color=#6900a6>" + itemInSlot.itemName + "</color >" + "\n" + "<color=#502803>"+ itemInSlot.type +"</color >";
+            
+            if (itemInSlot.healAmount >= 0)
+            {
+                healthText.text = "<color=#356614>" + itemInSlot.healAmount + "</color >";
+            }
+            else
+            {
+                healthText.text = "<color=#902B2B>" + itemInSlot.healAmount + "</color >";
+            }
+
+            if (itemInSlot.hungerAmount >= 0)
+            {
+                hungerText.text = "<color=#356614>" + itemInSlot.hungerAmount + "</color >";
+            }
+            else
+            {
+                hungerText.text = "<color=#902B2B>" + itemInSlot.hungerAmount + "</color >";
+            }
+            
+            if (itemInSlot.exhaustAmount >= 0)
+            {
+                exhaustionText.text = "<color=#356614>" + itemInSlot.exhaustAmount + "</color >";
+            }
+            else
+            {
+                exhaustionText.text = "<color=#902B2B>" + itemInSlot.exhaustAmount + "</color >";
+            }
         }
         else
         {

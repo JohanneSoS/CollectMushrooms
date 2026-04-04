@@ -19,7 +19,7 @@ MonoBehaviour:
   usable: 0
   hungerAmount: 15
   healAmount: 0
-  exhaustAmount: 0
+  exhaustAmount: 5
   stackable: 1
-  itemName: Pfifferling
+  itemName: Chanterelle
   sprite: {fileID: 21300000, guid: 331ee970575371e428ae919b3b110359, type: 3}

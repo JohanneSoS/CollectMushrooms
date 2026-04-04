@@ -18,8 +18,8 @@ MonoBehaviour:
   canEat: 1
   usable: 0
   hungerAmount: 15
-  healAmount: 0
-  exhaustAmount: 0
+  healAmount: 5
+  exhaustAmount: -5
   stackable: 1
-  itemName: "Hexenr\xF6hrling"
+  itemName: Scarletina Bolete
   sprite: {fileID: 21300000, guid: a3725e47a487041409febb51c7823f70, type: 3}

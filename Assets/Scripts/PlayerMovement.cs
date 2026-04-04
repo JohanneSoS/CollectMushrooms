@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         charRenderer = GetComponentInChildren<CharacterRenderer>();
         GlobalEventManager.ToggleUI.AddListener(ToggleUI);
         GlobalEventManager.OnRespawn.AddListener(Respawn);
+        GlobalEventManager.ChangeMovementSpeed.AddListener(ChangeMovementSpeed);
     }
     
     void FixedUpdate()
@@ -133,5 +134,21 @@ public class PlayerMovement : MonoBehaviour
     void Respawn()
     {
         transform.position = spawnPos;
+    }
+
+    void ChangeMovementSpeed(float movementSpeedMultiplier, float duration)
+    {
+        if (duration > 0)
+        {
+            StartCoroutine(BuffMovementSpeed(movementSpeedMultiplier, duration));
+        }
+    }
+
+    IEnumerator BuffMovementSpeed(float multiplier, float time)
+    {
+        float currentMovementSpeed = movementSpeed;
+        movementSpeed = movementSpeed * multiplier;
+        yield return new WaitForSeconds(time);
+        movementSpeed = currentMovementSpeed;
     }
 }

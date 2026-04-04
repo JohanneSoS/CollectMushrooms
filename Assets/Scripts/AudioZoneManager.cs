@@ -13,6 +13,7 @@ public class AudioZoneManager : MonoBehaviour
     private AudioZone river = AudioZone.Outside;
     private AudioZone racoon = AudioZone.Outside;
     private AudioZone beaver = AudioZone.Outside;
+    private AudioZone jay = AudioZone.Outside;
     private AudioZone boar = AudioZone.Outside;
     private AudioZone wolf = AudioZone.Outside;
 
@@ -41,21 +42,25 @@ public class AudioZoneManager : MonoBehaviour
 
         npcs.Add(ZoneOrigin.Racoon, AudioZone.Outside);
         npcs.Add(ZoneOrigin.Beaver, AudioZone.Outside);
+        npcs.Add(ZoneOrigin.Jay, AudioZone.Outside);
         npcs.Add(ZoneOrigin.Boar, AudioZone.Outside);
         npcs.Add(ZoneOrigin.Wolf, AudioZone.Outside);
         oldValues.Add(ZoneOrigin.River, 0);
         oldValues.Add(ZoneOrigin.Racoon, 0);
         oldValues.Add(ZoneOrigin.Beaver, 0);
+        oldValues.Add(ZoneOrigin.Jay, 0);
         oldValues.Add(ZoneOrigin.Boar, 0);
         oldValues.Add(ZoneOrigin.Wolf, 0);
         newValues.Add(ZoneOrigin.River, 0);
         newValues.Add(ZoneOrigin.Racoon, 0);
         newValues.Add(ZoneOrigin.Beaver, 0);
+        newValues.Add(ZoneOrigin.Jay, 0);
         newValues.Add(ZoneOrigin.Boar, 0);
         newValues.Add(ZoneOrigin.Wolf, 0);
         paramNames.Add(ZoneOrigin.River, "River");
         paramNames.Add(ZoneOrigin.Racoon, "Racoon");
         paramNames.Add(ZoneOrigin.Beaver, "Beaver");
+        paramNames.Add(ZoneOrigin.Jay, "Jay");
         paramNames.Add(ZoneOrigin.Boar, "Boar");
         paramNames.Add(ZoneOrigin.Wolf, "Wolf");
     }
@@ -64,6 +69,7 @@ public class AudioZoneManager : MonoBehaviour
     {
         racoon = npcs[ZoneOrigin.Racoon];
         beaver = npcs[ZoneOrigin.Beaver];
+        jay = npcs[ZoneOrigin.Jay];
         boar = npcs[ZoneOrigin.Boar];
         wolf = npcs[ZoneOrigin.Wolf];
     }
@@ -132,16 +138,16 @@ public class AudioZoneManager : MonoBehaviour
                 newValues[origin] = 0f;
                 break;
             case AudioZone.Furthest:
-                newValues[origin] = 0.5f;
-                break;
-            case AudioZone.Far:
                 newValues[origin] = 1f;
                 break;
-            case AudioZone.Mid:
+            case AudioZone.Far:
                 newValues[origin] = 1.5f;
                 break;
-            case AudioZone.Close:
+            case AudioZone.Mid:
                 newValues[origin] = 2f;
+                break;
+            case AudioZone.Close:
+                newValues[origin] = 2.5f;
                 break;
             case AudioZone.Closest:
                 newValues[origin] = 3f;
@@ -205,5 +211,6 @@ public enum ZoneOrigin
     Wolf,
     Racoon,
     Beaver,
+    Jay,
     Boar
 }

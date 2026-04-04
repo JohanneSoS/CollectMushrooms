@@ -17,9 +17,9 @@ MonoBehaviour:
   range: {x: 5, y: 4}
   canEat: 1
   usable: 0
-  hungerAmount: 15
+  hungerAmount: 10
   healAmount: 0
-  exhaustAmount: 0
+  exhaustAmount: 10
   stackable: 1
-  itemName: "Sandr\xF6hrling"
+  itemName: Velvet Bolete
   sprite: {fileID: 21300000, guid: fac4729d4f75be040a35cc3e0ddf06ed, type: 3}

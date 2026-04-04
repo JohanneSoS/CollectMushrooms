@@ -55,10 +55,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
                         break;
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.F))
-            {
-                
-            }
             else if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (hovering != "NPC")
@@ -84,7 +80,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                         }
                         
                     }
-                    else if (Input.GetKeyDown(KeyCode.F))
+                    else if (Input.GetKeyDown(KeyCode.R))
                     {
                         Sniff();
                     }
@@ -98,7 +94,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     {
                         GlobalEventManager.OnInteractWithNPC.Invoke();
                     }
-                    else if (Input.GetKeyDown(KeyCode.F))
+                    else if (Input.GetKeyDown(KeyCode.R))
                     {
                         Sniff();
                     }
@@ -112,7 +108,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     {
                         GlobalEventManager.OpenQuestUI.Invoke();
                     }
-                    else if (Input.GetKeyDown(KeyCode.F))
+                    else if (Input.GetKeyDown(KeyCode.R))
                     {
                         Sniff();
                     }
@@ -129,11 +125,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     break;
                 case "None":
                 {
-                    if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
+                    if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Return))
                     {
                         UseSelectedItem();
                     }
-                    else if (Input.GetKeyDown(KeyCode.F))
+                    else if (Input.GetKeyDown(KeyCode.R))
                     {
                         Sniff();
                     }
@@ -176,7 +172,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
             if (selectedItem.canEat && playerStats.currentHunger < playerStats.maxHunger && !isCollecting)
             { 
                 GlobalEventManager.HealHunger.Invoke(selectedItem.hungerAmount);
+                GlobalEventManager.ApplyHeal.Invoke(selectedItem.healAmount);
+                GlobalEventManager.ApplyExhaustion.Invoke((- selectedItem.exhaustAmount));
                 Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
+                if (selectedItem.type == Item.ItemType.SpecialItem)
+                {
+                    GlobalEventManager.ChangeMovementSpeed.Invoke(selectedItem.movementMultiplier, selectedItem.effectDuration);
+                }
             } 
         }
     }
