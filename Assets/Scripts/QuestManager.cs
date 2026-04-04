@@ -16,6 +16,8 @@ public class QuestManager : MonoBehaviour
     
     //[SerializeField] private Vector2[] npcPos;
     [SerializeField] public Quest[] quests;
+
+    public GameObject[] npcQuestPos;
     //private Dictionary<string, Vector3> npcPosDict = new Dictionary<string, Vector3>();
     private Dictionary<int, Quest> questDict = new Dictionary<int, Quest>();
     private Dictionary<NPC, GameObject> npcDict = new Dictionary<NPC, GameObject>();
@@ -151,7 +153,7 @@ public class QuestManager : MonoBehaviour
             {
                 questBoxes[i].SetActive(false); 
             }
-            boxDict[questCount].transform.position = quests[questCount].charPosObject.transform.position + new Vector3(-0.5f, -1f, 0);
+            boxDict[questCount].transform.position = npcQuestPos[(questCount)].transform.position + new Vector3(-0.5f, -0.7f, 0);
             boxDict[questCount].SetActive(true);
             uIManager.activeBox = boxDict[questCount].GetComponent<QuestRecipient>().boxID;
         }
@@ -164,12 +166,15 @@ public class QuestManager : MonoBehaviour
 
     void UpdateNPCLocations()
     {
-            npcDict[quests[questCount].npcType].transform.position = quests[questCount].charPosObject.transform.position;
-            foreach (GameObject npc in npcDict.Values)
-            {
-                npc.SetActive(false);
-            }
-            npcDict[quests[questCount].npcType].SetActive(true);
+        foreach (GameObject npc in npcDict.Values)
+        {
+            npc.SetActive(false);
+        }
+        npcDict[quests[questCount].npcType].SetActive(true);
+        Vector3 npcNewPos = npcQuestPos[(questCount)].transform.position;//quests[questCount].charPosObject.transform.position;
+        Debug.Log("Location of NPC to be set on: " + npcNewPos);
+        npcDict[quests[questCount].npcType].transform.position = npcNewPos;
+        Debug.Log("Location of NPC is now: " + npcDict[quests[questCount].npcType].transform.position);
     }
 }
 
