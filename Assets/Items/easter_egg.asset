@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d86a456b7310c424597e8a161af65c38, type: 3}
+  m_Name: easter_egg
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: b64521cf891d88940bdbcd1c20c8af8b, type: 2}
+  type: 3
+  range: {x: 5, y: 4}
+  canEat: 1
+  usable: 0
+  hungerAmount: -5
+  healAmount: 0
+  exhaustAmount: 5
+  movementMultiplier: 1.3
+  effectDuration: 8
+  stackable: 1
+  itemName: Special Egg
+  sprite: {fileID: 21300000, guid: e852955a311b4c04189f8ed5fe5a915c, type: 3}

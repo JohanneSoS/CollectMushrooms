@@ -17,6 +17,8 @@ public class Item : ScriptableObject
     public int hungerAmount;
     public int healAmount;
     public int exhaustAmount;
+    public float movementMultiplier;
+    public float effectDuration;
     
     [Header("Only UI")]
     public bool stackable = true;
@@ -31,6 +33,7 @@ public class Item : ScriptableObject
         Mushroom,
         QuestItem,
         Tool,
+        SpecialItem
     }
 
     /*public enum ActionType

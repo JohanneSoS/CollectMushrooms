@@ -54,6 +54,7 @@ public static class GlobalEventManager
     public static UnityEvent ResetExhaustion = new UnityEvent();
     public static StringEvent OnGameOver = new StringEvent();
     public static UnityEvent OnRespawn = new UnityEvent();
+    public static FloatFloatEvent ChangeMovementSpeed = new FloatFloatEvent();
     
     public static IntEvent UpdateHealthBar = new IntEvent();
     public static IntEvent UpdateHungerBar = new IntEvent();
@@ -78,6 +79,8 @@ public class AudioZoneEvent : UnityEvent<AudioZone, ZoneOrigin> {}
 public class BoolEvent : UnityEvent<bool> { }
 
 public class ItemEvent : UnityEvent<Item> { }
+
+public class FloatFloatEvent : UnityEvent<float, float> { }
 
 public class Collider2DEvent : UnityEvent<Collider2D> { }
 

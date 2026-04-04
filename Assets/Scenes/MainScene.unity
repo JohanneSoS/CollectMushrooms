@@ -1756,6 +1756,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1055775701}
   - {fileID: 520843077}
   - {fileID: 1961697994}
   - {fileID: 1514300961}
@@ -153381,6 +153382,62 @@ MonoBehaviour:
   maxXAxis: 54.1
   minYAxis: -23.4
   maxYAxis: -37.39
+  spawnOnDay: 1
+  spawnOnNight: 1
+  riverLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!1 &1055775700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1055775701}
+  - component: {fileID: 1055775702}
+  m_Layer: 0
+  m_Name: EasterEggs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1055775701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055775700}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 202782003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1055775702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055775700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17028a2a3ec3d448bd47a9dbce2967a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemPrefab: {fileID: 4999592109318140897, guid: 5a4d3d558b4db764f9fbf8a1ad8ba791, type: 3}
+  spawnAmount: 30
+  radius: 0
+  minXAxis: -84.1
+  maxXAxis: 67.9
+  minYAxis: -57.1
+  maxYAxis: 54.5
   spawnOnDay: 1
   spawnOnNight: 1
   riverLayer:
