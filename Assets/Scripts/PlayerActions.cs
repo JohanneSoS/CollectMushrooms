@@ -172,6 +172,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
             if (selectedItem.canEat && playerStats.currentHunger < playerStats.maxHunger && !isCollecting)
             { 
                 GlobalEventManager.HealHunger.Invoke(selectedItem.hungerAmount);
+                GlobalEventManager.ApplyHeal.Invoke(selectedItem.healAmount);
+                GlobalEventManager.ApplyExhaustion.Invoke((- selectedItem.exhaustAmount));
                 Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
             } 
         }
