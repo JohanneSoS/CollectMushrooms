@@ -2276,6 +2276,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 983013545864109856, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 983013545864109856, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
+      propertyPath: m_TagString
+      value: River
+      objectReference: {fileID: 0}
     - target: {fileID: 2129753513508056148, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 84463
