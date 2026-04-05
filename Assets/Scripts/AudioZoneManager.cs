@@ -62,7 +62,7 @@ public class AudioZoneManager : MonoBehaviour
         paramNames.Add(ZoneOrigin.Beaver, "Beaver");
         paramNames.Add(ZoneOrigin.Jay, "Jay");
         paramNames.Add(ZoneOrigin.Boar, "Boar");
-        paramNames.Add(ZoneOrigin.Wolf, "Wolf");
+        //paramNames.Add(ZoneOrigin.Wolf, "Wolves");
     }
 
     void UpdateValues()
@@ -71,7 +71,7 @@ public class AudioZoneManager : MonoBehaviour
         beaver = npcs[ZoneOrigin.Beaver];
         jay = npcs[ZoneOrigin.Jay];
         boar = npcs[ZoneOrigin.Boar];
-        wolf = npcs[ZoneOrigin.Wolf];
+        //wolf = npcs[ZoneOrigin.Wolf];
     }
 
     private IEnumerator WaitForLerpRiver(ZoneOrigin origin)
@@ -162,6 +162,11 @@ public class AudioZoneManager : MonoBehaviour
             river = zone;
             CheckRiverZone();
         }
+        else if (origin == ZoneOrigin.Wolf)
+        {
+            wolf = zone;
+            FmodEvents.instance._wolfMusicInstance.setParameterByName("Wolves", 1);
+        }
         else
         {
             npcs[origin] = zone;
@@ -177,6 +182,11 @@ public class AudioZoneManager : MonoBehaviour
         {
             river = (zone - 1);
             CheckRiverZone();
+        }
+        else if (origin == ZoneOrigin.Wolf)
+        {
+            wolf = AudioZone.Outside;
+            FmodEvents.instance._wolfMusicInstance.setParameterByName("Wolves", 0);
         }
         else
         {

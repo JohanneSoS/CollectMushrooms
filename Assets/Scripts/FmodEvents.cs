@@ -11,6 +11,7 @@ public class FmodEvents : MonoBehaviour
 
     [Header("Music Events")] 
     [SerializeField] private EventReference music;
+    [SerializeField] private EventReference wolfMusic;
     
     [Header("SFX Events")]
     [Header("UI")]
@@ -26,6 +27,7 @@ public class FmodEvents : MonoBehaviour
 
     public EventInstance _ambienceInstance;
     public EventInstance _musicInstance;
+    public EventInstance _wolfMusicInstance;
 
     public static FmodEvents instance;
 
@@ -72,6 +74,8 @@ public class FmodEvents : MonoBehaviour
         _musicInstance.start();
         _ambienceInstance = RuntimeManager.CreateInstance(ambience);
         _ambienceInstance.start();
+        _wolfMusicInstance = RuntimeManager.CreateInstance(wolfMusic);
+        _wolfMusicInstance.start();
         //_musicInstance.setParameterByName("", 1);
     }
 
@@ -79,9 +83,9 @@ public class FmodEvents : MonoBehaviour
     {
         if (currentHour != clockManager.hours)
         {
-            _ambienceInstance.setParameterByName("DayTime", clockManager.hours);
-            _musicInstance.setParameterByName("DayTime", clockManager.hours);
-            //_musicInstance.setParameterByName("Music", clockManager.hours);
+            //_ambienceInstance.setParameterByName("DayTime", clockManager.hours);
+            //_musicInstance.setParameterByName("DayTime", clockManager.hours);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("DayTime", clockManager.hours);
             currentHour = clockManager.hours;
         }
     }
