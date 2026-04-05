@@ -32,6 +32,7 @@ public class FmodEvents : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private ClockManager clockManager;
     [SerializeField] private PlayerStats playerStats;
+  
 
     private float currentHour;
     private void Awake()
