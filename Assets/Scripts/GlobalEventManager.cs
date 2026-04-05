@@ -17,6 +17,7 @@ public static class GlobalEventManager
     public static UnityEvent OnSniffing = new UnityEvent();
     public static UnityEvent OnSniffingEnd = new UnityEvent();
     public static UnityEvent OnPickItem = new UnityEvent();
+    public static UnityEvent OnEatItem = new UnityEvent();
     public static UnityEvent OnGiveItem = new UnityEvent();
     public static UnityEvent ActivateItem = new UnityEvent();
     public static UnityEvent PickUpMushroom = new UnityEvent();

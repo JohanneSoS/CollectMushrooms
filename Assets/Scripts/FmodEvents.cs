@@ -50,6 +50,7 @@ public class FmodEvents : MonoBehaviour
         GlobalEventManager.OnSniffing.AddListener(Sniff);
         GlobalEventManager.OnPickItem.AddListener(PickUpMushroom);
         GlobalEventManager.OnGiveItem.AddListener(DeliverMushroom);
+        GlobalEventManager.OnEatItem.AddListener(EatItem);
         GlobalEventManager.ApplyDamage.AddListener(UpdateHealth);
         GlobalEventManager.UpdateExhaustionBar.AddListener(UpdateExhaustion);
         GlobalEventManager.UpdateHungerBar.AddListener(UpdateHunger);
@@ -59,6 +60,7 @@ public class FmodEvents : MonoBehaviour
     {
         GlobalEventManager.OnSniffing.RemoveListener(Sniff);
         GlobalEventManager.OnPickItem.RemoveListener(PickUpMushroom);
+        GlobalEventManager.OnEatItem.RemoveListener(EatItem);
         GlobalEventManager.OnGiveItem.RemoveListener(DeliverMushroom);
         GlobalEventManager.ApplyDamage.RemoveListener(UpdateHealth);
     }
@@ -115,5 +117,10 @@ public class FmodEvents : MonoBehaviour
     void DeliverMushroom()
     {
         RuntimeManager.PlayOneShot(deliverMushroom, player.transform.position);
+    }
+
+    void EatItem()
+    {
+        RuntimeManager.PlayOneShot(eatMushroom, player.transform.position);
     }
 }

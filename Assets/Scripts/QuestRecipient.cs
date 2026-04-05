@@ -85,6 +85,7 @@ public class QuestRecipient : MonoBehaviour
             if (matchingRequestedUIItem != null)
             {
                 matchingRequestedUIItem.DeliverItem();
+                GlobalEventManager.OnGiveItem.Invoke();
                 UseSelectedItem();
                 currentItemsInBox.Add(selectedItem);
                 

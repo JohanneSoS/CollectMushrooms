@@ -120,7 +120,7 @@ public class InventoryManager : MonoBehaviour
                     itemInSlot.RefreshCount();
                 }
 
-                GlobalEventManager.OnGiveItem.Invoke();
+                //GlobalEventManager.OnGiveItem.Invoke();
             }
             return item;
         }

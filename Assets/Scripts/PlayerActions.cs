@@ -175,6 +175,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 GlobalEventManager.ApplyHeal.Invoke(selectedItem.healAmount);
                 GlobalEventManager.ApplyExhaustion.Invoke((- selectedItem.exhaustAmount));
                 Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
+                GlobalEventManager.OnEatItem.Invoke();
                 if (selectedItem.type == Item.ItemType.SpecialItem)
                 {
                     GlobalEventManager.ChangeMovementSpeed.Invoke(selectedItem.movementMultiplier, selectedItem.effectDuration);

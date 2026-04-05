@@ -1572,11 +1572,11 @@ MonoBehaviour:
     Path: event:/Oneshots/DeliverItem
   eatMushroom:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 638569015
+      Data2: 1222355924
+      Data3: -1331578953
+      Data4: 1366976800
+    Path: event:/Oneshots/EatItem
   openChestUI:
     Guid:
       Data1: 457648974
