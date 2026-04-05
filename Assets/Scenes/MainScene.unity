@@ -2504,6 +2504,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 652995130828982691, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 937549467621418158, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 983013545864109856, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -147619,6 +147627,10 @@ PrefabInstance:
     - target: {fileID: 2129753513508056148, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
       propertyPath: m_Tiles.Array.data[84462].second.m_TileObjectToInstantiateIndex
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173144821437731284, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2269261208010517500, guid: d070380bbb7121746b19cc6e140c2ef5, type: 3}
       propertyPath: m_Name
