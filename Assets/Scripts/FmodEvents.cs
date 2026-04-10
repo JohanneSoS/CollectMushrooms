@@ -12,6 +12,7 @@ public class FmodEvents : MonoBehaviour
     [Header("Music Events")] 
     [SerializeField] private EventReference music;
     [SerializeField] private EventReference wolfMusic;
+    [SerializeField] private EventReference baseMusic;
     
     [Header("SFX Events")]
     [Header("UI")]
@@ -34,6 +35,7 @@ public class FmodEvents : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private ClockManager clockManager;
     [SerializeField] private PlayerStats playerStats;
+    //[SerializeField] private PlayerMovement playerMovement;
   
 
     private float currentHour;

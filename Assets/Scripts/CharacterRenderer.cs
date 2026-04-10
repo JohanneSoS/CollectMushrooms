@@ -15,6 +15,8 @@ public class CharacterRenderer : MonoBehaviour
     public bool isFlipped;
     public bool isSwimming;
 
+    public Direction charDir;
+
     public float frameRate;
     private float idleTime;
 
@@ -73,10 +75,12 @@ public class CharacterRenderer : MonoBehaviour
             if (Math.Abs(direction.x) > 0)
             {
                 selectedSprites = runNESprites;
+                charDir = Direction.NE;
             }
             else
             {
                 selectedSprites = runNSprites;
+                charDir = Direction.N;
             }
         }
         else if (direction.y < 0)
@@ -84,10 +88,12 @@ public class CharacterRenderer : MonoBehaviour
             if (Math.Abs(direction.x) > 0)
             {
                 selectedSprites = runSESprites;
+                charDir = Direction.SE;
             }
             else
             {
                 selectedSprites = runSSprites;
+                charDir = Direction.S;
             }
         }
 
@@ -96,6 +102,7 @@ public class CharacterRenderer : MonoBehaviour
             if (Math.Abs(direction.x) > 0)
             {
                 selectedSprites = runESprites;
+                charDir = Direction.E;
             }
             // else idle
         }
@@ -151,4 +158,16 @@ public class CharacterRenderer : MonoBehaviour
     }*/
     
     
+}
+
+public enum Direction
+{
+    N,
+    NE,
+    E,
+    SE,
+    S,
+    SW,
+    W,
+    NW
 }
