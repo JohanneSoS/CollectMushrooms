@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
@@ -35,6 +36,13 @@ public class FmodEvents : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private ClockManager clockManager;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerMovement playerMovement;
+    private bool FacingState = false;
+    private bool LerpState = false;
+
+    public Vector2 currentNPCPos = Vector2.zero;
+
+    public Direction targetDir;
     //[SerializeField] private PlayerMovement playerMovement;
   
 
@@ -92,6 +100,184 @@ public class FmodEvents : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        Vector2 playerPos = playerMovement.gameObject.transform.position;
+        
+        int dx = currentNPCPos.x.CompareTo(playerPos.x);
+        int dy = currentNPCPos.y.CompareTo(playerPos.y);
+
+        switch (dx, dy)
+        {
+            case (0, 1):
+                targetDir = Direction.N;
+                break;
+            case (1, 1):
+                targetDir = Direction.NE;
+                break;
+            case (1, 0):
+                targetDir = Direction.E;
+                break;
+            case (1, -1):
+                targetDir = Direction.SE;
+                break;
+            case (0, -1):
+                targetDir = Direction.S;
+                break;
+            case (-1, -1):
+                targetDir = Direction.SW;
+                break;
+            case (-1, 0):
+                targetDir = Direction.W;
+                break;
+            case (-1, 1):
+                targetDir = Direction.NW;
+                break;
+        }
+
+        switch (targetDir)
+        {
+            case Direction.N:
+                if ((playerMovement.charDir == Direction.NW || playerMovement.charDir == Direction.NE ||
+                                     playerMovement.charDir == Direction.N))
+                {
+                    
+                    FacingState = true;
+                }
+                else
+                {
+                    
+                    FacingState = false;
+                }
+                break;
+            case Direction.NE:
+                if ((playerMovement.charDir == Direction.N || playerMovement.charDir == Direction.NE ||
+                                     playerMovement.charDir == Direction.E))
+                {
+                    
+                    FacingState = true;
+                }
+                else
+                {
+                    
+                    FacingState = false;
+                }
+                break;
+            case Direction.E:
+                if ((playerMovement.charDir == Direction.NE || playerMovement.charDir == Direction.SE ||
+                                     playerMovement.charDir == Direction.E))
+                {
+                    
+                    FacingState = true;
+                }
+                else
+                {
+                    
+                    FacingState = false;
+                }
+                break;
+            case Direction.SE:
+                if ((playerMovement.charDir == Direction.S || playerMovement.charDir == Direction.SE ||
+                                     playerMovement.charDir == Direction.E))
+                {
+                    
+                    FacingState = true;
+                }
+                else
+                {
+                    
+                    FacingState = false;
+                }
+                break;
+            case Direction.S:
+                if ((playerMovement.charDir == Direction.S || playerMovement.charDir == Direction.SE ||
+                                     playerMovement.charDir == Direction.SW))
+                {
+                    
+                    FacingState = true;
+                }
+                else
+                {
+                    
+                    FacingState = false;
+                }
+                break;
+            case Direction.SW:
+                if ((playerMovement.charDir == Direction.S || playerMovement.charDir == Direction.W ||
+                                     playerMovement.charDir == Direction.SW))
+                {
+                    
+                    FacingState = true;
+                }
+                else
+                {
+                    
+                    FacingState = false;
+                }
+                break;
+            case Direction.W:
+                if ((playerMovement.charDir == Direction.W || playerMovement.charDir == Direction.SW ||
+                                     playerMovement.charDir == Direction.NW))
+                {
+                    
+                    FacingState = true;
+                }
+                else
+                {
+                    
+                    FacingState = false;
+                }
+                break;
+            case Direction.NW:
+                if ((playerMovement.charDir == Direction.N || playerMovement.charDir == Direction.NW ||
+                    playerMovement.charDir == Direction.W))
+                {
+                    
+                    FacingState = true;
+                }
+                else
+                {
+                    
+                    FacingState = false;
+                }
+                break;
+        }
+
+        if (FacingState == true && LerpState == false)
+        {
+            StartCoroutine(FaceTowardsNPC());
+            LerpState = true;
+        }
+        else if (FacingState == false && LerpState == true)
+        {
+            StartCoroutine(FaceAwayFromNPC());
+            LerpState = false;
+        }
+    }
+    
+    private IEnumerator FaceTowardsNPC()
+    {
+        float time = 0;
+        
+        while (time < 1)
+        {
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("FaceTowardsNPC", (Mathf.Lerp(0, 1, time / 1)));
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+    private IEnumerator FaceAwayFromNPC()
+    {
+        float time = 0;
+        
+        while (time < 1)
+        {
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("FaceTowardsNPC", (Mathf.Lerp(1, 0, time / 1)));
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+
     void UpdateHealth(int amount)
     {
         float currentHealth = playerStats.currentHealth;
@@ -129,4 +315,6 @@ public class FmodEvents : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(eatMushroom, player.transform.position);
     }
+
+    
 }

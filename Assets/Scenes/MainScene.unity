@@ -1542,6 +1542,13 @@ MonoBehaviour:
       Data3: 1756187577
       Data4: 1384520139
     Path: event:/Music/WolfMusic
+  baseMusic:
+    Guid:
+      Data1: -934904733
+      Data2: 1214110072
+      Data3: -172752250
+      Data4: 201655927
+    Path: event:/Music/BaseMusic
   buttonClick:
     Guid:
       Data1: 0
@@ -1594,6 +1601,9 @@ MonoBehaviour:
   player: {fileID: 1586517286}
   clockManager: {fileID: 1094819545}
   playerStats: {fileID: 1586517292}
+  playerMovement: {fileID: 1586517289}
+  currentNPCPos: {x: 0, y: 0}
+  targetDir: 0
 --- !u!224 &173433828 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5263135611850030996, guid: 5e0a6393d2f79d24e81b11b179dd5da5, type: 3}
@@ -156606,6 +156616,7 @@ MonoBehaviour:
   rbody: {fileID: 1586517288}
   riverCol: {fileID: 0}
   movementSpeed: 2
+  charDir: 0
   swimmingSlowFactor: 1
   spawnPos: {x: 0, y: 0, z: 7.5}
   uiActive: 0

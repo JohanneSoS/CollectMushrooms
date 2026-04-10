@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Parameters")]
     [SerializeField] private float movementSpeed;
+
+    public Direction charDir;
     
     //[SerializeField] public float sniffDuration;
     //[SerializeField] private float sniffCooldown;
@@ -55,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
         List<Sprite> directionSprite = charRenderer.GetSpriteDirection(inputVector);
         charRenderer.UpdateSprite(directionSprite);
+        CheckDir(inputVector);
         Vector2 movement = inputVector * movementSpeed * swimmingSlowFactor;
         Vector2 newPos = currentPos + movement * Time.deltaTime;
         rbody.MovePosition(newPos);
@@ -151,4 +154,51 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(time);
         movementSpeed = currentMovementSpeed;
     }
+
+    void CheckDir(Vector2 input)
+    {
+        float deadzone = 0.1f;
+        int xInput = Mathf.Abs(input.x) < deadzone ? 0 : (int)Mathf.Sign(input.x);
+        int yInput = Mathf.Abs(input.y) < deadzone ? 0 : (int)Mathf.Sign(input.y);
+
+        switch (yInput, xInput)
+        {
+            case (1,0):
+                charDir = Direction.N;
+                break;
+            case (1, 1):
+                charDir = Direction.NE;
+                break;
+            case (0, 1):
+                charDir = Direction.E;
+                break;
+            case (-1,1):
+                charDir = Direction.SE;
+                break;
+            case (-1, 0):
+                charDir = Direction.S;
+                break;
+            case (-1, -1):
+                charDir = Direction.SW;
+                break;
+            case (0, -1):
+                charDir = Direction.W;
+                break;
+            case (1, -1):
+                charDir = Direction.NW;
+                break;
+        }
+    }
+}
+
+public enum Direction
+{
+    N,
+    NE,
+    E,
+    SE,
+    S,
+    SW,
+    W,
+    NW
 }
