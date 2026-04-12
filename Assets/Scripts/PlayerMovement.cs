@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using FMODUnity;
 using UnityEngine;
 //using Cache = UnityEngine.Cache;
 using UnityEngine.Rendering.Universal;
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float movementSpeed;
 
+    private float movementSpeedModifier = 1f;
+
     public Direction charDir;
     
     //[SerializeField] public float sniffDuration;
@@ -26,7 +29,10 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private float swimmingSlowFactor;
     [SerializeField] private Vector3 spawnPos;
-    
+
+    [SerializeField] private GameObject[] bases;
+
+    private GameObject currentClosestBase;
     //[SerializeField] private float lightIntensityEvening;
     //[SerializeField] private float lightIntensityNight;
 
@@ -46,8 +52,9 @@ public class PlayerMovement : MonoBehaviour
         GlobalEventManager.ToggleUI.AddListener(ToggleUI);
         GlobalEventManager.OnRespawn.AddListener(Respawn);
         GlobalEventManager.ChangeMovementSpeed.AddListener(ChangeMovementSpeed);
+        GlobalEventManager.OnMovement.AddListener(FindClosestBase);
     }
-    
+
     void FixedUpdate()
     {
         Vector2 currentPos = rbody.position;
@@ -58,15 +65,28 @@ public class PlayerMovement : MonoBehaviour
         List<Sprite> directionSprite = charRenderer.GetSpriteDirection(inputVector);
         charRenderer.UpdateSprite(directionSprite);
         CheckDir(inputVector);
-        Vector2 movement = inputVector * movementSpeed * swimmingSlowFactor;
+        Vector2 movement = inputVector * movementSpeed * swimmingSlowFactor * movementSpeedModifier;
         Vector2 newPos = currentPos + movement * Time.deltaTime;
         rbody.MovePosition(newPos);
-        
-        if (inputVector != Vector2.zero && !charRenderer.isRunning)
+
+        if (inputVector != Vector2.zero)
         {
-            charRenderer.isRunning = true;
-            GlobalEventManager.OnWalkingStart.Invoke();
-            charRenderer.CheckRunningState();
+            GlobalEventManager.OnMovement.Invoke();
+            if (!charRenderer.isRunning)
+            {
+                charRenderer.isRunning = true;
+                GlobalEventManager.OnWalkingStart.Invoke();
+                charRenderer.CheckRunningState();
+            }
+
+            if (inputVector.x < 0)
+            {
+                charRenderer.FlipSprite("right");
+            }
+            else if (inputVector.x > 0)
+            {
+                charRenderer.FlipSprite("left");
+            }
         }
 
         if (inputVector == Vector2.zero && charRenderer.isRunning)
@@ -75,35 +95,8 @@ public class PlayerMovement : MonoBehaviour
             GlobalEventManager.OnWalkingStop.Invoke();
             charRenderer.CheckRunningState();
         }
-
-        if (inputVector.x < 0)
-        {
-            charRenderer.FlipSprite("right");
-        }
-        else if (inputVector.x > 0)
-        {
-            charRenderer.FlipSprite("left");
-        }
-        /*if (!uiActive)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                var selectedItem = InventoryManager.instance.GetSelectedItem(false);
-                StartCoroutine(CheckIfCanEat(selectedItem));
-            }
-        }*/
     }
-    
-    /*IEnumerator CheckIfCanEat(Item selectedItem)
-    {
-        yield return new WaitForSeconds(0.2f);
-        if (selectedItem.canEat && currentHunger < maxHunger && !isCollecting)
-        {
-            EventManager.HealHunger.Invoke(selectedItem.hungerAmount);
-            Item recieveItem = InventoryManager.instance.GetSelectedItem(true);
-        }
-    }*/
-    
+
     private void EnableSwimming()
     {
         riverCol.isTrigger = true;
@@ -149,10 +142,13 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator BuffMovementSpeed(float multiplier, float time)
     {
-        float currentMovementSpeed = movementSpeed;
+        /*float currentMovementSpeed = movementSpeed;
         movementSpeed = movementSpeed * multiplier;
         yield return new WaitForSeconds(time);
-        movementSpeed = currentMovementSpeed;
+        movementSpeed = currentMovementSpeed;*/
+        movementSpeedModifier = multiplier;
+        yield return new WaitForSeconds(time);
+        movementSpeedModifier = 1f;
     }
 
     void CheckDir(Vector2 input)
@@ -189,7 +185,32 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
     }
+    
+    
+    void FindClosestBase()
+    {
+        GameObject closestBase = null;
+        float closestDist = float.MaxValue;
+        foreach (GameObject b in bases)
+        {
+            float dist = Vector3.Distance(b.transform.position, transform.position);
+            if (dist < closestDist)
+            {
+                closestBase = b;
+                closestDist = dist;
+            }
+        }
+
+        if (closestBase != currentClosestBase)
+        {
+            RuntimeManager.DetachInstanceFromGameObject(FmodEvents.instance._baseMusicInstance);
+            RuntimeManager.AttachInstanceToGameObject(FmodEvents.instance._baseMusicInstance, closestBase);
+        }
+        currentClosestBase = closestBase;
+        //return closestBase;
+    }
 }
+
 
 public enum Direction
 {

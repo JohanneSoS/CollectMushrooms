@@ -12,6 +12,7 @@ public static class GlobalEventManager
     public static UnityEvent ResumeGame = new UnityEvent();
     public static UnityEvent ConfirmUI = new UnityEvent();
     
+    public static UnityEvent OnMovement = new UnityEvent();
     public static UnityEvent OnWalkingStart = new UnityEvent();
     public static UnityEvent OnWalkingStop = new UnityEvent();
     public static UnityEvent OnSniffing = new UnityEvent();

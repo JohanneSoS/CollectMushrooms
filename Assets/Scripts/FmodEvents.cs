@@ -30,6 +30,7 @@ public class FmodEvents : MonoBehaviour
     public EventInstance _ambienceInstance;
     public EventInstance _musicInstance;
     public EventInstance _wolfMusicInstance;
+    public EventInstance _baseMusicInstance;
 
     public static FmodEvents instance;
 
@@ -66,6 +67,7 @@ public class FmodEvents : MonoBehaviour
         GlobalEventManager.ApplyDamage.AddListener(UpdateHealth);
         GlobalEventManager.UpdateExhaustionBar.AddListener(UpdateExhaustion);
         GlobalEventManager.UpdateHungerBar.AddListener(UpdateHunger);
+        GlobalEventManager.OnMovement.AddListener(CheckIfFacingNPC);
     }
 
     private void OnDisable()
@@ -86,6 +88,9 @@ public class FmodEvents : MonoBehaviour
         _ambienceInstance.start();
         _wolfMusicInstance = RuntimeManager.CreateInstance(wolfMusic);
         _wolfMusicInstance.start();
+        _baseMusicInstance = RuntimeManager.CreateInstance(baseMusic);
+        _baseMusicInstance.start();
+        RuntimeManager.StudioSystem.setParameterByName("Base", 1); //Check Name
         //_musicInstance.setParameterByName("", 1);
     }
 
@@ -100,8 +105,9 @@ public class FmodEvents : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    void CheckIfFacingNPC()
     {
+        //move this function to be triggered by movement
         Vector2 playerPos = playerMovement.gameObject.transform.position;
         
         int dx = currentNPCPos.x.CompareTo(playerPos.x);
