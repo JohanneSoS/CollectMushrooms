@@ -1544,11 +1544,11 @@ MonoBehaviour:
     Path: event:/Music/WolfMusic
   baseMusic:
     Guid:
-      Data1: -934904733
-      Data2: 1214110072
-      Data3: -172752250
-      Data4: 201655927
-    Path: event:/Music/BaseMusic
+      Data1: -2098709092
+      Data2: 1184454627
+      Data3: 717220230
+      Data4: -1556348670
+    Path: event:/Music/StatMusic
   buttonClick:
     Guid:
       Data1: 0
@@ -156619,6 +156619,7 @@ MonoBehaviour:
   charDir: 0
   swimmingSlowFactor: 1
   spawnPos: {x: 0, y: 0, z: 7.5}
+  bases: []
   uiActive: 0
 --- !u!61 &1586517290
 BoxCollider2D:

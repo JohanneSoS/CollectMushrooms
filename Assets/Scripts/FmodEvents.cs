@@ -65,6 +65,7 @@ public class FmodEvents : MonoBehaviour
         GlobalEventManager.OnGiveItem.AddListener(DeliverMushroom);
         GlobalEventManager.OnEatItem.AddListener(EatItem);
         GlobalEventManager.ApplyDamage.AddListener(UpdateHealth);
+        GlobalEventManager.ApplyHeal.AddListener(UpdateHealth);
         GlobalEventManager.UpdateExhaustionBar.AddListener(UpdateExhaustion);
         GlobalEventManager.UpdateHungerBar.AddListener(UpdateHunger);
         GlobalEventManager.OnMovement.AddListener(CheckIfFacingNPC);
@@ -90,7 +91,8 @@ public class FmodEvents : MonoBehaviour
         _wolfMusicInstance.start();
         _baseMusicInstance = RuntimeManager.CreateInstance(baseMusic);
         _baseMusicInstance.start();
-        RuntimeManager.StudioSystem.setParameterByName("Base", 1); //Check Name
+        RuntimeManager.StudioSystem.setParameterByName("Base", 1); 
+        //Check Name
         //_musicInstance.setParameterByName("", 1);
     }
 
@@ -287,19 +289,19 @@ public class FmodEvents : MonoBehaviour
     void UpdateHealth(int amount)
     {
         float currentHealth = playerStats.currentHealth;
-        _musicInstance.setParameterByName("Health", currentHealth);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Health", currentHealth);
     }
 
     void UpdateExhaustion(int amount)
     {
         float currentExhaustion = playerStats.currentExhaustion;
-        _musicInstance.setParameterByName("Exhaustion", currentExhaustion);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Exhaustion", currentExhaustion);
     }
 
     void UpdateHunger(int amount)
     {
         float currentHunger = playerStats.currentHunger;
-        _musicInstance.setParameterByName("Hunger", currentHunger);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Hunger", currentHunger);
     }
 
     void Sniff()
