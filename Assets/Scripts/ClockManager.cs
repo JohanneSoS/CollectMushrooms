@@ -24,6 +24,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private float nightStartHour;
     
     public GameObject PlayerLight;
+    public PlayerStats playerStats;
     [SerializeField] private float dayLightIntensity;
     [SerializeField] private float nightLightIntensity;
     [SerializeField] private float eveningLightIntensity;
@@ -31,6 +32,7 @@ public class ClockManager : MonoBehaviour
 
     [SerializeField] private int hungerPerHour;
     [SerializeField] private int exhaustionPerHour;
+    [SerializeField] private int damagePerHour;
 
     [SerializeField] private bool isNight;
     private bool isEvening;
@@ -69,6 +71,16 @@ public class ClockManager : MonoBehaviour
             hours += 1;
             GlobalEventManager.ApplyHunger.Invoke(hungerPerHour);
             GlobalEventManager.ApplyExhaustion.Invoke(exhaustionPerHour);
+            if (playerStats.currentHunger <= 0)
+            {
+                GlobalEventManager.ApplyDamage.Invoke(damagePerHour);
+                playerStats.currentHunger = 0;
+            }
+            if (playerStats.currentExhaustion <= 0)
+            {
+                GlobalEventManager.ApplyDamage.Invoke(damagePerHour);
+                playerStats.currentExhaustion = 0;
+            }
         }
 
         if (hours >= 24)

@@ -89,7 +89,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0c2db065ab377024bbdeab655812d4d2, type: 3}
   - {fileID: 21300000, guid: 3abcb301538f065438d2f093708e6426, type: 3}
   upgradeStage: 0
-  sleepHealAmount: 50
+  sleepHealAmount: 10
 --- !u!61 &3285550039259817936
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -18,15 +18,19 @@ public class PlayerStats : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            GlobalEventManager.OnGameOver.Invoke("health");
-        }
-        if (currentExhaustion <= 0)
-        {
-            GlobalEventManager.OnGameOver.Invoke("exhaustion");
-        }
-        if (currentHunger <= 0)
-        {
-            GlobalEventManager.OnGameOver.Invoke("hunger");
+            currentHealth = 0;
+            if (currentExhaustion <= 0)
+            {
+                GlobalEventManager.OnGameOver.Invoke("exhaustion");
+            }
+            else if (currentHunger <= 0)
+            {
+                GlobalEventManager.OnGameOver.Invoke("hunger");
+            }
+            else
+            {
+                GlobalEventManager.OnGameOver.Invoke("health");
+            }
         }
     }
     private void Awake()

@@ -84,7 +84,7 @@ public class FmodEvents : MonoBehaviour
     {
         currentHour = clockManager.hours;
         _musicInstance = RuntimeManager.CreateInstance(music);
-        _musicInstance.start();
+        //_musicInstance.start();
         _ambienceInstance = RuntimeManager.CreateInstance(ambience);
         _ambienceInstance.start();
         _wolfMusicInstance = RuntimeManager.CreateInstance(wolfMusic);

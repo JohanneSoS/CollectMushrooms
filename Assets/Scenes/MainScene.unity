@@ -154448,12 +154448,14 @@ MonoBehaviour:
   eveningStartHour: 18
   nightStartHour: 22
   PlayerLight: {fileID: 851826916}
+  playerStats: {fileID: 1586517292}
   dayLightIntensity: 0.8
   nightLightIntensity: -0.5
   eveningLightIntensity: 0.2
   dayTimeShiftDuration: 1
   hungerPerHour: 4
   exhaustionPerHour: 2
+  damagePerHour: 5
   isNight: 1
 --- !u!1 &1108994991
 GameObject:
