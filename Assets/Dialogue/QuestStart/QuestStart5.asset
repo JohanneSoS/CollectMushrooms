@@ -15,5 +15,5 @@ MonoBehaviour:
   charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
   lineTexts:
   - 'That bird was somewhere around here! '
-  - These birds are really hard to find sometimes. And they're always on the move.
-  - Let's split up looking for them!
+  - These birds can be really hard to find. They're always on the move, too.
+  - Let's split up and look for them!

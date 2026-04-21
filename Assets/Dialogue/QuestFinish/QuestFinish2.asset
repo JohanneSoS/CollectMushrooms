@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
   lineTexts:
-  - You really brought me some! That's neat!
-  - You really still look confused... You still wonder how you got here and what
-    you should do now, am I right?
-  - You really lost all of your recent memories? You know what? I will try to ask
-    around if somebody saw something, and maybe I will figure out where you cam from!
-  - Maybe you can ask around too, and even if you wanna go back, you need to get
-    used to forest life at least a little bit. But be careful not to run into wolves,
-    maybe the lake in the east is a good start to explore!
+  - You've really brought me some! That's great!
+  - You still look so confused. I bet you're still wondering how you got here and
+    what you should do now. Am I right?
+  - Have you really lost all your recent memories? You know what? I'll see if anyone
+    saw anything, and maybe I'll work out where you came from!
+  - You could ask around, too. Even if you want to return home, you'll need to get
+    used to forest life for at least a little while. But be careful not to run into
+    wolves! Maybe the lake to the east is a good place to start exploring!

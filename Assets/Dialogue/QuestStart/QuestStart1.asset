@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
   lineTexts:
-  - Woah, hey there! Were are you comming from!
-  - Aren't you like a domestic pigs those humans keep?
-  - You don't know how you came here? Are you sure you want to go back?
-  - I sure enjoy some of the junk food of those humans, but the fruits of the roots
-    in this forest are great too!
-  - Well, take a look around! You'll find me somewhere to the north of that lovely
-    stream!
+  - Woah! Hey there! Where are you coming from?
+  - Aren't you like a domestic pig, those humans keep?
+  - You don't know how you got here? Are you sure you want to go back?
+  - I enjoy some of the junk food that humans eat, but the fruits and roots in this
+    forest are great, too!
+  - Well, have a look around! You'll find me somewhere north of that lovely stream.

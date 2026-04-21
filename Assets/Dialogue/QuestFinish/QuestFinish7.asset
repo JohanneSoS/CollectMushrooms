@@ -14,10 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
   lineTexts:
-  - "Wah! Oh my, you really startled me! I\u2019ve never seen you here before!"
-  - I sure would have recognized a creature that pink.
-  - You're a pig? I only know those boars, they sometimes come through here but they
-    don't really like talking...
-  - "Whether I\u2019ve seen anything that explains how you got here? Nah, sorry I
-    was busy working on the trees all night!"
-  - Are those mushrooms? I never really tried those! Can you bring me some of those?
+  - This questline is over for now!
+  - Restart the Game.

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: c0929d5203a972646bd8aafa1fdcd9e5, type: 2}
   lineTexts:
-  - It really is you, the one they brought here!
+  - "You are the one they brought here \u2013 it really is you!"
   - Is what the raccoon said true? That you can't remember anything?
-  - I saw how you got here, I am watching over the forest which is currently quite
-    a challenge because I still have to collect and stock a lot of supplies for the
-    winter!
-  - Would  you mind bringing me some specific mushrooms? The Racoon that you are
-    an expert in finding those?
+  - I've seen the path you took to get here. I'm keeping an eye on the forest, which
+    is a bit of a challenge right now because I've still got to gather and stock
+    up on loads of supplies for the winter!
+  - Would you mind collecting some specific mushrooms for me? The raccoon said that
+    you're an expert at finding them.
