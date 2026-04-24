@@ -84,14 +84,16 @@ public class FmodEvents : MonoBehaviour
     {
         currentHour = clockManager.hours;
         _musicInstance = RuntimeManager.CreateInstance(music);
-        //_musicInstance.start();
+        _musicInstance.start();
         _ambienceInstance = RuntimeManager.CreateInstance(ambience);
         _ambienceInstance.start();
         _wolfMusicInstance = RuntimeManager.CreateInstance(wolfMusic);
         _wolfMusicInstance.start();
         _baseMusicInstance = RuntimeManager.CreateInstance(baseMusic);
         _baseMusicInstance.start();
-        RuntimeManager.StudioSystem.setParameterByName("Base", 1); 
+        RuntimeManager.StudioSystem.setParameterByName("Base", 1);
+        RuntimeManager.StudioSystem.setParameterByName("State", 0);
+        _baseMusicInstance.setParameterByName("Sections", 0);
         //Check Name
         //_musicInstance.setParameterByName("", 1);
     }
@@ -251,19 +253,19 @@ public class FmodEvents : MonoBehaviour
                 break;
         }
 
-        if (FacingState == true && LerpState == false)
+        if (FacingState == true && LerpState == false) //put facing logic in audiozones to be able to enable the music when in close zone
         {
-            StartCoroutine(FaceTowardsNPC());
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("FaceTowardsNPC", 1);
             LerpState = true;
         }
         else if (FacingState == false && LerpState == true)
         {
-            StartCoroutine(FaceAwayFromNPC());
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("FaceTowardsNPC", 0);
             LerpState = false;
         }
     }
     
-    private IEnumerator FaceTowardsNPC()
+    /*private IEnumerator FaceTowardsNPC()
     {
         float time = 0;
         
@@ -284,7 +286,7 @@ public class FmodEvents : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-    }
+    }*/
 
     void UpdateHealth(int amount)
     {

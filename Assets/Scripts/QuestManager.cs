@@ -89,6 +89,14 @@ public class QuestManager : MonoBehaviour
     {
         questStep = 1;
         UpdateNPCLocations();
+        if (questID == 4)
+        {
+            FmodEvents.instance._baseMusicInstance.setParameterByName("Sections", 1);
+        }
+        /*else if (questID == 6) //music for after the reveal not yet implemented, also considering putting another quest inbetween
+        {
+            FmodEvents.instance._baseMusicInstance.setParameterByName("Sections", 2);
+        }*/
     }
 
     void AdvanceQuest(int questID)

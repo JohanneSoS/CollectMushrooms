@@ -17,17 +17,6 @@ public class AudioZoneManager : MonoBehaviour
     private AudioZone boar = AudioZone.Outside;
     private AudioZone wolf = AudioZone.Outside;
 
-    /*private float oldRiverValue = 0f;
-    private float newRiverValue = 0f;
-
-    private float oldRacoonValue = 0f;
-    private float newRacoonValue = 0f;
-    private float oldBeaverValue = 0f;
-    private float newBeaverValue = 0f;
-    private float oldBoarValue = 0f;
-    private float newBoarValue = 0f;
-    private float oldWolfValue = 0f;*/
-
     Dictionary<ZoneOrigin, AudioZone> npcs = new Dictionary<ZoneOrigin, AudioZone>();
     Dictionary<ZoneOrigin, float> oldValues = new Dictionary<ZoneOrigin, float>();
     Dictionary<ZoneOrigin, float> newValues = new Dictionary<ZoneOrigin, float>();
@@ -73,36 +62,6 @@ public class AudioZoneManager : MonoBehaviour
         boar = npcs[ZoneOrigin.Boar];
         //wolf = npcs[ZoneOrigin.Wolf];
     }
-
-    private IEnumerator WaitForLerpRiver(ZoneOrigin origin)
-    {
-        float time = 0;
-        
-        while (time < 1)
-        {
-            FmodEvents.instance._musicInstance.setParameterByName(paramNames[origin], (Mathf.Lerp(oldValues[origin], newValues[origin], time / 1)));
-            //oldValue = Mathf.Lerp(oldValue, newValue, time / 1);
-            time += Time.deltaTime;
-            yield return null;
-        }
-
-        oldValues[origin] = newValues[origin];
-    }
-
-    private IEnumerator WaitForLerpNPC(ZoneOrigin origin)
-    {
-        float time = 0;
-        
-        while (time < 1)
-        {
-            FmodEvents.instance._musicInstance.setParameterByName(paramNames[origin], (Mathf.Lerp(oldValues[origin], newValues[origin], time / 1)));
-            //oldValue = Mathf.Lerp(oldValue, newValue, time / 1);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        oldValues[origin] = newValues[origin];
-    }
-
     void CheckRiverZone()
     {
         //ToDo: Create New Better Zones
@@ -111,23 +70,17 @@ public class AudioZoneManager : MonoBehaviour
             case AudioZone.Outside:
                 newValues[ZoneOrigin.River] = 0f;
                 break;
-            case AudioZone.Furthest:
-                newValues[ZoneOrigin.River] = 0.2f;
-                break;
             case AudioZone.Far:
-                newValues[ZoneOrigin.River] = 0.4f;
+                newValues[ZoneOrigin.River] = 0.33f;
                 break;
-            case AudioZone.Mid:
-                newValues[ZoneOrigin.River] = 0.6f;
+            case AudioZone.Near:
+                newValues[ZoneOrigin.River] = 0.66f;
                 break;
             case AudioZone.Close:
-                newValues[ZoneOrigin.River] = 0.8f;
-                break;
-            case AudioZone.Closest:
-                newValues[ZoneOrigin.River] = 1;
+                newValues[ZoneOrigin.River] = 1f;
                 break;
         }
-        StartCoroutine(WaitForLerpRiver(ZoneOrigin.River));
+        FmodEvents.instance._ambienceInstance.setParameterByName(paramNames[ZoneOrigin.River], newValues[ZoneOrigin.River]);
     }
 
     void CheckNPCZone(ZoneOrigin origin)
@@ -137,23 +90,19 @@ public class AudioZoneManager : MonoBehaviour
             case AudioZone.Outside:
                 newValues[origin] = 0f;
                 break;
-            case AudioZone.Furthest:
-                newValues[origin] = 1f;
-                break;
             case AudioZone.Far:
-                newValues[origin] = 1.5f;
+                newValues[origin] = 1f;
+                RuntimeManager.StudioSystem.setParameterByName("State", 0);
                 break;
-            case AudioZone.Mid:
+            case AudioZone.Near:
                 newValues[origin] = 2f;
+                RuntimeManager.StudioSystem.setParameterByName("State", 2);
                 break;
             case AudioZone.Close:
-                newValues[origin] = 2.5f;
-                break;
-            case AudioZone.Closest:
                 newValues[origin] = 3f;
                 break;
         }
-        StartCoroutine(WaitForLerpNPC(origin));
+        FmodEvents.instance._musicInstance.setParameterByName(paramNames[origin], newValues[origin]);
     }
     void OnEnterZone(AudioZone zone, ZoneOrigin origin)
     {
@@ -208,11 +157,9 @@ public class AudioZoneManager : MonoBehaviour
 public enum AudioZone 
 {
     Outside,
-    Furthest,
     Far,
-    Mid,
-    Close,
-    Closest
+    Near,
+    Close
 }
 
 public enum ZoneOrigin
