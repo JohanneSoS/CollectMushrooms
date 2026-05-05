@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
-  m_Name: QuestFinish7
+  m_Name: QuestFinish8
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
   lineTexts:
-  - Thank you for helping me with the nuts! Now I am back on scedule!
-  - 'If you really wanna go back to the humans, you should go south. '
-  - I don't know where exacly but you will figure it out or ask around!
+  - Blah! No, that's not it! Definitly not it!
+  - 'But I am not yet giving up! There must be some mushroom I can enjoy! '
+  - I'll let you know if I see the raccoon.

@@ -7,13 +7,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
-  m_Name: QuestFinish7
+  m_Script: {fileID: 11500000, guid: 0c9f63e4fd6868341a3d25904f2a9ed4, type: 3}
+  m_Name: Quest9
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
-  lineTexts:
-  - Thank you for helping me with the nuts! Now I am back on scedule!
-  - 'If you really wanna go back to the humans, you should go south. '
-  - I don't know where exacly but you will figure it out or ask around!
+  npcType: 1
+  startDialogue: {fileID: 11400000, guid: 6dbddfb954a3b9342a615edc9c49ad5f, type: 2}
+  endDialogue: {fileID: 11400000, guid: df7a6ab7c5f419b48b651c1a06db8c87, type: 2}
+  questType: 1

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
   m_Name: QuestFinish6
   m_EditorClassIdentifier: 
-  charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
+  charType: {fileID: 11400000, guid: c0929d5203a972646bd8aafa1fdcd9e5, type: 2}
   lineTexts:
-  - 'Great, now I''m back on schedule! So, about my report:'
+  - 'Great, that''s helping my scedule. So, about my report:'
   - 'A few people led you here, gave you something to sniff, and then ran after you. '
   - It looked like they wanted you to find something for them.
   - "But it didn\u2019t look like it worked out. The people were talking loudly,

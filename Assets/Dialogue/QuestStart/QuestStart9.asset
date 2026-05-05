@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3723c7e82d506c041adf649b5e394026, type: 3}
-  m_Name: QuestFinish7
+  m_Name: QuestStart9
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
   lineTexts:
-  - Thank you for helping me with the nuts! Now I am back on scedule!
-  - 'If you really wanna go back to the humans, you should go south. '
-  - I don't know where exacly but you will figure it out or ask around!
+  - Hey, it's still bumming me out that none of those mushrooms taste good to me.
+  - Do you have any last idea what I might like?
+  - Maybe anything that tastes like wood?
+  - For example, the woods to the south of here taste delightful. Maybe the mushrooms
+    there taste the same?

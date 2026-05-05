@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charType: {fileID: 11400000, guid: 2718c5863d8c65a4aa712d078446307f, type: 2}
   lineTexts:
-  - 'That bird was somewhere around here! '
+  - I thought that bird was somewhere here in this direction...
+  - 'Anyway, can you see the mud pit over there? The boars love to bathe in it! '
+  - 'Didn''t I tell you about them? They''re pigs like you, but they''re wild and
+    live in the forest! '
+  - You should meet them someday, even though they mind their business most of the
+    time...
+  - '...what were we doing? Right! Searching for the bird! '
   - These birds can be really hard to find. They're always on the move, too.
-  - Let's split up and look for them!
+  - Let's split up and find them!

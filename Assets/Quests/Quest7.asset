@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9f63e4fd6868341a3d25904f2a9ed4, type: 3}
   m_Name: Quest7
   m_EditorClassIdentifier: 
-  charType: {fileID: 11400000, guid: 47d71981a39ce93409e921c2aa3b200e, type: 2}
-  npcType: 1
+  charType: {fileID: 11400000, guid: c0929d5203a972646bd8aafa1fdcd9e5, type: 2}
+  npcType: 2
   startDialogue: {fileID: 11400000, guid: 79869862102dcfe4e85defa31343980d, type: 2}
   endDialogue: {fileID: 11400000, guid: 45d77ead9e1ab554f88d4097acd02a6c, type: 2}
-  charPos: {x: -36.38, y: 40.89, z: -0.24509776}
-  charPosObject: {fileID: 989853412532575585, guid: 68fcdc7211321bc44b924bad0e2eb8d6, type: 3}
-  questType: 0
+  questType: 1

@@ -32,7 +32,7 @@ public class Loot : MonoBehaviour
     }
     void UpdateAge()
     {
-        if (age >= 2){
+        if (item.type == Item.ItemType.Mushroom && age >= 2){
             Destroy(gameObject);
         }
         age += 1;
