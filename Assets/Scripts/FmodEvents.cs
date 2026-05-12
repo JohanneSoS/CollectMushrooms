@@ -11,7 +11,7 @@ public class FmodEvents : MonoBehaviour
 {
 
     [Header("Music Events")] 
-    [SerializeField] private EventReference music;
+    [SerializeField] private EventReference npcMusic;
     [SerializeField] private EventReference wolfMusic;
     [SerializeField] private EventReference baseMusic;
     
@@ -28,7 +28,7 @@ public class FmodEvents : MonoBehaviour
     [SerializeField] private EventReference openChestUI;
 
     public EventInstance _ambienceInstance;
-    public EventInstance _musicInstance;
+    public EventInstance _npcMusicInstance;
     public EventInstance _wolfMusicInstance;
     public EventInstance _baseMusicInstance;
 
@@ -83,8 +83,8 @@ public class FmodEvents : MonoBehaviour
     void Start()
     {
         currentHour = clockManager.hours;
-        _musicInstance = RuntimeManager.CreateInstance(music);
-        _musicInstance.start();
+        _npcMusicInstance = RuntimeManager.CreateInstance(npcMusic);
+        _npcMusicInstance.start();
         _ambienceInstance = RuntimeManager.CreateInstance(ambience);
         _ambienceInstance.start();
         _wolfMusicInstance = RuntimeManager.CreateInstance(wolfMusic);

@@ -1528,13 +1528,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f590db00f675b54da148d1e8f32e9e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music:
+  npcMusic:
     Guid:
-      Data1: 992365661
-      Data2: 1077326898
-      Data3: -1241544025
-      Data4: -15224842
-    Path: event:/Music/MainMusic
+      Data1: 285456624
+      Data2: 1182842908
+      Data3: -1663074669
+      Data4: -857717187
+    Path: event:/Music/NPCMusic
   wolfMusic:
     Guid:
       Data1: -659160500
@@ -157709,6 +157709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCol: 
+  currentNpcID: 0
 --- !u!1 &1731434812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9056839858740838445, guid: 7d0613f6c8510c44ab4d7bc235bac3e8, type: 3}

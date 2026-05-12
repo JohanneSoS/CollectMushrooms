@@ -184,8 +184,8 @@ public class QuestManager : MonoBehaviour
         Debug.Log("Location of NPC to be set on: " + npcNewPos);
         npcDict[quests[questCount].npcType].transform.position = npcNewPos;
         Debug.Log("Location of NPC is now: " + npcDict[quests[questCount].npcType].transform.position);
-        RuntimeManager.DetachInstanceFromGameObject(FmodEvents.instance._musicInstance);
-        RuntimeManager.AttachInstanceToGameObject(FmodEvents.instance._musicInstance, npcDict[quests[questCount].npcType]);
+        RuntimeManager.DetachInstanceFromGameObject(FmodEvents.instance._npcMusicInstance);
+        RuntimeManager.AttachInstanceToGameObject(FmodEvents.instance._npcMusicInstance, npcDict[quests[questCount].npcType]);
         FmodEvents.instance.currentNPCPos = npcNewPos;
     }
 }

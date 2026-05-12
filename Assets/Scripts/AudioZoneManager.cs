@@ -17,6 +17,8 @@ public class AudioZoneManager : MonoBehaviour
     private AudioZone boar = AudioZone.Outside;
     private AudioZone wolf = AudioZone.Outside;
 
+    public int currentNpcID = 0;
+
     Dictionary<ZoneOrigin, AudioZone> npcs = new Dictionary<ZoneOrigin, AudioZone>();
     Dictionary<ZoneOrigin, float> oldValues = new Dictionary<ZoneOrigin, float>();
     Dictionary<ZoneOrigin, float> newValues = new Dictionary<ZoneOrigin, float>();
@@ -27,6 +29,7 @@ public class AudioZoneManager : MonoBehaviour
     {
         GlobalEventManager.EnterAudioZone.AddListener(OnEnterZone);
         GlobalEventManager.ExitAudioZone.AddListener(OnExitZone);
+        GlobalEventManager.OnStartQuest.AddListener(StartQuest);
         //GlobalEventManager.OnCompleteQuest.AddListener(OnCompleteQuest); //hier fehler
 
         npcs.Add(ZoneOrigin.Racoon, AudioZone.Outside);
@@ -91,18 +94,18 @@ public class AudioZoneManager : MonoBehaviour
                 newValues[origin] = 0f;
                 break;
             case AudioZone.Far:
-                newValues[origin] = 1f;
+                newValues[origin] = 0f;
                 RuntimeManager.StudioSystem.setParameterByName("State", 0);
                 break;
             case AudioZone.Near:
-                newValues[origin] = 2f;
+                newValues[origin] = 1f;
                 RuntimeManager.StudioSystem.setParameterByName("State", 2);
                 break;
             case AudioZone.Close:
-                newValues[origin] = 3f;
+                newValues[origin] = 2f;
                 break;
         }
-        FmodEvents.instance._musicInstance.setParameterByName(paramNames[origin], newValues[origin]);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("RangeToNPC", newValues[origin]);
     }
     void OnEnterZone(AudioZone zone, ZoneOrigin origin)
     {
@@ -111,18 +114,17 @@ public class AudioZoneManager : MonoBehaviour
             river = zone;
             CheckRiverZone();
         }
-        else if (origin == ZoneOrigin.Wolf)
+        /*else if (origin == ZoneOrigin.Wolf)
         {
             wolf = zone;
             FmodEvents.instance._wolfMusicInstance.setParameterByName("Wolves", 1);
-        }
+        }*/
         else
         {
             npcs[origin] = zone;
             CheckNPCZone(origin);
         }
         UpdateValues();
-
     }
 
     void OnExitZone(AudioZone zone, ZoneOrigin origin)
@@ -132,11 +134,11 @@ public class AudioZoneManager : MonoBehaviour
             river = (zone - 1);
             CheckRiverZone();
         }
-        else if (origin == ZoneOrigin.Wolf)
+        /*else if (origin == ZoneOrigin.Wolf)
         {
             wolf = AudioZone.Outside;
             FmodEvents.instance._wolfMusicInstance.setParameterByName("Wolves", 0);
-        }
+        }*/
         else
         {
             npcs[origin] = (zone - 1);
@@ -151,6 +153,26 @@ public class AudioZoneManager : MonoBehaviour
         {
             npcs[zone.Key] = AudioZone.Outside;
         }
+    }
+
+    void StartQuest(int questID)
+    {
+        switch (QuestManager.instance.quests[questID].npcType)
+        {
+            case NPC.Racoon:
+                currentNpcID = 1;
+                break;
+            case NPC.Beaver:
+                currentNpcID = 2;
+                break;
+            case NPC.Jay:
+                currentNpcID = 3;
+                break;
+            case NPC.Boar:
+                currentNpcID = 4;
+                break;
+        }
+        FmodEvents.instance._npcMusicInstance.setParameterByName("NPC", currentNpcID);
     }
 }
 
