@@ -137,6 +137,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     {
                         GlobalEventManager.PauseGame.Invoke();
                     }
+                    else if (Input.GetKeyDown(KeyCode.P))
+                    {
+                        SkipQuest();
+                    }
                     break;
                 }
             }
@@ -230,5 +234,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         currentBox++;
     }
-    
+
+    void SkipQuest()
+    {
+        Debug.Log("Skip Quest" + QuestManager.instance.questCount);
+        QuestManager.instance.CompleteQuest(QuestManager.instance.questCount);
+        Debug.Log("New Quest:" + QuestManager.instance.questCount);
+    }
 }

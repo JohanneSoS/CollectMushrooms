@@ -139,7 +139,7 @@ public class QuestManager : MonoBehaviour
     {
         AdvanceQuest(questCount);
     }
-    void CompleteQuest(int questID)
+    public void CompleteQuest(int questID)
     {
         questStep = 0;
         questCount++;
