@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public static class GlobalEventManager
 {
     public static BoolEvent ToggleUI = new BoolEvent();
+    public static BoolEvent GamePaused = new BoolEvent();
     public static UnityEvent OpenSleepUI = new UnityEvent();
     public static UnityEvent OpenQuestUI = new UnityEvent();
     public static UnityEvent CloseQuestUI = new UnityEvent();

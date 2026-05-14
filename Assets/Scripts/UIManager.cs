@@ -64,6 +64,7 @@ public class UIManager : MonoBehaviour
         currentMenu = "sleep";
         uiActive = true;
         GlobalEventManager.ToggleUI.Invoke(true);
+        GlobalEventManager.GamePaused.Invoke(true);
     }
 
     void ActivatePauseMenu()
@@ -72,6 +73,7 @@ public class UIManager : MonoBehaviour
         currentMenu = "pause";
         uiActive = true;
         GlobalEventManager.ToggleUI.Invoke(true);
+        GlobalEventManager.GamePaused.Invoke(true);
     }
 
     void ActivateGameOverMenu()
@@ -94,6 +96,7 @@ public class UIManager : MonoBehaviour
         uiActive = false;
         currentMenu = "none";
         GlobalEventManager.ToggleUI.Invoke(false);
+        GlobalEventManager.GamePaused.Invoke(false);
     }
 
     public void SkipToDay()

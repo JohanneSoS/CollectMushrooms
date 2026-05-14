@@ -52,7 +52,6 @@ public class InventoryManager : MonoBehaviour
         if ((Input.GetAxis("Mouse ScrollWheel")* 10) != 0)
         {
             float mouseWheelInput = Input.GetAxis("Mouse ScrollWheel") * 10;
-            Debug.Log(mouseWheelInput);
             if (mouseWheelInput > 0)
             {
                 mouseWheelDirection = -1;

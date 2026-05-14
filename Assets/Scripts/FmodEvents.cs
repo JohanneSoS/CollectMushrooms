@@ -40,6 +40,7 @@ public class FmodEvents : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     private bool FacingState = false;
     private bool LerpState = false;
+    private float currentState;
 
     public Vector2 currentNPCPos = Vector2.zero;
 
@@ -69,6 +70,7 @@ public class FmodEvents : MonoBehaviour
         GlobalEventManager.UpdateExhaustionBar.AddListener(UpdateExhaustion);
         GlobalEventManager.UpdateHungerBar.AddListener(UpdateHunger);
         GlobalEventManager.OnMovement.AddListener(CheckIfFacingNPC);
+        GlobalEventManager.GamePaused.AddListener(OnGamePaused);
     }
 
     private void OnDisable()
@@ -326,5 +328,19 @@ public class FmodEvents : MonoBehaviour
         RuntimeManager.PlayOneShot(eatMushroom, player.transform.position);
     }
 
+    void OnGamePaused(bool uiState)
+    {
+        if (uiState)
+        {
+            RuntimeManager.StudioSystem.getParameterByName("State", out float currentStateF);
+            currentState = currentStateF;
+            RuntimeManager.StudioSystem.setParameterByName("State", 1);
+        }
+        else
+        {
+            Debug.Log(currentState);
+            RuntimeManager.StudioSystem.setParameterByName("State", currentState);
+        }
+    }
     
 }
