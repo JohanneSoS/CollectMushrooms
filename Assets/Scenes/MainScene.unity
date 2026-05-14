@@ -154332,7 +154332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9156327837412231796, guid: 6a8854db79c47fd4c957b991a0a9c235, type: 3}
       propertyPath: questID
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 9156327837412231796, guid: 6a8854db79c47fd4c957b991a0a9c235, type: 3}
       propertyPath: uiManager
