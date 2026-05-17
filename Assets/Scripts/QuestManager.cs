@@ -89,14 +89,18 @@ public class QuestManager : MonoBehaviour
     {
         questStep = 1;
         UpdateNPCLocations();
-        if (questID == 4)
+        switch (questID)
         {
-            FmodEvents.instance._baseMusicInstance.setParameterByName("Sections", 1);
+            case 6: 
+                FmodEvents.instance._baseMusicInstance.setParameterByName("Sections", 1);
+                break;
+            case 10:
+                FmodEvents.instance._baseMusicInstance.setParameterByName("Sections", 2);
+                break;
+            case 14:
+                FmodEvents.instance._baseMusicInstance.setParameterByName("Sections", 3);
+                break;
         }
-        /*else if (questID == 6) //music for after the reveal not yet implemented, also considering putting another quest inbetween
-        {
-            FmodEvents.instance._baseMusicInstance.setParameterByName("Sections", 2);
-        }*/
     }
 
     void AdvanceQuest(int questID)
@@ -175,18 +179,25 @@ public class QuestManager : MonoBehaviour
 
     void UpdateNPCLocations()
     {
-        foreach (GameObject npc in npcDict.Values)
+        if (questCount < questDict.Count)
         {
-            npc.SetActive(false);
+            foreach (GameObject npc in npcDict.Values)
+            {
+                npc.SetActive(false);
+            }
+            npcDict[quests[questCount].npcType].SetActive(true);
+            Vector3 npcNewPos = npcQuestPos[(questCount)].transform.position;//quests[questCount].charPosObject.transform.position;
+            Debug.Log("Location of NPC to be set on: " + npcNewPos);
+            npcDict[quests[questCount].npcType].transform.position = npcNewPos;
+            Debug.Log("Location of NPC is now: " + npcDict[quests[questCount].npcType].transform.position);
+            RuntimeManager.DetachInstanceFromGameObject(FmodEvents.instance._npcMusicInstance);
+            RuntimeManager.AttachInstanceToGameObject(FmodEvents.instance._npcMusicInstance, npcDict[quests[questCount].npcType]);
+            FmodEvents.instance.currentNPCPos = npcNewPos;
         }
-        npcDict[quests[questCount].npcType].SetActive(true);
-        Vector3 npcNewPos = npcQuestPos[(questCount)].transform.position;//quests[questCount].charPosObject.transform.position;
-        Debug.Log("Location of NPC to be set on: " + npcNewPos);
-        npcDict[quests[questCount].npcType].transform.position = npcNewPos;
-        Debug.Log("Location of NPC is now: " + npcDict[quests[questCount].npcType].transform.position);
-        RuntimeManager.DetachInstanceFromGameObject(FmodEvents.instance._npcMusicInstance);
-        RuntimeManager.AttachInstanceToGameObject(FmodEvents.instance._npcMusicInstance, npcDict[quests[questCount].npcType]);
-        FmodEvents.instance.currentNPCPos = npcNewPos;
+        else
+        {
+            Debug.Log("Last available Quest reached");
+        }
     }
 }
 
