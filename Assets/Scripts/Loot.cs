@@ -23,13 +23,11 @@ public class Loot : MonoBehaviour
     private void StartDay()
     {
         UpdateAge();
-        print("Mushroom realises Day started");
     }
 
     private void StartNight()
     {
         UpdateAge();
-        print("Mushroom realises Night started");
     }
     void UpdateAge()
     {

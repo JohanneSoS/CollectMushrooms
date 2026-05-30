@@ -310,7 +310,6 @@ public class FmodEvents : MonoBehaviour
         }
         else
         {
-            Debug.Log(currentState);
             RuntimeManager.StudioSystem.setParameterByName("State", currentState);
         }
     }

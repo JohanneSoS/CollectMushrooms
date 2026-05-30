@@ -114,7 +114,6 @@ public class ClockManager : MonoBehaviour
                 {
                     dayTimeShifting = true;
                     GlobalEventManager.OnEveningStart.Invoke();
-                    print("Signal of Starting Evening reached");
                     isEvening = true;
                 }
             }
@@ -139,7 +138,6 @@ public class ClockManager : MonoBehaviour
                 {
                     dayTimeShifting = true;
                     GlobalEventManager.OnNightStart.Invoke();
-                    print("Signal of Starting Night reached");
                     isNight = true;
                     isEvening = false;
                 }
@@ -168,7 +166,6 @@ public class ClockManager : MonoBehaviour
                     GlobalEventManager.OnDayStart.Invoke();
                     isNight = false;
                     isEvening = false;
-                    print("Signal of Starting Day reached");
                 }
             }
         }

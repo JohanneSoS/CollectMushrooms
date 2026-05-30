@@ -108,9 +108,7 @@ public class DialogueManager : MonoBehaviour
             else if (currentLine >= (dialogueID[questID].lineTexts.Length)-1)
             {
                 currentDialogueRead = true;
-                Debug.Log("vor OnAdvanceQuest");
                 GlobalEventManager.OnAdvanceQuest.Invoke(questID);
-                Debug.Log("nach OnAdvanceQuest");
                 HideDialogue();
             }
         }

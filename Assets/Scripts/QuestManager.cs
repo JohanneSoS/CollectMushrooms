@@ -60,7 +60,6 @@ public class QuestManager : MonoBehaviour
         {
             if (!dialogueManager.currentDialogueRead)
             {
-                //erstes Mal Quest Advancen
                 GlobalEventManager.OnAdvanceQuest.Invoke(questCount);
             }
             else if (dialogueManager.currentDialogueRead)
@@ -164,6 +163,7 @@ public class QuestManager : MonoBehaviour
 
     void UpdateNPCLocations()
     {
+        Vector3 npcNewPos;
         if (questCount < questDict.Count)
         {
             foreach (GameObject npc in npcDict.Values)
@@ -171,10 +171,8 @@ public class QuestManager : MonoBehaviour
                 npc.SetActive(false);
             }
             npcDict[quests[questCount].npcType].SetActive(true);
-            Vector3 npcNewPos = npcQuestPos[(questCount)].transform.position;//quests[questCount].charPosObject.transform.position;
-            Debug.Log("Location of NPC to be set on: " + npcNewPos);
+            npcNewPos = npcQuestPos[(questCount)].transform.position;
             npcDict[quests[questCount].npcType].transform.position = npcNewPos;
-            Debug.Log("Location of NPC is now: " + npcDict[quests[questCount].npcType].transform.position);
             RuntimeManager.DetachInstanceFromGameObject(FmodEvents.instance._npcMusicInstance);
             RuntimeManager.AttachInstanceToGameObject(FmodEvents.instance._npcMusicInstance, npcDict[quests[questCount].npcType]);
             FmodEvents.instance.currentNPCPos = npcNewPos;
@@ -184,7 +182,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("Last available Quest reached");
         }
         npcDict[quests[questCount].npcType].SetActive(true);
-        Vector3 npcNewPos = npcQuestPos[(questCount)].transform.position;
+        npcNewPos = npcQuestPos[(questCount)].transform.position;
         npcDict[quests[questCount].npcType].transform.position = npcNewPos;
         RuntimeManager.DetachInstanceFromGameObject(FmodEvents.instance._npcMusicInstance);
         RuntimeManager.AttachInstanceToGameObject(FmodEvents.instance._npcMusicInstance, npcDict[quests[questCount].npcType]);

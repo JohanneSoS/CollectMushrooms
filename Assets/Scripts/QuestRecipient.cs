@@ -71,7 +71,6 @@ public class QuestRecipient : MonoBehaviour
                 if (deliveredCount == requestedUIItems.Count)
                 {
                     GlobalEventManager.OnItemsDelivered.Invoke();
-                    Debug.Log("Alle Items sind da");
                     GlobalEventManager.CloseQuestUI.Invoke();
                 }
             }
