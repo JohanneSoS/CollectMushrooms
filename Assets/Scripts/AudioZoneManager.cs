@@ -135,22 +135,25 @@ public class AudioZoneManager : MonoBehaviour
 
     void StartQuest(int questID)
     {
-        switch (QuestManager.instance.quests[questID].npcType)
+        if (questID < QuestManager.instance.quests.Length)
         {
-            case NPC.Racoon:
-                currentNpcID = 1;
-                break;
-            case NPC.Beaver:
-                currentNpcID = 2;
-                break;
-            case NPC.Jay:
-                currentNpcID = 3;
-                break;
-            case NPC.Boar:
-                currentNpcID = 4;
-                break;
+            switch (QuestManager.instance.quests[questID].npcType)
+            {
+                case NPC.Racoon:
+                    currentNpcID = 1;
+                    break;
+                case NPC.Beaver:
+                    currentNpcID = 2;
+                    break;
+                case NPC.Jay:
+                    currentNpcID = 3;
+                    break;
+                case NPC.Boar:
+                    currentNpcID = 4;
+                    break;
+            }
+            FmodEvents.instance._npcMusicInstance.setParameterByName("NPC", currentNpcID);
         }
-        FmodEvents.instance._npcMusicInstance.setParameterByName("NPC", currentNpcID);
     }
 }
 

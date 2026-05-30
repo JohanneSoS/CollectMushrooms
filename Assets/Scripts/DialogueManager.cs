@@ -79,12 +79,15 @@ public class DialogueManager : MonoBehaviour
 
     void OnStartQuest(int questID)
     {
-        itemsDelivered = false;
-        currentLine = 0;
-        currentDialogueRead = false;
-        dialogTextField.text = dialogueID[questID].lineTexts[0];
-        nameTextField.text = dialogueID[questID].charType.name;
-        currentQuestID = questID;
+        if (questID < QuestManager.instance.quests.Length)
+        {
+            itemsDelivered = false;
+            currentLine = 0;
+            currentDialogueRead = false;
+            dialogTextField.text = dialogueID[questID].lineTexts[0];
+            nameTextField.text = dialogueID[questID].charType.name;
+            currentQuestID = questID;
+        }
     }
 
     void OnDialogueStart()
