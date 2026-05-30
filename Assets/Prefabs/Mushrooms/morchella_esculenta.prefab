@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2574344407812692212}
-  collider: {fileID: 7715997069442590746}
+  col: {fileID: 0}
   item: {fileID: 11400000, guid: 62b26402a6fb69b4cb81bd0b76e901ba, type: 2}
 --- !u!61 &7715997069442590746
 BoxCollider2D:

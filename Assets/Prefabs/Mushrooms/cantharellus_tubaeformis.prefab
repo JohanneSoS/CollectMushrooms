@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4002190526316719283}
-  collider: {fileID: 7928215387356951359}
+  col: {fileID: 0}
   item: {fileID: 11400000, guid: 54e24fad9deed5a4a83e6a56f1284b84, type: 2}
 --- !u!114 &7993083153648295088
 MonoBehaviour:
