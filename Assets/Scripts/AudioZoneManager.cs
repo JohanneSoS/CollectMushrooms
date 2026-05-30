@@ -88,14 +88,15 @@ public class AudioZoneManager : MonoBehaviour
         {
             case AudioZone.Outside:
                 newValues[origin] = 0f;
+                FmodEvents.instance.SwitchMusicState(0f);
                 break;
             case AudioZone.Far:
                 newValues[origin] = 0f;
-                RuntimeManager.StudioSystem.setParameterByName("State", 0);
+                FmodEvents.instance.SwitchMusicState(0f);
                 break;
             case AudioZone.Near:
                 newValues[origin] = 1f;
-                RuntimeManager.StudioSystem.setParameterByName("State", 2);
+                FmodEvents.instance.SwitchMusicState(2f);
                 break;
             case AudioZone.Close:
                 newValues[origin] = 2f;

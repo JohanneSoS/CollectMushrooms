@@ -41,10 +41,13 @@ public class FmodEvents : MonoBehaviour
     private bool FacingState = false;
     private bool LerpState = false;
     private float currentState;
+    private bool isEmergency = false;
+    private float currentNonEmergencyState = 0f;
 
     public Vector2 currentNPCPos = Vector2.zero;
 
     public Direction targetDir;
+    
   
 
     private float currentHour;
@@ -64,8 +67,7 @@ public class FmodEvents : MonoBehaviour
         GlobalEventManager.OnPickItem.AddListener(PickUpMushroom);
         GlobalEventManager.OnGiveItem.AddListener(DeliverMushroom);
         GlobalEventManager.OnEatItem.AddListener(EatItem);
-        GlobalEventManager.ApplyDamage.AddListener(UpdateHealth);
-        GlobalEventManager.ApplyHeal.AddListener(UpdateHealth);
+        GlobalEventManager.UpdateHealthBar.AddListener(UpdateHealth);
         GlobalEventManager.UpdateExhaustionBar.AddListener(UpdateExhaustion);
         GlobalEventManager.UpdateHungerBar.AddListener(UpdateHunger);
         GlobalEventManager.OnMovement.AddListener(CheckIfFacingNPC);
@@ -249,7 +251,6 @@ public class FmodEvents : MonoBehaviour
                 }
                 break;
         }
-
         if (FacingState == true && LerpState == false) //put facing logic in audiozones to be able to enable the music when in close zone
         {
             FMODUnity.RuntimeManager.StudioSystem.setParameterByName("FaceTowardsNPC", 1);
@@ -266,18 +267,48 @@ public class FmodEvents : MonoBehaviour
     {
         float currentHealth = playerStats.currentHealth;
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Health", currentHealth);
+        if (amount < 25)
+        {
+            isEmergency = true;
+        }
+        else if (playerStats.currentHealth >= 25 && playerStats.currentExhaustion >= 15 &&
+                 playerStats.currentHunger >= 15)
+        {
+            isEmergency = false;
+        }
+        SwitchMusicState(currentNonEmergencyState);
     }
 
     void UpdateExhaustion(int amount)
     {
         float currentExhaustion = playerStats.currentExhaustion;
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Exhaustion", currentExhaustion);
+        if (amount < 15)
+        {
+            isEmergency = true;
+        }
+        else if (playerStats.currentHealth >= 25 && playerStats.currentExhaustion >= 15 &&
+                 playerStats.currentHunger >= 15)
+        {
+            isEmergency = false;
+        }
+        SwitchMusicState(currentNonEmergencyState);
     }
 
     void UpdateHunger(int amount)
     {
         float currentHunger = playerStats.currentHunger;
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Hunger", currentHunger);
+        if (amount < 15)
+        {
+            isEmergency = true;
+        }
+        else if (playerStats.currentHealth >= 25 && playerStats.currentExhaustion >= 15 &&
+                 playerStats.currentHunger >= 15)
+        {
+            isEmergency = false;
+        }
+        SwitchMusicState(currentNonEmergencyState);
     }
 
     void Sniff()
@@ -311,6 +342,19 @@ public class FmodEvents : MonoBehaviour
         else
         {
             RuntimeManager.StudioSystem.setParameterByName("State", currentState);
+        }
+    }
+
+    public void SwitchMusicState(float newState)
+    {
+        currentNonEmergencyState = newState;
+        if (!isEmergency)
+        {
+            RuntimeManager.StudioSystem.setParameterByName("State", newState);
+        }
+        else
+        {
+            RuntimeManager.StudioSystem.setParameterByName("State", 0);
         }
     }
     
