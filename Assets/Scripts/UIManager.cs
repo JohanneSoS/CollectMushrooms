@@ -1,7 +1,6 @@
 using System.Collections;
 using NUnit.Framework.Constraints;
 using TMPro;
-//using UnityEditor.Experimental.GraphView;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,15 +12,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI GameOverText;
     [SerializeField] private GameObject [] QuestMenu;
     [SerializeField] private QuestRecipient [] Boxes;
-    //[SerializeField] private GameObject DialogueUI;
     [SerializeField] private GameObject itemSlotPrefab;
 
     public bool uiActive = false;
     public string currentMenu = "none";
 
     public int activeBox = 0;
-    //public int requiredItemSlotAmount = 0;
-    //private Dictionary <int, GameObject> questMenuDir = new Dictionary <int, GameObject>(); 
 
     void Awake()
     {
@@ -109,21 +105,9 @@ public class UIManager : MonoBehaviour
     {
         QuestMenu[(activeBox)].SetActive(true);
         currentMenu = "quest";
-        //yield return new WaitForSeconds(0.2f);
         uiActive = true;
         GlobalEventManager.ToggleUI.Invoke(true);
-        //StartCoroutine(OpenQuestMenu());
     }
-
-    /*IEnumerator OpenQuestMenu()
-    {
-        QuestMenu[(activeBox)].SetActive(true);
-        currentMenu = "quest";
-        //yield return new WaitForSeconds(0.2f);
-        uiActive = true;
-        EventManager.ToggleUI.Invoke(true);
-    }*/
-
     void OnGameOver(string deathReason)
     {
         switch (deathReason)

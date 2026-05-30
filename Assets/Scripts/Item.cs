@@ -5,13 +5,8 @@ using UnityEngine.Tilemaps;
 public class Item : ScriptableObject
 {
     [Header("Only Gameplay")]
-    public TileBase tile;
     public ItemType type;
-    //public ActionType actionType;
     public Vector2Int range = new Vector2Int(5, 4);
-    /*public bool canSell = true;
-    public float sellPrice;
-    public float buyPrice;*/
     public bool canEat;
     public bool usable;
     public int hungerAmount;
@@ -35,9 +30,4 @@ public class Item : ScriptableObject
         Tool,
         SpecialItem
     }
-
-    /*public enum ActionType
-    {
-        
-    }*/
 }

@@ -28,7 +28,6 @@ public class RequiredItem : MonoBehaviour
     [ContextMenu("ChangeSilhoutte")]
     public void ChangeSilhouetteState(bool silhouetteState)
     {
-        Debug.Log($"new silhoutte: {silhouetteState}");
         if (silhouetteState)
         {
             image.color = new Color(0, 0, 0, 255);

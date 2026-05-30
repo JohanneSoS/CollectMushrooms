@@ -10,37 +10,24 @@ public class QuestRecipient : MonoBehaviour
     [SerializeField] public int questID;
     [SerializeField] public Item[] requestedItems;
     [SerializeField] private Sprite[] boxStates;
-    //public static List<Item> requestedItem;
     private static List <RequiredItem> requestedUIItems;
 
     private static List<Item> currentItemsInBox = new();
-    //private Item recieveItem;
     private int totalRequestedItemCount;
     private int deliveredCount = 0;
     private float amountForSingleSection;
     private int roundedAmountForSingleSection;
 
     private int boxStateIndex = 0;
-
-    private bool playerHovering = false;
-    private float interactionTimer = 2f; //Add Cooldown
+    
 
     [Header("UI Logic")]
-    //public InventorySlot [] requiredItemSlots;
     public UIManager uiManager;
     public InventorySlot[] requiredItemSlots;
     public int requiredItemSlotAmount;
     public RequiredItem requiredItemPrefab; 
-    //public GameObject panel;
     private bool uiActive;
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerHovering = true;
-        }
-    }
 
     void Awake()
     {
@@ -64,16 +51,6 @@ public class QuestRecipient : MonoBehaviour
             requestedUIItems.Add(newRequestedUIItem);
         }
     }
-    
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerHovering = false;
-        }
-    }
-    
     
     private void Interact(int box)
     {

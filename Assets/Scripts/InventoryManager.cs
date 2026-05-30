@@ -61,25 +61,12 @@ public class InventoryManager : MonoBehaviour
                 mouseWheelDirection = 1;
             }
             ChangeSelectedSlot((selectedSlot + mouseWheelDirection));
-            /*if (!itemSlotChangeCD)
-            {
-                StartCoroutine(ChangeSelectedSlotWithinCooldown());
-            }*/
         }
         else
         {
             mouseWheelDirection = 0;
         }
-        //int newSelectedSlot = selectedSlot + mouseWheelDirection;
     }
-
-    /*IEnumerator ChangeSelectedSlotWithinCooldown()
-    {
-        itemSlotChangeCD = true;
-        ChangeSelectedSlot((selectedSlot + mouseWheelDirection));
-        yield return new WaitForSeconds(0.5f);
-        itemSlotChangeCD = false;
-    }*/
 
     void ChangeSelectedSlot(int newValue)
     {
@@ -118,8 +105,6 @@ public class InventoryManager : MonoBehaviour
                 {
                     itemInSlot.RefreshCount();
                 }
-
-                //GlobalEventManager.OnGiveItem.Invoke();
             }
             return item;
         }
@@ -167,16 +152,6 @@ public class InventoryManager : MonoBehaviour
         inventoryItem.InitialiseItem(item);
     }
 
-    /*private void ActivateItem(int currentHunger)
-    {
-        var selectedItem = GetSelectedItem(false);
-        if (selectedItem.canEat && currentHunger <= 99)
-        {
-            EventManager.HealHunger.Invoke(selectedItem.hungerAmount);
-            Item recieveItem = GetSelectedItem(true);
-        }
-    }*/
-
     void ClearInventory()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
@@ -187,8 +162,6 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.Destroy();
             }
-            
         }
-        
     }
 }

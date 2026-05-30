@@ -72,7 +72,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
                     {
                         if (canSleep)
                         {
-                            GlobalEventManager.OpenSleepUI.Invoke();   
+                            GlobalEventManager.OpenSleepUI.Invoke();
+                            GlobalEventManager.BaseUpgrade.Invoke();
                         }
                         else if (!canSleep)
                         {

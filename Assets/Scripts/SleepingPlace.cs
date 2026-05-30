@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SleepingPlace : MonoBehaviour
 {
-    //[SerializeField] private Sprite[] sleepingPlaceSprites;
     [SerializeField] private SpriteRenderer frontRenderer;
     [SerializeField] private SpriteRenderer backRenderer;
     
@@ -13,25 +12,20 @@ public class SleepingPlace : MonoBehaviour
     [SerializeField] private int upgradeStage;
     private bool playerHovering = false;
     private bool isUpgradable = false;
-    private bool canSleep = false;
 
     [SerializeField] private int sleepHealAmount;
-    
+
+
+    void Awake()
+    {
+        GlobalEventManager.BaseUpgrade.AddListener(UpgradeBase);
+    }
     void Start()
     {
         upgradeStage = 0;
         isUpgradable = true;
         ChangeSprites(upgradeStage);
     }
-
-    /*void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && playerHovering)
-        {
-            Interact();
-        }
-    }*/
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -47,18 +41,14 @@ public class SleepingPlace : MonoBehaviour
             playerHovering = false;
         }
     }
-
-    /*private void Interact()
-    {
-        if (isUpgradable){ UpgradeBase(); }
-        else if (canSleep) { Sleep(); }
-    }*/
     private void UpgradeBase()
     {
-        upgradeStage++;
-        ChangeSprites(upgradeStage);
-        GlobalEventManager.OnBaseUpgrade.Invoke();
-        isUpgradable = false;
+        if (isUpgradable && playerHovering)
+        {
+            upgradeStage++;
+            ChangeSprites(upgradeStage);
+            isUpgradable = false;
+        }
     }
 
     private void ChangeSprites(int id)

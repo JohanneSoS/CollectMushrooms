@@ -23,7 +23,6 @@ public class DialogueManager : MonoBehaviour
     
     [SerializeField] private int currentLine = 0;
     public bool currentDialogueRead = false;
-    private int lastActiveQuest = 0;
     public bool itemsDelivered = false;
     private int currentQuestID = 0;
     

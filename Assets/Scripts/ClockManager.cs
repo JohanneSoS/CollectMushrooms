@@ -45,7 +45,6 @@ public class ClockManager : MonoBehaviour
     }
     void Start()
     {
-        //postProcessVolume.weight = 1;
         defaultTick = tick;
     }
     
@@ -109,9 +108,6 @@ public class ClockManager : MonoBehaviour
                     dayTimeShifting = false;
                 }
             }
-            //postProcessVolume.weight = 0.6f * ((float)minutes / 60);
-            //globalLight.intensity = eveningLightIntensity - (float)minutes / 60;
-            
             if (isEvening == false && isNight == false)
             {
                 if (minutes > 1)
@@ -123,7 +119,6 @@ public class ClockManager : MonoBehaviour
                 }
             }
         }
-        
         //NightStart
         if(hours >= nightStartHour && hours < (nightStartHour+1))
         {
@@ -138,9 +133,6 @@ public class ClockManager : MonoBehaviour
                     dayTimeShifting = false;
                 }
             }
-            //postProcessVolume.weight = 0.6f + ((float)minutes / 60);
-            //globalLight.intensity = dayLightIntensity - (float)minutes / 60;
-            
             if (isNight == false && isEvening)
             {
                 if (minutes > 1)
@@ -168,9 +160,6 @@ public class ClockManager : MonoBehaviour
                     dayTimeShifting = false;
                 }
             }
-            //postProcessVolume.weight = 1 - (float)minutes / 60;
-            //globalLight.intensity = nightLightIntensity + ((float)minutes / 60);
-            
             if (isNight)
             {
                 if (minutes > 1)

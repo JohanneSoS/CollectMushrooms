@@ -14,12 +14,8 @@ public class QuestManager : MonoBehaviour
     public GameObject[] questBoxes;
     [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] private GameObject[] npcs;
-    
-    //[SerializeField] private Vector2[] npcPos;
     [SerializeField] public Quest[] quests;
-
     public GameObject[] npcQuestPos;
-    //private Dictionary<string, Vector3> npcPosDict = new Dictionary<string, Vector3>();
     private Dictionary<int, Quest> questDict = new Dictionary<int, Quest>();
     private Dictionary<NPC, GameObject> npcDict = new Dictionary<NPC, GameObject>();
     private Dictionary<int, GameObject> boxDict = new Dictionary<int, GameObject>();
@@ -93,10 +89,6 @@ public class QuestManager : MonoBehaviour
         {
             FmodEvents.instance._baseMusicInstance.setParameterByName("Sections", 1);
         }
-        /*else if (questID == 6) //music for after the reveal not yet implemented, also considering putting another quest inbetween
-        {
-            FmodEvents.instance._baseMusicInstance.setParameterByName("Sections", 2);
-        }*/
     }
 
     void AdvanceQuest(int questID)
@@ -120,15 +112,12 @@ public class QuestManager : MonoBehaviour
                 }
                 return;
             case 4:
-                //ItemsDelivered
                 DisableQuestBox();
                 return;
             case 5:
-                //StartQuestFinishDialogue
                 GlobalEventManager.OnDialogueStart.Invoke();
                 return;
             case 6:
-                //FinishDialogue, FinishQuest
                 GlobalEventManager.OnCompleteQuest.Invoke(questCount);
                 GlobalEventManager.OnCompleteBoxQuest.Invoke();
                 return;
@@ -144,14 +133,6 @@ public class QuestManager : MonoBehaviour
         questStep = 0;
         questCount++;
         GlobalEventManager.OnStartQuest.Invoke(questCount);
-    }
-    void DialogueEnd()
-    {
-        if (questCount == 0)
-        {
-            GlobalEventManager.OnQuestFinished.Invoke();
-            Debug.Log("DialogueEnd played");
-        }
     }
 
     void EnableQuestBox()
@@ -180,10 +161,8 @@ public class QuestManager : MonoBehaviour
             npc.SetActive(false);
         }
         npcDict[quests[questCount].npcType].SetActive(true);
-        Vector3 npcNewPos = npcQuestPos[(questCount)].transform.position;//quests[questCount].charPosObject.transform.position;
-        Debug.Log("Location of NPC to be set on: " + npcNewPos);
+        Vector3 npcNewPos = npcQuestPos[(questCount)].transform.position;
         npcDict[quests[questCount].npcType].transform.position = npcNewPos;
-        Debug.Log("Location of NPC is now: " + npcDict[quests[questCount].npcType].transform.position);
         RuntimeManager.DetachInstanceFromGameObject(FmodEvents.instance._npcMusicInstance);
         RuntimeManager.AttachInstanceToGameObject(FmodEvents.instance._npcMusicInstance, npcDict[quests[questCount].npcType]);
         FmodEvents.instance.currentNPCPos = npcNewPos;

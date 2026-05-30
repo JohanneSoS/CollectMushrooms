@@ -7,7 +7,6 @@ public class Quest : ScriptableObject
     public NPC npcType;
     public DialogueQuest startDialogue;
     public DialogueQuest endDialogue;
-    //public GameObject charPosObject;
     public QuestType questType;
 
 }

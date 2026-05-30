@@ -6,20 +6,16 @@ public class MushroomSpawner : MonoBehaviour
     public GameObject ItemPrefab;
 
     public int spawnAmount;
-    public float radius;
-
     public float minXAxis;
     public float maxXAxis;
     public float minYAxis;
     public float maxYAxis;
+    public Color guiColor;
 
     [SerializeField] private bool spawnOnDay;
     [SerializeField] private bool spawnOnNight;
 
     [SerializeField] private LayerMask riverLayer;
-    
-
-    //private Vector3 lastSpawnLocation;
 
     void Awake()
     {
@@ -56,8 +52,6 @@ public class MushroomSpawner : MonoBehaviour
 
     IEnumerator RespawnMushrooms()
     {
-        //Vector2 randomPos = Random.insideUnitCircle * Radius;
-        //Vector3 spawnPos = new Vector3(randomPos.x, randomPos.y, 7);
         yield return new WaitForSeconds(1);
         float randomPosX = Random.Range(minXAxis, maxXAxis);
         float randomPosY = Random.Range(minYAxis, maxYAxis);
@@ -70,8 +64,7 @@ public class MushroomSpawner : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        //Gizmos.DrawWireSphere(transform.position, Radius);
+        Gizmos.color = guiColor;
         Vector2 pointA = new Vector2(minXAxis, minYAxis);
         Vector2 pointB = new Vector2(maxXAxis, maxYAxis);
         Vector2 pointC = new Vector2(minXAxis, maxYAxis);

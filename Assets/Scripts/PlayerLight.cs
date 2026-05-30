@@ -11,7 +11,6 @@ public class PlayerLight : MonoBehaviour
     
     private bool changeLightIntensity = false;
     private bool isNight = false;
-    private bool isEvening = false;
     private float currentLightRadius;
 
     void Awake()

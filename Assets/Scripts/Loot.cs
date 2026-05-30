@@ -3,7 +3,7 @@ using UnityEngine;
 public class Loot : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private BoxCollider2D collider;
+    [SerializeField] private BoxCollider2D col;
 
     [SerializeField] private Item item;
 
@@ -16,6 +16,7 @@ public class Loot : MonoBehaviour
         GlobalEventManager.OnDayStart.AddListener(StartDay);
         GlobalEventManager.OnNightStart.AddListener(StartNight);
         GlobalEventManager.PickUpMushroom.AddListener(PickUp);
+        col = GetComponent<BoxCollider2D>();
         age = 1;
     }
 
@@ -44,14 +45,6 @@ public class Loot : MonoBehaviour
         spriteRenderer.sprite = item.sprite;
     }
 
-    /*void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && playerHovering)
-        {
-            PickUp();
-        }
-    }*/
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -75,17 +68,9 @@ public class Loot : MonoBehaviour
             bool canAdd = InventoryManager.instance.AddItem(item);
             if (canAdd)
             {
-                Destroy(collider);
+                Destroy(col);
                 Destroy(gameObject);
             }
         }
-
     }
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            StartCoroutine()
-        }
-    }*/
 }

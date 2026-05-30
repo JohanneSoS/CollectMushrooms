@@ -45,7 +45,6 @@ public class FmodEvents : MonoBehaviour
     public Vector2 currentNPCPos = Vector2.zero;
 
     public Direction targetDir;
-    //[SerializeField] private PlayerMovement playerMovement;
   
 
     private float currentHour;
@@ -96,16 +95,12 @@ public class FmodEvents : MonoBehaviour
         RuntimeManager.StudioSystem.setParameterByName("Base", 1);
         RuntimeManager.StudioSystem.setParameterByName("State", 0);
         _baseMusicInstance.setParameterByName("Sections", 0);
-        //Check Name
-        //_musicInstance.setParameterByName("", 1);
     }
 
     void Update()
     {
         if (currentHour != clockManager.hours)
         {
-            //_ambienceInstance.setParameterByName("DayTime", clockManager.hours);
-            //_musicInstance.setParameterByName("DayTime", clockManager.hours);
             FMODUnity.RuntimeManager.StudioSystem.setParameterByName("DayTime", clockManager.hours);
             currentHour = clockManager.hours;
         }
@@ -267,29 +262,6 @@ public class FmodEvents : MonoBehaviour
         }
     }
     
-    /*private IEnumerator FaceTowardsNPC()
-    {
-        float time = 0;
-        
-        while (time < 1)
-        {
-            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("FaceTowardsNPC", (Mathf.Lerp(0, 1, time / 1)));
-            time += Time.deltaTime;
-            yield return null;
-        }
-    }
-    private IEnumerator FaceAwayFromNPC()
-    {
-        float time = 0;
-        
-        while (time < 1)
-        {
-            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("FaceTowardsNPC", (Mathf.Lerp(1, 0, time / 1)));
-            time += Time.deltaTime;
-            yield return null;
-        }
-    }*/
-
     void UpdateHealth(int amount)
     {
         float currentHealth = playerStats.currentHealth;
