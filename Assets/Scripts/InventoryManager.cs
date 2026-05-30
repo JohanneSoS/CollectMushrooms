@@ -150,6 +150,7 @@ public class InventoryManager : MonoBehaviour
         GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
+        GlobalEventManager.UpdateItemDiscription.Invoke(GetSelectedItem(false));
     }
 
     void ClearInventory()
@@ -162,6 +163,7 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.Destroy();
             }
+            GlobalEventManager.UpdateItemDiscription.Invoke(GetSelectedItem(false));
         }
     }
 }
