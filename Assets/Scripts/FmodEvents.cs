@@ -95,7 +95,8 @@ public class FmodEvents : MonoBehaviour
         _baseMusicInstance = RuntimeManager.CreateInstance(baseMusic);
         _baseMusicInstance.start();
         RuntimeManager.StudioSystem.setParameterByName("Base", 1);
-        RuntimeManager.StudioSystem.setParameterByName("State", 0);
+        currentState = 0;
+        RuntimeManager.StudioSystem.setParameterByName("State", currentState);
         _baseMusicInstance.setParameterByName("Sections", 0);
     }
 
@@ -351,11 +352,12 @@ public class FmodEvents : MonoBehaviour
         if (!isEmergency)
         {
             RuntimeManager.StudioSystem.setParameterByName("State", newState);
+            currentState = newState;
         }
         else
         {
             RuntimeManager.StudioSystem.setParameterByName("State", 0);
-        }
+            currentState = 0;
+        }        
     }
-    
 }
