@@ -1534,11 +1534,11 @@ MonoBehaviour:
     Path: event:/Music/StatMusic
   buttonClick:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1080093122
+      Data2: 1273757261
+      Data3: -591474773
+      Data4: -1056428712
+    Path: event:/Oneshots/ButtonClick
   ambience:
     Guid:
       Data1: 161413571
@@ -1581,6 +1581,76 @@ MonoBehaviour:
       Data3: -951253330
       Data4: -1799156062
     Path: event:/Oneshots/OpenChest
+  findRacoon:
+    Guid:
+      Data1: -479547282
+      Data2: 1149996308
+      Data3: -1860221044
+      Data4: -31693251
+    Path: event:/Oneshots/FindRacoon
+  findBeaver:
+    Guid:
+      Data1: -287173602
+      Data2: 1124538641
+      Data3: -962813014
+      Data4: 55341876
+    Path: event:/Oneshots/FindBeaver
+  findJay:
+    Guid:
+      Data1: 1199527325
+      Data2: 1249015972
+      Data3: 1185738631
+      Data4: 99411532
+    Path: event:/Oneshots/FindJay
+  findBoar:
+    Guid:
+      Data1: 209355289
+      Data2: 1230973369
+      Data3: -1295142255
+      Data4: -86046889
+    Path: event:/Oneshots/FindBoar
+  walking:
+    Guid:
+      Data1: 1209525607
+      Data2: 1281788984
+      Data3: 1761122966
+      Data4: -1875269985
+    Path: event:/Loops/Walking
+  sleep:
+    Guid:
+      Data1: 736475613
+      Data2: 1304540128
+      Data3: 806451842
+      Data4: 497591607
+    Path: event:/Oneshots/Sleep
+  firstQuestConvo:
+    Guid:
+      Data1: 147251451
+      Data2: 1095829917
+      Data3: 1936052403
+      Data4: 100224327
+    Path: event:/Oneshots/StartConvo
+  startQuest:
+    Guid:
+      Data1: 685646547
+      Data2: 1210832808
+      Data3: 1531894950
+      Data4: -880267460
+    Path: event:/Oneshots/StartQuest
+  finishDelivery:
+    Guid:
+      Data1: -86249440
+      Data2: 1195025736
+      Data3: 805612970
+      Data4: 1878169007
+    Path: event:/Oneshots/FinishDelivery
+  finishQuest:
+    Guid:
+      Data1: 1046883570
+      Data2: 1183045555
+      Data3: -1184264551
+      Data4: 416574883
+    Path: event:/Oneshots/FinishQuest
   player: {fileID: 1586517286}
   clockManager: {fileID: 1094819545}
   playerStats: {fileID: 1586517292}

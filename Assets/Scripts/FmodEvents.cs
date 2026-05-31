@@ -12,12 +12,12 @@ public class FmodEvents : MonoBehaviour
 
     [Header("Music Events")] 
     [SerializeField] private EventReference npcMusic;
-    [SerializeField] private EventReference wolfMusic;
+    //[SerializeField] private EventReference wolfMusic;
     [SerializeField] private EventReference baseMusic;
     
     [Header("SFX Events")]
     [Header("UI")]
-    [SerializeField] private EventReference buttonClick;
+    [SerializeField] public EventReference buttonClick;
     [Header("Ambience")]
     [SerializeField] private EventReference ambience;
     [Header("PlayerSounds")]
@@ -25,12 +25,23 @@ public class FmodEvents : MonoBehaviour
     [SerializeField] private EventReference pickUpMushroom;
     [SerializeField] private EventReference deliverMushroom;
     [SerializeField] private EventReference eatMushroom;
-    [SerializeField] private EventReference openChestUI;
+    [SerializeField] public EventReference openChestUI;
+    [SerializeField] private EventReference findRacoon;
+    [SerializeField] private EventReference findBeaver;
+    [SerializeField] private EventReference findJay;
+    [SerializeField] private EventReference findBoar;
+    [SerializeField] private EventReference walking;
+    [SerializeField] private EventReference sleep;
+    [SerializeField] public EventReference firstQuestConvo;
+    [SerializeField] public EventReference startQuest;
+    [SerializeField] public EventReference finishDelivery;
+    [SerializeField] public EventReference finishQuest;
 
     public EventInstance _ambienceInstance;
     public EventInstance _npcMusicInstance;
     public EventInstance _wolfMusicInstance;
     public EventInstance _baseMusicInstance;
+    public EventInstance _walkingInstance;
 
     public static FmodEvents instance;
 
@@ -72,6 +83,11 @@ public class FmodEvents : MonoBehaviour
         GlobalEventManager.UpdateHungerBar.AddListener(UpdateHunger);
         GlobalEventManager.OnMovement.AddListener(CheckIfFacingNPC);
         GlobalEventManager.GamePaused.AddListener(OnGamePaused);
+        GlobalEventManager.OnSkipToDay.AddListener(Sleep);
+        GlobalEventManager.OnWalkingStart.AddListener(EnableWalking);
+        GlobalEventManager.OnWalkingStop.AddListener(DisableWalking);
+        GlobalEventManager.PauseGame.AddListener(DisableWalking);
+
     }
 
     private void OnDisable()
@@ -90,10 +106,13 @@ public class FmodEvents : MonoBehaviour
         _npcMusicInstance.start();
         _ambienceInstance = RuntimeManager.CreateInstance(ambience);
         _ambienceInstance.start();
-        _wolfMusicInstance = RuntimeManager.CreateInstance(wolfMusic);
+        //_wolfMusicInstance = RuntimeManager.CreateInstance(wolfMusic);
         _wolfMusicInstance.start();
         _baseMusicInstance = RuntimeManager.CreateInstance(baseMusic);
         _baseMusicInstance.start();
+        _walkingInstance = RuntimeManager.CreateInstance(walking);
+        _walkingInstance.start();
+        _walkingInstance.setPaused(true);
         RuntimeManager.StudioSystem.setParameterByName("Base", 1);
         currentState = 0;
         RuntimeManager.StudioSystem.setParameterByName("State", currentState);
@@ -315,6 +334,31 @@ public class FmodEvents : MonoBehaviour
     void Sniff()
     {
         RuntimeManager.PlayOneShot(sniff, player.transform.position);
+        _npcMusicInstance.getParameterByName("NPC", out var npcVal);
+        if (LerpState)
+        {
+            switch (npcVal)
+            {
+                case 1:
+                    StartCoroutine(PlayFindingNPCSound(findRacoon));
+                    break;
+                case 2:                    
+                    StartCoroutine(PlayFindingNPCSound(findBeaver));
+                    break;
+                case 3:
+                    StartCoroutine(PlayFindingNPCSound(findJay));
+                    break;
+                case 4:
+                    StartCoroutine(PlayFindingNPCSound(findBoar));
+                    break;
+            }
+        }
+    }
+
+    IEnumerator PlayFindingNPCSound(EventReference findType)
+    {
+        yield return new WaitForSeconds(0.3f);
+        RuntimeManager.PlayOneShot(findType);
     }
 
     void PickUpMushroom()
@@ -330,6 +374,41 @@ public class FmodEvents : MonoBehaviour
     void EatItem()
     {
         RuntimeManager.PlayOneShot(eatMushroom, player.transform.position);
+    }
+
+    void SkipDialogue()
+    {
+        RuntimeManager.PlayOneShot(buttonClick);
+    }
+
+    void Sleep()
+    {
+        RuntimeManager.PlayOneShot(sleep);
+    }
+
+    public void PlayOneShot(EventReference eventToPlay)
+    {
+        RuntimeManager.PlayOneShot(eventToPlay);  
+    }
+    
+    void PlayOneShotAtPos(EventReference eventToPlay, Vector3 pos)
+    {
+        RuntimeManager.PlayOneShot(eventToPlay, pos);    
+    }
+
+    void PlayOneShotAtPlayerPos(EventReference eventToPlay)
+    {
+        RuntimeManager.PlayOneShot(eventToPlay, player.transform.position);   
+    }
+
+    void EnableWalking()
+    {
+        _walkingInstance.setPaused(false);
+    }
+
+    void DisableWalking()
+    {
+        _walkingInstance.setPaused(true);
     }
 
     void OnGamePaused(bool uiState)
@@ -360,4 +439,5 @@ public class FmodEvents : MonoBehaviour
             currentState = 0;
         }        
     }
+    
 }

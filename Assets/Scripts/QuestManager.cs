@@ -106,26 +106,31 @@ public class QuestManager : MonoBehaviour
             case 2:
                 //StartDialog
                 GlobalEventManager.OnDialogueStart.Invoke();
+                FmodEvents.instance.PlayOneShot(FmodEvents.instance.firstQuestConvo);
                return;
             case 3:
                 //FinishDialogue, EnableBox
                 if (quests[questCount].questType == QuestType.OnlyDialogue)
                 {
                     GlobalEventManager.OnCompleteQuest.Invoke(questCount);
+                    FmodEvents.instance.PlayOneShot(FmodEvents.instance.finishQuest);
                 }
                 else
                 {
                     EnableQuestBox();
+                    FmodEvents.instance.PlayOneShot(FmodEvents.instance.startQuest);
                 }
                 return;
             case 4:
                 DisableQuestBox();
+                FmodEvents.instance.PlayOneShot(FmodEvents.instance.finishDelivery);
                 return;
             case 5:
                 GlobalEventManager.OnDialogueStart.Invoke();
                 return;
             case 6:
                 GlobalEventManager.OnCompleteQuest.Invoke(questCount);
+                FmodEvents.instance.PlayOneShot(FmodEvents.instance.finishQuest);
                 GlobalEventManager.OnCompleteBoxQuest.Invoke();
                 return;
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using NUnit.Framework.Constraints;
 using TMPro;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -39,6 +40,7 @@ public class UIManager : MonoBehaviour
 
     public void ConfirmUI()
     {
+        FmodEvents.instance.PlayOneShot(FmodEvents.instance.buttonClick);
         switch (currentMenu)
         {
             case "pause":
@@ -107,6 +109,7 @@ public class UIManager : MonoBehaviour
         currentMenu = "quest";
         uiActive = true;
         GlobalEventManager.ToggleUI.Invoke(true);
+        FmodEvents.instance.PlayOneShot(FmodEvents.instance.openChestUI);
     }
     void OnGameOver(string deathReason)
     {
