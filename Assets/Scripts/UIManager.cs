@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject [] QuestMenu;
     [SerializeField] private QuestRecipient [] Boxes;
     [SerializeField] private GameObject itemSlotPrefab;
+    [SerializeField] private TextMeshProUGUI MenuButtonText;
 
     public bool uiActive = false;
     public string currentMenu = "none";
@@ -31,6 +32,12 @@ public class UIManager : MonoBehaviour
         GlobalEventManager.ConfirmUI.AddListener(ConfirmUI);
         GlobalEventManager.OnGameOver.AddListener(OnGameOver);
         LoadRequiredBoxSlots();
+    }
+
+    void Start()
+    {
+        GlobalEventManager.PauseGame.Invoke();
+        MenuButtonText.text = "Start Game!";
     }
     
     private void OnUIToggle(bool uiState)
@@ -67,6 +74,7 @@ public class UIManager : MonoBehaviour
 
     void ActivatePauseMenu()
     {
+        MenuButtonText.text = "Resume Game";
         PauseMenu.SetActive(true);
         currentMenu = "pause";
         uiActive = true;

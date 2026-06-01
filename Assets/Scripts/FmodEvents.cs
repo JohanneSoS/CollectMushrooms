@@ -58,8 +58,14 @@ public class FmodEvents : MonoBehaviour
     public Vector2 currentNPCPos = Vector2.zero;
 
     public Direction targetDir;
+
+    public FMOD.Studio.Bus Master;
+    public FMOD.Studio.Bus Music;
+    public FMOD.Studio.Bus SFX;
+    public float masterVolume;
+    public float musicVolume;
+    public float sfxVolume;
     
-  
 
     private float currentHour;
     private void Awake()
@@ -70,6 +76,10 @@ public class FmodEvents : MonoBehaviour
             return;
         }
         instance = this;
+
+        Master = FMODUnity.RuntimeManager.GetBus("bus:/");
+        Music = FMODUnity.RuntimeManager.GetBus("bus:/Music");
+        SFX = FMODUnity.RuntimeManager.GetBus("bus:/SFX");
     }
 
     private void OnEnable()
@@ -86,7 +96,10 @@ public class FmodEvents : MonoBehaviour
         GlobalEventManager.OnSkipToDay.AddListener(Sleep);
         GlobalEventManager.OnWalkingStart.AddListener(EnableWalking);
         GlobalEventManager.OnWalkingStop.AddListener(DisableWalking);
-        GlobalEventManager.PauseGame.AddListener(DisableWalking);
+        GlobalEventManager.ToggleUI.AddListener(OnUIToggle);
+        GlobalEventManager.ResumeGame.AddListener(ButtonClick);
+        GlobalEventManager.OnInteractWithNPC.AddListener(ButtonClick);
+        GlobalEventManager.OpenSleepUI.AddListener(ButtonClick);
 
     }
 
@@ -121,11 +134,29 @@ public class FmodEvents : MonoBehaviour
 
     void Update()
     {
+        Master.setVolume(masterVolume);
+        Music.setVolume(musicVolume);
+        SFX.setVolume(sfxVolume);
         if (currentHour != clockManager.hours)
         {
             FMODUnity.RuntimeManager.StudioSystem.setParameterByName("DayTime", clockManager.hours);
             currentHour = clockManager.hours;
         }
+    }
+
+    public void LevelMix(float newMasterVol)
+    {
+        masterVolume = newMasterVol;
+    }
+
+    public void LevelMusic(float newMusicVol)
+    {
+        musicVolume = newMusicVol;
+    }
+
+    public void LevelSFX(float newSFXVol)
+    {
+        sfxVolume = newSFXVol;
     }
 
     void CheckIfFacingNPC()
@@ -386,6 +417,11 @@ public class FmodEvents : MonoBehaviour
         RuntimeManager.PlayOneShot(sleep);
     }
 
+    void ButtonClick()
+    {
+        RuntimeManager.PlayOneShot(buttonClick);
+    }
+
     public void PlayOneShot(EventReference eventToPlay)
     {
         RuntimeManager.PlayOneShot(eventToPlay);  
@@ -411,9 +447,17 @@ public class FmodEvents : MonoBehaviour
         _walkingInstance.setPaused(true);
     }
 
+    void OnUIToggle(bool state)
+    {
+        if (state)
+        {
+            _walkingInstance.setPaused(true);
+        }
+    }
+
     void OnGamePaused(bool uiState)
     {
-        if (uiState)
+        /*if (uiState)
         {
             RuntimeManager.StudioSystem.getParameterByName("State", out float currentStateF);
             currentState = currentStateF;
@@ -422,7 +466,7 @@ public class FmodEvents : MonoBehaviour
         else
         {
             RuntimeManager.StudioSystem.setParameterByName("State", currentState);
-        }
+        }*/
     }
 
     public void SwitchMusicState(float newState)
@@ -437,7 +481,7 @@ public class FmodEvents : MonoBehaviour
         {
             RuntimeManager.StudioSystem.setParameterByName("State", 0);
             currentState = 0;
-        }        
+        }
     }
-    
+
 }
