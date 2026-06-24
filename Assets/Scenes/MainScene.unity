@@ -1861,6 +1861,7 @@ MonoBehaviour:
   clockManager: {fileID: 1094819545}
   playerStats: {fileID: 1586517292}
   playerMovement: {fileID: 1586517289}
+  isMusicSilenced: 0
   currentNPCPos: {x: 0, y: 0}
   targetDir: 0
   masterVolume: 1
@@ -155954,7 +155955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemPrefab: {fileID: 4999592109318140897, guid: 5a4d3d558b4db764f9fbf8a1ad8ba791, type: 3}
-  spawnAmount: 30
+  spawnAmount: 20
   minXAxis: -84.1
   maxXAxis: 67.9
   minYAxis: -57.1
@@ -156536,7 +156537,7 @@ MonoBehaviour:
   globalLight: {fileID: 1338257335}
   timeDisplay: {fileID: 353894728}
   tick: 0
-  defaultTick: 1000
+  defaultTick: 750
   seconds: 0
   minutes: 55
   hours: 5
@@ -159932,7 +159933,7 @@ MonoBehaviour:
   uiActive: 0
   canSniff: 1
   sniffDuration: 2
-  sniffCooldown: 5
+  sniffCooldown: 2
   isCollecting: 0
   currentBox: 0
 --- !u!114 &1586517292
