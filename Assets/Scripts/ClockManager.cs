@@ -12,7 +12,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI timeDisplay;
     
     public float tick;
-    private float defaultTick;
+    public float defaultTick;
     public float seconds;
     public float minutes;
     public float hours;
@@ -45,7 +45,7 @@ public class ClockManager : MonoBehaviour
     }
     void Start()
     {
-        defaultTick = tick;
+        tick = defaultTick;
     }
     
     private void FixedUpdate()
