@@ -101,6 +101,8 @@ public class UIManager : MonoBehaviour
         }
         uiActive = false;
         currentMenu = "none";
+        FmodEvents.instance.isMusicSilenced = false;
+        FmodEvents.instance.SwitchMusicState();
         GlobalEventManager.ToggleUI.Invoke(false);
         GlobalEventManager.GamePaused.Invoke(false);
     }
@@ -136,6 +138,8 @@ public class UIManager : MonoBehaviour
         GameOverMenu.SetActive(true);
         currentMenu = "gameover";
         uiActive = true;
+        FmodEvents.instance.isMusicSilenced = true;
+        FmodEvents.instance.SwitchMusicState();
         GlobalEventManager.ToggleUI.Invoke(true);
     }
 

@@ -88,19 +88,19 @@ public class AudioZoneManager : MonoBehaviour
         {
             case AudioZone.Outside:
                 newValues[origin] = 0f;
-                FmodEvents.instance.SwitchMusicState(0);
+                FmodEvents.instance.SwitchDefaultState(0);
                 break;
             case AudioZone.Far:
                 newValues[origin] = 0f;
-                FmodEvents.instance.SwitchMusicState(0);
+                FmodEvents.instance.SwitchDefaultState(0);
                 break;
             case AudioZone.Near:
                 newValues[origin] = 1f;
-                FmodEvents.instance.SwitchMusicState(2);
+                FmodEvents.instance.SwitchDefaultState(2);
                 break;
             case AudioZone.Close:
                 newValues[origin] = 2f;
-                FmodEvents.instance.SwitchMusicState(2);
+                FmodEvents.instance.SwitchDefaultState(2);
                 break;
         }
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("RangeToNPC", newValues[origin]);

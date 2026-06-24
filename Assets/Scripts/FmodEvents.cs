@@ -53,6 +53,7 @@ public class FmodEvents : MonoBehaviour
     private bool LerpState = false;
     private float currentState;
     private bool isEmergency = false;
+    public bool isMusicSilenced = false;
     private float currentNonEmergencyState = 0f;
 
     public Vector2 currentNPCPos = Vector2.zero;
@@ -92,7 +93,6 @@ public class FmodEvents : MonoBehaviour
         GlobalEventManager.UpdateExhaustionBar.AddListener(UpdateExhaustion);
         GlobalEventManager.UpdateHungerBar.AddListener(UpdateHunger);
         GlobalEventManager.OnMovement.AddListener(CheckIfFacingNPC);
-        GlobalEventManager.GamePaused.AddListener(OnGamePaused);
         GlobalEventManager.OnSkipToDay.AddListener(Sleep);
         GlobalEventManager.OnWalkingStart.AddListener(EnableWalking);
         GlobalEventManager.OnWalkingStop.AddListener(DisableWalking);
@@ -322,12 +322,12 @@ public class FmodEvents : MonoBehaviour
         {
             isEmergency = true;
         }
-        else if (playerStats.currentHealth >= 25 && playerStats.currentExhaustion >= 15 &&
-                 playerStats.currentHunger >= 15)
+        else if (playerStats.currentHealth >= 25 && playerStats.currentExhaustion >= 5 &&
+                 playerStats.currentHunger >= 5)
         {
             isEmergency = false;
         }
-        SwitchMusicState(currentNonEmergencyState);
+        SwitchMusicState();
     }
 
     void UpdateExhaustion(int amount)
@@ -338,12 +338,12 @@ public class FmodEvents : MonoBehaviour
         {
             isEmergency = true;
         }
-        else if (playerStats.currentHealth >= 25 && playerStats.currentExhaustion >= 15 &&
-                 playerStats.currentHunger >= 15)
+        else if (playerStats.currentHealth >= 25 && playerStats.currentExhaustion >= 5 &&
+                 playerStats.currentHunger >= 5)
         {
             isEmergency = false;
         }
-        SwitchMusicState(currentNonEmergencyState);
+        SwitchMusicState();
     }
 
     void UpdateHunger(int amount)
@@ -354,12 +354,12 @@ public class FmodEvents : MonoBehaviour
         {
             isEmergency = true;
         }
-        else if (playerStats.currentHealth >= 25 && playerStats.currentExhaustion >= 15 &&
-                 playerStats.currentHunger >= 15)
+        else if (playerStats.currentHealth >= 25 && playerStats.currentExhaustion >= 5 &&
+                 playerStats.currentHunger >= 5)
         {
             isEmergency = false;
         }
-        SwitchMusicState(currentNonEmergencyState);
+        SwitchMusicState();
     }
 
     void Sniff()
@@ -455,32 +455,32 @@ public class FmodEvents : MonoBehaviour
         }
     }
 
-    void OnGamePaused(bool uiState)
+    public void SwitchDefaultState(float newDefaultState)
     {
-        /*if (uiState)
-        {
-            RuntimeManager.StudioSystem.getParameterByName("State", out float currentStateF);
-            currentState = currentStateF;
-            RuntimeManager.StudioSystem.setParameterByName("State", 1);
-        }
-        else
-        {
-            RuntimeManager.StudioSystem.setParameterByName("State", currentState);
-        }*/
+        currentNonEmergencyState = newDefaultState;
+        SwitchMusicState();
     }
 
-    public void SwitchMusicState(float newState)
+    public void SwitchMusicState()
     {
-        currentNonEmergencyState = newState;
-        if (!isEmergency)
+        if (isMusicSilenced)
         {
-            RuntimeManager.StudioSystem.setParameterByName("State", newState);
-            currentState = newState;
+            RuntimeManager.StudioSystem.setParameterByName("State", 1);
+            currentState = 1; 
         }
         else
         {
-            RuntimeManager.StudioSystem.setParameterByName("State", 0);
-            currentState = 0;
+            if (!isEmergency)
+            {
+                RuntimeManager.StudioSystem.setParameterByName("State", currentNonEmergencyState);
+                currentState = currentNonEmergencyState;
+            }
+            else
+            {
+                RuntimeManager.StudioSystem.setParameterByName("State", 0);
+                currentState = 0;
+            }
+
         }
     }
 
