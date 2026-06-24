@@ -142,9 +142,21 @@ public class QuestManager : MonoBehaviour
     }
     public void CompleteQuest(int questID)
     {
-        questStep = 0;
-        questCount++;
-        GlobalEventManager.OnStartQuest.Invoke(questCount);
+        if (questID >= (quests.Length - 1))
+        {
+            GameCompleted();
+            if (questID == (quests.Length - 1))
+            {
+                questCount++;
+            }
+        }
+        else
+        {
+            questStep = 0;
+            questCount++;
+            GlobalEventManager.OnStartQuest.Invoke(questCount);
+        }
+
     }
 
     void EnableQuestBox()
@@ -192,6 +204,18 @@ public class QuestManager : MonoBehaviour
         RuntimeManager.DetachInstanceFromGameObject(FmodEvents.instance._npcMusicInstance);
         RuntimeManager.AttachInstanceToGameObject(FmodEvents.instance._npcMusicInstance, npcDict[quests[questCount].npcType]);
         FmodEvents.instance.currentNPCPos = npcNewPos;
+    }
+
+    void GameCompleted()
+    {
+        foreach (GameObject npc in npcDict.Values)
+        {
+            npc.SetActive(true);
+        }
+        npcDict[NPC.Racoon].transform.position = npcDict[NPC.Boar].transform.position + new Vector3(0, -1, 0);
+        npcDict[NPC.Beaver].transform.position = npcDict[NPC.Boar].transform.position + new Vector3(-1, -1, 0);
+        npcDict[NPC.Jay].transform.position = npcDict[NPC.Boar].transform.position + new Vector3(-1, 0, 0);
+        FmodEvents.instance._npcMusicInstance.setParameterByName("NPC", 5);
     }
 }
 
