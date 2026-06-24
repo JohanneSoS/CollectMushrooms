@@ -70,6 +70,8 @@ public class UIManager : MonoBehaviour
         uiActive = true;
         GlobalEventManager.ToggleUI.Invoke(true);
         GlobalEventManager.GamePaused.Invoke(true);
+        FmodEvents.instance.isMusicSilenced = true;
+        FmodEvents.instance.SwitchMusicState();
     }
 
     void ActivatePauseMenu()
