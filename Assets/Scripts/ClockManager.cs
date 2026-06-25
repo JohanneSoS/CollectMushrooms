@@ -37,6 +37,11 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private bool isNight;
     private bool isEvening;
     private bool dayTimeShifting;
+    
+    //DisplayManagement
+    public GameObject clockBackGroundAM;
+    public GameObject clockBackGroundPM;
+    public GameObject clockHand;
 
     void Awake()
     {
@@ -68,6 +73,7 @@ public class ClockManager : MonoBehaviour
         {
             minutes = 0;
             hours += 1;
+            DisplayNextHour(hours);
             GlobalEventManager.ApplyHunger.Invoke(hungerPerHour);
             GlobalEventManager.ApplyExhaustion.Invoke(exhaustionPerHour);
             if (playerStats.currentHunger <= 0)
@@ -235,4 +241,21 @@ public class ClockManager : MonoBehaviour
         }
         StartDay();
     }
+
+    void DisplayNextHour(float newHour)
+    {
+        if (newHour >= 12)
+        {
+            clockBackGroundPM.SetActive(true);
+            clockBackGroundAM.SetActive(false);
+        }
+        else
+        {
+            clockBackGroundPM.SetActive(false);
+            clockBackGroundAM.SetActive(true);
+        }
+        
+        clockHand.transform.eulerAngles = new Vector3(0,0, (newHour * -30f));
+    }
+    
 }
