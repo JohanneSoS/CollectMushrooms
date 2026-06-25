@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private QuestRecipient [] Boxes;
     [SerializeField] private GameObject itemSlotPrefab;
     [SerializeField] private TextMeshProUGUI MenuButtonText;
+    [SerializeField] private GameObject uiFade;
 
     public bool uiActive = false;
     public string currentMenu = "none";
@@ -43,6 +44,14 @@ public class UIManager : MonoBehaviour
     private void OnUIToggle(bool uiState)
     {
         uiActive = uiState;
+        if (uiActive)
+        {
+            uiFade.SetActive(true);
+        }
+        else
+        {
+            uiFade.SetActive(false);
+        }
     }
 
     public void ConfirmUI()
